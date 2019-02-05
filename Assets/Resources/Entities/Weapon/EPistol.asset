@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1397509372, guid: ba80931603c2dbc40ab113c533efa2ed, type: 3}
+  m_Name: EPistol
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 994ca5bd17ba8e941addb7e59c31cafa, type: 3}
+  m_Localization: 
+  Takeable: 1
+  Cost: 0
+  Weight: 0
+  Collectable: 1
+  Modifiers: []
+  weaponType: 1
+  Ammo: {fileID: 11400000, guid: 70186c1067b727340bcae2993dd6057e, type: 2}
+  AmmoCapacity: 4
+  BothHands: 0
+  DamageMin: 50
+  DamageMax: 60
+  DamageRadius: 1
+  Fatality: 0
+  Perks: 0
+  DamageType: 0
+  Single:
+    AP: 0
+    Range: 0
+    Shots: 0
+    Dispersion: 0
+    ModeType: 0
+    Sounds: []
+  Aimed:
+    AP: 0
+    Range: 0
+    Shots: 0
+    Dispersion: 0
+    ModeType: 0
+    Sounds: []
+  Burst:
+    AP: 0
+    Range: 0
+    Shots: 0
+    Dispersion: 0
+    ModeType: 0
+    Sounds: []
+  Reload:
+    AP: 0
+    Range: 0
+    Shots: 0
+    Dispersion: 0
+    ModeType: 0
+    Sounds: []
+  Effects: []
+  Requirements: []
+  NoAmmoSounds: []
+  PreAttackSounds: []

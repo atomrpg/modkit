@@ -1,0 +1,75 @@
+ManifestFileVersion: 0
+CRC: 817176145
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 578131de74d666288d1bc09d313d2a72
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f7f07002d5398962c62f68e4108fe569
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 12001, guid: 0000000000000000e000000000000000, type: 0}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Editor/Graph/btnHover.PSD
+- Assets/Resources/Editor/PathCell.mat
+- Assets/Resources/Editor/Graph/canvasBorders.PSD
+- Assets/Resources/Editor/PureWhiteForMaskRender.mat
+- Assets/Resources/Editor/Graph/nodePortConnectedHover.psd
+- Assets/Resources/Editor/MatForShadowReceiver.mat
+- Assets/Resources/Editor/Graph/windowHighlight.psd
+- Assets/Resources/Editor/Graph/LightThemeTextures/panelLight.psd
+- Assets/Resources/Editor/Graph/btnPressed.psd
+- Assets/Resources/Editor/Graph/arrow.psd
+- Assets/Resources/Editor/ShadowReceiver.shader
+- Assets/Resources/Editor/Graph/panel.psd
+- Assets/Resources/Editor/Graph/arrowTop.psd
+- Assets/Resources/Editor/Graph/GraphSkinLight.guiskin
+- Assets/Resources/Editor/Graph/nodePort.psd
+- Assets/Resources/Editor/Graph/windowShadow.psd
+- Assets/Resources/Editor/Graph/canvasBG.psd
+- Assets/Resources/Editor/Graph/arrowBottom.psd
+- Assets/Resources/Editor/Graph/scaleArrowHover.psd
+- Assets/Resources/Editor/Graph/LightThemeTextures/canvasBGLight.psd
+- Assets/Resources/Editor/Graph/LightThemeTextures/windowLight.psd
+- Assets/Resources/Editor/Graph/btn.psd
+- Assets/Resources/Editor/Graph/GraphSkin.guiskin
+- Assets/Resources/Editor/Graph/xMark.png
+- Assets/Resources/Editor/Graph/arrowLeft.psd
+- Assets/Resources/Editor/Graph/scaleArrow.psd
+- Assets/Resources/Editor/Graph/nodePortHover.psd
+- Assets/Resources/Editor/Cell.png
+- Assets/Resources/Editor/cell.FBX
+- Assets/Resources/Editor/Graph/simpleBox.psd
+- Assets/Resources/Editor/Graph/checkmark.png
+- Assets/Resources/Editor/Graph/clockMark.png
+- Assets/Resources/Editor/Graph/window.psd
+- Assets/Resources/Editor/Graph/simpleInnerShadow.psd
+- Assets/Resources/Editor/Graph/arrowRight.psd
+- Assets/Resources/Editor/Graph/circle.psd
+Dependencies: []
