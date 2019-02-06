@@ -32,7 +32,12 @@ class AssetViwerDB
                     int progress = 0;
                     foreach (var asset in allAssetNames)
                     {
-                        loadedAssets.Add(bundle.LoadAsset(asset), asset);
+                        Object obj = bundle.LoadAsset(asset);
+                        if (obj is ScriptableObject || obj is TextAsset)
+                        {
+                            loadedAssets.Add(obj, asset);
+                        }
+
                         if (EditorUtility.DisplayCancelableProgressBar("Asset bundle", "Load Asset", (float)progress / allAssetNames.Length))
                         {
                             break;
@@ -73,6 +78,26 @@ public class AssetViewer : EditorWindow
         guiSkin = (GUISkin)Resources.Load("AssetViewer");
     }
 
+    private Rect actualCanvas
+    {
+        get { return new Rect(0, 0, position.width, position.height); }
+    }
+
+    Texture2D GetThumbnail(Object obj)
+    {
+        if (obj is EntityProto)
+        {
+            Sprite sp = ((EntityProto)obj).Icon;
+            if (sp)
+                return sp.texture;
+        }
+
+        return AssetPreview.GetMiniThumbnail(obj);
+    }
+
+    const int ITEM_WIDTH = 100;
+    const int ITEM_HEIGHT = 80;
+
     void OnGUI()
     {
         GUISkin lastSkin = GUI.skin;
@@ -81,30 +106,61 @@ public class AssetViewer : EditorWindow
        if(GUILayout.Button("Reload"))
         {
             AssetViwerDB.Load();
+            guiSkin = (GUISkin)Resources.Load("AssetViewer");
+            GUI.skin = guiSkin;
         }
 
+        GUI.Box(actualCanvas, "", "scrollview");
+
         scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
+
+        Rect scrollRect = new Rect(scrollPosition.x, scrollPosition.y, position.width, position.height);
+
+        EditorGUILayout.BeginHorizontal();
+
+
+        Rect lastRect = new Rect(0, 0, ITEM_WIDTH, ITEM_HEIGHT);
+
+        int hCount = -1;
+        int hCountMax = Mathf.FloorToInt(scrollRect.width / ITEM_WIDTH);
 
         foreach (var kv in AssetViwerDB.loadedAssets)
         {
             var obj = kv.Key;
 
-            if(!(obj is EntityProto))
+            bool isvirtual = false;
+
+            if (++hCount == hCountMax)
+            {
+                EditorGUILayout.EndHorizontal();
+                lastRect.y += ITEM_HEIGHT;
+                lastRect.x = 0;
+                isvirtual = !scrollRect.Overlaps(lastRect);
+                if (isvirtual)
+                {
+                    GUILayout.Space(ITEM_HEIGHT);
+                }
+                EditorGUILayout.BeginHorizontal();
+                hCount = 0;
+            }
+            else
+            {
+                lastRect.x += ITEM_HEIGHT;
+                isvirtual = !scrollRect.Overlaps(lastRect);
+                if (isvirtual)
+                {
+                    GUILayout.Space(ITEM_WIDTH);
+                }
+            }
+
+            if(isvirtual)
             {
                 continue;
             }
 
+            Texture2D t = GetThumbnail(obj);
 
-            EditorGUILayout.BeginHorizontal();
-
-            Texture2D t = AssetPreview.GetMiniThumbnail(obj);
-
-            if (obj is EntityProto && ((EntityProto)obj).Icon != null)
-            {
-                t = ((EntityProto)obj).Icon.texture;
-            }
-
-            GUILayout.Box(new GUIContent(obj.name, t), GUILayout.Height(100), GUILayout.Width(100));
+            GUILayout.Box(new GUIContent(obj.name, t), GUILayout.Height(80), GUILayout.Width(100));
 
             if (Event.current.type == EventType.MouseUp || Event.current.type == EventType.MouseDrag)
             {
@@ -135,11 +191,16 @@ public class AssetViewer : EditorWindow
                                 if (obj is TextAsset)
                                 {
                                     File.WriteAllText(dataPath + kv.Value, ((TextAsset)obj).text);
+                                    AssetDatabase.Refresh();
+                                    Selection.activeObject = AssetDatabase.LoadAssetAtPath<TextAsset>(kv.Value);
                                 }
                                 else
                                 {
                                     AssetDatabase.CreateAsset(Instantiate(obj), kv.Value);
+                                    AssetDatabase.Refresh();
+                                    Selection.activeObject = AssetDatabase.LoadAssetAtPath<Object>(kv.Value);
                                 }
+                                EditorGUIUtility.PingObject(Selection.activeObject);
                             });
                             menu.ShowAsContext();
                         }
@@ -151,8 +212,10 @@ public class AssetViewer : EditorWindow
                     }
                 }
             }
-            EditorGUILayout.EndHorizontal();
+           
         }
+
+        EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.EndScrollView();
         GUI.skin = lastSkin;
