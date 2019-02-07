@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EPistol
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 994ca5bd17ba8e941addb7e59c31cafa, type: 3}
-  m_Localization: 
+  m_Localization: weapon.epistol
   Takeable: 1
   Cost: 0
   Weight: 0

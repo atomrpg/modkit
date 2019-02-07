@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MyMod_Level
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
-  m_Localization: 
+  m_Localization: interactive.mymod_level
   Takeable: 1
   Boom: {fileID: 0}
   DamageTreshold: 0
