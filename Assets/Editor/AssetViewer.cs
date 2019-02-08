@@ -9,7 +9,16 @@ class AssetViwerDB
     public static Dictionary<Object, string> loadedAssets = new Dictionary<Object, string>();
     static AssetViwerDB()
     {
-        Load();
+        EditorApplication.update += Init;
+    }
+
+    static void Init()
+    {
+        if (!EditorApplication.isCompiling)
+        {
+            EditorApplication.update -= Init;
+            Load(); 
+        }
     }
 
     public static void Load()
