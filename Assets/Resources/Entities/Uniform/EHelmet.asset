@@ -19,7 +19,7 @@ MonoBehaviour:
   Weight: 0
   Collectable: 1
   Modifiers: []
-  UniformType: 1
+  UniformType: 0
   HideMask: 0
   ArmorDurability: 0
   rules: []

@@ -17,6 +17,7 @@ public class ModEntryPoint : MonoBehaviour
     void GameLoaded(GlobalEvents.GameStart evnt)
     {
         Localization.LoadStrings("mymod_strings_");
+        Game.World.console.DeveloperMode();
     }
 
     void LevelLoaded(GlobalEvents.LevelLoaded evnt)
