@@ -3,68 +3,6 @@ using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
 
-[InitializeOnLoad]
-class AssetViwerDB
-{
-    public static Dictionary<Object, string> loadedAssets = new Dictionary<Object, string>();
-    static AssetViwerDB()
-    {
-        EditorApplication.update += Init;
-    }
-
-    static void Init()
-    {
-        if (!EditorApplication.isCompiling)
-        {
-            EditorApplication.update -= Init;
-            Load(); 
-        }
-    }
-
-    public static void Load()
-    {
-        loadedAssets.Clear();
-        AssetBundle.UnloadAllAssetBundles(true);
-
-        ResourceManager.Reset();
-
-        foreach (string f in Directory.GetFiles(Application.streamingAssetsPath))
-        {
-            try
-            {
-                if (!Path.HasExtension(f))
-                {
-                    AssetBundle bundle = AssetBundle.LoadFromFile(f);
-                    ResourceManager.AddBundle(bundle);
-
-                    string[] allAssetNames = bundle.GetAllAssetNames();
-                    int progress = 0;
-                    foreach (var asset in allAssetNames)
-                    {
-                        Object obj = bundle.LoadAsset(asset);
-                        if (obj is ScriptableObject || obj is TextAsset)
-                        {
-                            loadedAssets.Add(obj, asset);
-                        }
-
-                        if (EditorUtility.DisplayCancelableProgressBar("Asset bundle", "Load Asset", (float)progress / allAssetNames.Length))
-                        {
-                            break;
-                        }
-
-                        ++progress;
-                    }
-                }
-            }
-            catch
-            {
-                Debug.Log("Bundle skip");
-            }
-        }
-        EditorUtility.ClearProgressBar();
-    }
-}
-
 public class AssetViewer : EditorWindow
 {
     [MenuItem("Game/Asset Viewer")]
@@ -74,7 +12,7 @@ public class AssetViewer : EditorWindow
         window.ShowWindow();
     }
 
-    void ShowWindow()
+    private void ShowWindow()
     {
         base.Show();
     }
@@ -107,17 +45,21 @@ public class AssetViewer : EditorWindow
     const int ITEM_WIDTH = 100;
     const int ITEM_HEIGHT = 80;
 
-    void OnGUI()
+    private string searchText = "";
+
+    private void OnGUI()
     {
         GUISkin lastSkin = GUI.skin;
         GUI.skin = guiSkin;
 
-       if(GUILayout.Button("Reload"))
+        if (GUILayout.Button("Reload"))
         {
-            AssetViwerDB.Load();
+            AssetViewerDB.Load();
             guiSkin = (GUISkin)Resources.Load("AssetViewer");
             GUI.skin = guiSkin;
         }
+
+        searchText = GUILayout.TextField(searchText, 100);
 
         GUI.Box(actualCanvas, "", "scrollview");
 
@@ -127,25 +69,30 @@ public class AssetViewer : EditorWindow
 
         EditorGUILayout.BeginHorizontal();
 
-
         Rect lastRect = new Rect(0, 0, ITEM_WIDTH, ITEM_HEIGHT);
 
         int hCount = -1;
         int hCountMax = Mathf.FloorToInt(scrollRect.width / ITEM_WIDTH);
 
-        foreach (var kv in AssetViwerDB.loadedAssets)
+        foreach (var kv in AssetViewerDB.LoadedAssets)
         {
-            var obj = kv.Key;
+            var asset = kv.Key;
+            var assetName = kv.Value;
 
-            bool isvirtual = false;
+            if (!string.IsNullOrWhiteSpace(searchText) && !asset.name.Contains(searchText))
+            {
+                continue;
+            }
+
+            bool isVirtual = false;
 
             if (++hCount == hCountMax)
             {
                 EditorGUILayout.EndHorizontal();
                 lastRect.y += ITEM_HEIGHT;
                 lastRect.x = 0;
-                isvirtual = !scrollRect.Overlaps(lastRect);
-                if (isvirtual)
+                isVirtual = !scrollRect.Overlaps(lastRect);
+                if (isVirtual)
                 {
                     GUILayout.Space(ITEM_HEIGHT);
                 }
@@ -155,78 +102,85 @@ public class AssetViewer : EditorWindow
             else
             {
                 lastRect.x += ITEM_HEIGHT;
-                isvirtual = !scrollRect.Overlaps(lastRect);
-                if (isvirtual)
+                isVirtual = !scrollRect.Overlaps(lastRect);
+                if (isVirtual)
                 {
                     GUILayout.Space(ITEM_WIDTH);
                 }
             }
 
-            if(isvirtual)
+            if (isVirtual)
             {
                 continue;
             }
 
-            Texture2D t = GetThumbnail(obj);
+            Texture2D t = GetThumbnail(asset);
 
-            GUILayout.Box(new GUIContent(obj.name, t), GUILayout.Height(80), GUILayout.Width(100));
+            GUILayout.Box(new GUIContent(asset.name, t), GUILayout.Height(80), GUILayout.Width(100));
 
-            if (Event.current.type == EventType.MouseUp || Event.current.type == EventType.MouseDrag)
-            {
-                Rect r = GUILayoutUtility.GetLastRect();
-                Vector2 v = Event.current.mousePosition;
-                if (r.Contains(v))
-                {
-                    if (Event.current.type == EventType.MouseDrag)
-                    {
-                        DragAndDrop.PrepareStartDrag();
-                        Object[] objectReferences = new Object[1] { obj };
-                        DragAndDrop.objectReferences = objectReferences;
-                        DragAndDrop.StartDrag("Dragging Asset");
-                    }
-                    else
-                    {
-                        if (Event.current.button == 1)
-                        {
-                            var menu = new GenericMenu();
-
-                            menu.AddItem(new GUIContent("Download"), false, delegate
-                            {
-                                string dataPath = Application.dataPath.ToLower().Replace("/assets", "/");
-                                string p = Path.GetDirectoryName(dataPath + kv.Value);
-                                System.IO.Directory.CreateDirectory(p);
-                                AssetDatabase.Refresh();
-
-                                if (obj is TextAsset)
-                                {
-                                    File.WriteAllText(dataPath + kv.Value, ((TextAsset)obj).text);
-                                    AssetDatabase.Refresh();
-                                    Selection.activeObject = AssetDatabase.LoadAssetAtPath<TextAsset>(kv.Value);
-                                }
-                                else
-                                {
-                                    AssetDatabase.CreateAsset(Instantiate(obj), kv.Value);
-                                    AssetDatabase.Refresh();
-                                    Selection.activeObject = AssetDatabase.LoadAssetAtPath<Object>(kv.Value);
-                                }
-                                EditorGUIUtility.PingObject(Selection.activeObject);
-                            });
-                            menu.ShowAsContext();
-                        }
-                        else
-                        {
-
-                            Selection.activeObject = obj;
-                        }
-                    }
-                }
-            }
-           
+            HandleAssetEvents(asset, assetName);
         }
 
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.EndScrollView();
         GUI.skin = lastSkin;
+    }
+
+    private void HandleAssetEvents(Object asset, string assetName)
+    {
+        if (Event.current.type == EventType.MouseUp || Event.current.type == EventType.MouseDrag)
+        {
+            Rect r = GUILayoutUtility.GetLastRect();
+            Vector2 v = Event.current.mousePosition;
+            if (r.Contains(v))
+            {
+                if (Event.current.type == EventType.MouseDrag)
+                {
+                    DragAndDrop.PrepareStartDrag();
+                    Object[] objectReferences = new Object[1] { asset };
+                    DragAndDrop.objectReferences = objectReferences;
+                    DragAndDrop.StartDrag("Dragging Asset");
+                }
+                else
+                {
+                    if (Event.current.button == 1)
+                    {
+                        var menu = new GenericMenu();
+
+                        menu.AddItem(new GUIContent("Download"), false, () => DownloadAsset(asset, assetName));
+                        menu.ShowAsContext();
+                    }
+                    else
+                    {
+
+                        Selection.activeObject = asset;
+                    }
+                }
+            }
+        }
+    }
+
+    private void DownloadAsset(Object asset, string assetName)
+    {
+        string dataPath = Application.dataPath.ToLower().Replace("/assets", "/");
+        string p = Path.GetDirectoryName(dataPath + assetName);
+        System.IO.Directory.CreateDirectory(p);
+        AssetDatabase.Refresh();
+
+        var textAsset = asset as TextAsset;
+        if (textAsset != null)
+        {
+            File.WriteAllText(dataPath + assetName, textAsset.text);
+            AssetDatabase.Refresh();
+            Selection.activeObject = AssetDatabase.LoadAssetAtPath<TextAsset>(assetName);
+        }
+        else
+        {
+            AssetDatabase.CreateAsset(Instantiate(asset), assetName);
+            AssetDatabase.Refresh();
+            Selection.activeObject = AssetDatabase.LoadAssetAtPath<Object>(assetName);
+        }
+        EditorGUIUtility.PingObject(Selection.activeObject);
     }
 }
