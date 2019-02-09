@@ -1,14 +1,32 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
+using Object = UnityEngine.Object;
 
 [InitializeOnLoad]
 internal class AssetViewerDB
 {
-    public static IReadOnlyDictionary<Object, string> LoadedAssets => loadedAssets;
+    public struct LoadedAsset
+    {
+        public Object Asset { get; set; }
 
-    private static readonly Dictionary<Object, string> loadedAssets = new Dictionary<Object, string>();
+        public string AssetName { get; set; }
+
+        public string AssetCategory { get; set; }
+    }
+
+    public static event Action OnUpdated;
+
+    public static bool IsLoaded { get; private set; }
+
+    public static IReadOnlyList<LoadedAsset> LoadedAssets => loadedAssets;
+    private static readonly List<LoadedAsset> loadedAssets = new List<LoadedAsset>();
+
+    public static IReadOnlyList<string> AssetCategories => assetCategories;
+    private static readonly List<string> assetCategories = new List<string>();
 
     static AssetViewerDB()
     {
@@ -27,9 +45,12 @@ internal class AssetViewerDB
     public static void Load()
     {
         loadedAssets.Clear();
+        assetCategories.Clear();
         AssetBundle.UnloadAllAssetBundles(true);
 
         ResourceManager.Reset();
+
+        var categoriesSet = new HashSet<string>();
 
         foreach (string f in Directory.GetFiles(Application.streamingAssetsPath))
         {
@@ -47,7 +68,14 @@ internal class AssetViewerDB
                         Object obj = bundle.LoadAsset(asset);
                         if (obj is ScriptableObject || obj is TextAsset)
                         {
-                            loadedAssets.Add(obj, asset);
+                            var category = GetCategoryFromAssetName(asset);
+                            loadedAssets.Add(new LoadedAsset
+                            {
+                                Asset = obj,
+                                AssetName = asset,
+                                AssetCategory = category,
+                            });
+                            categoriesSet.Add(category);
                         }
 
                         if (EditorUtility.DisplayCancelableProgressBar("Asset bundle", "Load Asset", (float)progress / allAssetNames.Length))
@@ -64,6 +92,20 @@ internal class AssetViewerDB
                 Debug.Log("Bundle skip");
             }
         }
+
+        assetCategories.AddRange(categoriesSet.OrderBy(x => x));
         EditorUtility.ClearProgressBar();
+
+        IsLoaded = true;
+        OnUpdated?.Invoke();
+    }
+
+    private static string GetCategoryFromAssetName(string assetName)
+    {
+        var parts = assetName.Split('/');
+        var lastFolderName = parts.Length > 1 ? parts[parts.Length - 2] : null;
+        return !string.IsNullOrEmpty(lastFolderName)
+            ? lastFolderName
+            : null;
     }
 }
