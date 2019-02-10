@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -205,9 +206,21 @@ public class AssetViewer : EditorWindow
         }
     }
 
+    static ScriptableObject SaveScriptableAsset(ScriptableObject asset, string path)
+    {
+        CreateDirByAssetPath(path);
+        var obj = ScriptableObject.CreateInstance(asset.GetType().Name);
+        EditorUtility.CopySerialized(asset, obj);
+        RemapObject(obj, path);
+        AssetDatabase.CreateAsset(obj, path);
+        AssetDatabase.Refresh();
+
+        return AssetDatabase.LoadAssetAtPath<ScriptableObject>(path);
+    }
+
     static TextAsset SaveTextAsset(TextAsset textAsset, string path)
     {
-        if(textAsset == null)
+        if (textAsset == null || textAsset.Equals(null))
         {
             return null;
         }
@@ -217,9 +230,25 @@ public class AssetViewer : EditorWindow
         return AssetDatabase.LoadAssetAtPath<TextAsset>(path);
     }
 
+    static AudioClip SaveAudioClip(AudioClip ac, string path)
+    {
+        if (ac == null || ac.Equals(null))
+        {
+            return null;
+        }
+        string dir = Path.GetDirectoryName(path);
+
+        Directory.CreateDirectory(dir);
+
+        SavWav.Save(path, ac);
+        AssetDatabase.Refresh();
+        //EditorUtility.ExtractOggFile(ac, path);
+        return AssetDatabase.LoadAssetAtPath<AudioClip>(path);
+    }
+
     static Sprite SaveSprite(Sprite sp, string path)
     {
-        if(sp == null)
+        if (sp == null || sp.Equals(null))
         {
             return null;
         }
@@ -254,42 +283,96 @@ public class AssetViewer : EditorWindow
         return AssetDatabase.LoadAssetAtPath<Sprite>(path);
     }
 
-    public static void RemapObject(object source, object dst, string path)
+    static object Convert(object o, string path)
     {
-        System.Reflection.FieldInfo[] ps = source.GetType().GetFields();
+        if(o == null || o.Equals(null))
+        {
+            return null;
+        }
+
+        switch (o.GetType().Name) //Extract from bundle resources and remap
+        {
+            case nameof(Sprite):
+                return SaveSprite((Sprite)o, Path.GetDirectoryName(path) + "/" + ((Sprite)o).name + ".png");
+            case nameof(TextAsset):
+                return SaveTextAsset((TextAsset)o, Path.GetDirectoryName(path) + "/" + ((TextAsset)o).name  + ".json");
+            case nameof(ItemProto):
+                return SaveScriptableAsset((ScriptableObject)o, "assets/resources/entities/item/" + ((ScriptableObject)o).name + ".asset");
+            case nameof(WeaponProto):
+                return SaveScriptableAsset((ScriptableObject)o, "assets/resources/entities/weapon/" + ((ScriptableObject)o).name + ".asset");
+            case nameof(ConsumableProto):
+                return SaveScriptableAsset((ScriptableObject)o, "assets/resources/entities/consumable/" + ((ScriptableObject)o).name + ".asset");
+            case nameof(AmmoProto):
+                return SaveScriptableAsset((ScriptableObject)o, "assets/resources/entities/ammo/" + ((ScriptableObject)o).name + ".asset");
+            case nameof(UniformProto):
+                return SaveScriptableAsset((ScriptableObject)o, "assets/resources/entities/uniform/" + ((ScriptableObject)o).name + ".asset");
+            case nameof(ExplosiveProto):
+                return SaveScriptableAsset((ScriptableObject)o, "assets/resources/entities/explosive/" + ((ScriptableObject)o).name + ".asset");
+            case nameof(EffectProto):
+                return SaveScriptableAsset((ScriptableObject)o, "assets/resources/entities/effect/" + ((ScriptableObject)o).name + ".asset");
+            case nameof(AudioClip):
+                return SaveAudioClip((AudioClip)o, Path.GetDirectoryName(path) + "/" + ((AudioClip)o).name + ".wav");
+        }
+
+        return null;
+    }
+
+    public static void RemapObject(object source, string path)
+    {
+        if(source.GetType().IsArray)
+        {
+            System.Array array = (System.Array)source;
+            for (int i = 0; i < array.Length; i++)
+            {
+                object newObject = Convert(array.GetValue(i), path);
+                if (newObject != null)
+                {
+                    array.SetValue(newObject, i);
+                }
+                else
+                {
+                    RemapObject(array.GetValue(i), path);
+                }
+            }
+        }
+        else if(source is Enumerable)
+        {
+            foreach (var listitem in source as IEnumerable)
+            {
+                RemapObject(listitem, path);
+            }
+        }
+
+        System.Reflection.FieldInfo[] ps = source.GetType().GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         foreach (var item in ps)
         {
             var o = item.GetValue(source);
-            var p = dst.GetType().GetField(item.Name);
 
-            if (o != null)
+            object newObject = Convert(o, path);
+
+            if (newObject == null && o != source && o != null && !o.GetType().IsValueType)
             {
-                switch (o.GetType().Name) //Extract from bundle resources and remap
-                {
-                    case nameof(Sprite):
-                        o = SaveSprite((Sprite)o, System.IO.Path.ChangeExtension(path, null) + ".png");
-                        break;
-                    case nameof(TextAsset):
-                        o = SaveTextAsset((TextAsset)o, System.IO.Path.ChangeExtension(path, null) + ".json");
-                        break;
-                }
+                RemapObject(o, path);
             }
 
-            if (p != null)
+            if (newObject != null)
             {
-                System.Type t = System.Nullable.GetUnderlyingType(p.FieldType) ?? p.FieldType;
-                object safeValue = (o == null) ? null : System.Convert.ChangeType(o, t);
-                p.SetValue(dst, safeValue);
+                item.SetValue(source, newObject);
             }
         }
     }
 
-    private void DownloadAsset(Object asset, string assetName)
+    static void CreateDirByAssetPath(string assetName)
     {
         string dataPath = Application.dataPath.ToLower().Replace("/assets", "/");
         string p = Path.GetDirectoryName(dataPath + assetName);
         System.IO.Directory.CreateDirectory(p);
         AssetDatabase.Refresh();
+    }
+
+    private void DownloadAsset(Object asset, string assetName)
+    {
+        CreateDirByAssetPath(assetName);
 
         if (asset is TextAsset)
         {
@@ -297,14 +380,7 @@ public class AssetViewer : EditorWindow
         }
         else if (asset is ScriptableObject)
         {
-
-            var obj = ScriptableObject.CreateInstance(asset.GetType().Name);
-            EditorUtility.CopySerialized(asset, obj);
-            RemapObject(asset, obj, assetName);
-            AssetDatabase.CreateAsset(obj, assetName);
-            AssetDatabase.Refresh();
-
-            Selection.activeObject = AssetDatabase.LoadAssetAtPath<Object>(assetName);
+            Selection.activeObject = SaveScriptableAsset(asset as ScriptableObject, assetName);
         }
         else
         {

@@ -18,11 +18,23 @@ public class ModEntryPoint : MonoBehaviour
     {
         Localization.LoadStrings("mymod_strings_");
         Game.World.console.DeveloperMode();
+
+        
+
+    }
+
+    void FixCamera()
+    {
+        var inst = Game.World.cameraControl;
+        var prop = inst.GetType().GetField("mouseYMin", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        float mouseYMin = 0.1f;
+        prop.SetValue(inst, mouseYMin);
     }
 
     void LevelLoaded(GlobalEvents.LevelLoaded evnt)
     {
         Debug.Log(evnt.levelName);
+        FixCamera();
     }
 
     // Update is called once per frame
