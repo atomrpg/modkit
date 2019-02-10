@@ -209,13 +209,28 @@ public class AssetViewer : EditorWindow
     static ScriptableObject SaveScriptableAsset(ScriptableObject asset, string path)
     {
         CreateDirByAssetPath(path);
-        var obj = ScriptableObject.CreateInstance(asset.GetType().Name);
-        EditorUtility.CopySerialized(asset, obj);
-        RemapObject(obj, path);
-        AssetDatabase.CreateAsset(obj, path);
-        AssetDatabase.Refresh();
 
-        return AssetDatabase.LoadAssetAtPath<ScriptableObject>(path);
+        bool exist = true;
+        var obj = AssetDatabase.LoadAssetAtPath<ScriptableObject>(path);
+        if (obj == null)
+        {
+            exist = false;
+            obj = ScriptableObject.CreateInstance(asset.GetType().Name);
+        }
+
+        if (!exist)
+        {
+            EditorUtility.CopySerialized(asset, obj);
+            RemapObject(obj, path);
+            AssetDatabase.CreateAsset(obj, path);
+            AssetDatabase.Refresh();
+
+            return AssetDatabase.LoadAssetAtPath<ScriptableObject>(path);
+        }
+        else
+        {
+            return obj;
+        }
     }
 
     static TextAsset SaveTextAsset(TextAsset textAsset, string path)
@@ -244,6 +259,23 @@ public class AssetViewer : EditorWindow
         AssetDatabase.Refresh();
         //EditorUtility.ExtractOggFile(ac, path);
         return AssetDatabase.LoadAssetAtPath<AudioClip>(path);
+    }
+
+    static GameObject SavePrefab(GameObject ob, string path)
+    {
+        if (ob == null || ob.Equals(null))
+        {
+            return null;
+        }
+
+        string dir = Path.GetDirectoryName(path);
+
+        Directory.CreateDirectory(dir);
+
+        PrefabUtility.SaveAsPrefabAsset(Instantiate(ob), path);
+        AssetDatabase.Refresh();
+
+        return AssetDatabase.LoadAssetAtPath<GameObject>(path);
     }
 
     static Sprite SaveSprite(Sprite sp, string path)
@@ -283,12 +315,15 @@ public class AssetViewer : EditorWindow
         return AssetDatabase.LoadAssetAtPath<Sprite>(path);
     }
 
-    static object Convert(object o, string path)
+    static object Convert(object o, string path, out bool replace)
     {
         if(o == null || o.Equals(null))
         {
+            replace = false;
             return null;
         }
+
+        replace = true;
 
         switch (o.GetType().Name) //Extract from bundle resources and remap
         {
@@ -312,6 +347,17 @@ public class AssetViewer : EditorWindow
                 return SaveScriptableAsset((ScriptableObject)o, "assets/resources/entities/effect/" + ((ScriptableObject)o).name + ".asset");
             case nameof(AudioClip):
                 return SaveAudioClip((AudioClip)o, Path.GetDirectoryName(path) + "/" + ((AudioClip)o).name + ".wav");
+            case nameof(AnimatorOverrideController):
+                return null;
+            case nameof(GameObject):
+                return null;
+                //return SavePrefab((GameObject)o, Path.GetDirectoryName(path) + "/" + ((GameObject)o).name + ".prefab");
+            case nameof(AudioSourceSettings):
+                return null;
+            //return SaveScriptableAsset((ScriptableObject)o, Path.GetDirectoryName(path) + "/" + ((ScriptableObject)o).name + ".asset");
+            default:
+                replace = false;
+                break;
         }
 
         return null;
@@ -324,8 +370,8 @@ public class AssetViewer : EditorWindow
             System.Array array = (System.Array)source;
             for (int i = 0; i < array.Length; i++)
             {
-                object newObject = Convert(array.GetValue(i), path);
-                if (newObject != null)
+                object newObject = Convert(array.GetValue(i), path, out bool replace);
+                if (replace)
                 {
                     array.SetValue(newObject, i);
                 }
@@ -348,14 +394,14 @@ public class AssetViewer : EditorWindow
         {
             var o = item.GetValue(source);
 
-            object newObject = Convert(o, path);
+            object newObject = Convert(o, path, out bool replace);
 
             if (newObject == null && o != source && o != null && !o.GetType().IsPrimitive)
             {
                 RemapObject(o, path);
             }
 
-            if (newObject != null)
+            if (replace)
             {
                 item.SetValue(source, newObject);
             }
