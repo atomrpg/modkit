@@ -299,6 +299,7 @@ public class AssetViewer : EditorWindow
         {
 
             var obj = ScriptableObject.CreateInstance(asset.GetType().Name);
+            EditorUtility.CopySerialized(asset, obj);
             RemapObject(asset, obj, assetName);
             AssetDatabase.CreateAsset(obj, assetName);
             AssetDatabase.Refresh();
