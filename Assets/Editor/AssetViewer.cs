@@ -350,7 +350,7 @@ public class AssetViewer : EditorWindow
 
             object newObject = Convert(o, path);
 
-            if (newObject == null && o != source && o != null && !o.GetType().IsValueType)
+            if (newObject == null && o != source && o != null && !o.GetType().IsPrimitive)
             {
                 RemapObject(o, path);
             }
