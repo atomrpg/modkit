@@ -161,6 +161,85 @@ public class AssetViewer : EditorWindow
         }
     }
 
+    static TextAsset SaveTextAsset(TextAsset textAsset, string path)
+    {
+        if(textAsset == null)
+        {
+            return null;
+        }
+        File.WriteAllText(path, textAsset.text);
+        AssetDatabase.Refresh();
+
+        return AssetDatabase.LoadAssetAtPath<TextAsset>(path);
+    }
+
+    static Sprite SaveSprite(Sprite sp, string path)
+    {
+        if(sp == null)
+        {
+            return null;
+        }
+        string dir = Path.GetDirectoryName(path);
+
+        Directory.CreateDirectory(dir);
+
+        Texture2D img = sp.texture;
+        img.filterMode = FilterMode.Point;
+        RenderTexture rt = RenderTexture.GetTemporary(img.width, img.height);
+        rt.filterMode = FilterMode.Point;
+        RenderTexture.active = rt;
+        Graphics.Blit(img, rt);
+        Texture2D img2 = new Texture2D(img.width, img.height);
+        img2.ReadPixels(new Rect(0, 0, img.width, img.height), 0, 0);
+        img2.Apply();
+        RenderTexture.active = null;
+        img = img2;
+
+        File.WriteAllBytes(path, img.EncodeToPNG());
+        AssetDatabase.Refresh();
+        //AssetDatabase.AddObjectToAsset(sp, path);
+        //AssetDatabase.SaveAssets();
+
+        TextureImporter ti = AssetImporter.GetAtPath(path) as TextureImporter;
+        ti.textureType = TextureImporterType.Sprite;
+        ti.spritePixelsPerUnit = sp.pixelsPerUnit;
+        ti.mipmapEnabled = false;
+        EditorUtility.SetDirty(ti);
+        ti.SaveAndReimport();
+
+        return AssetDatabase.LoadAssetAtPath<Sprite>(path);
+    }
+
+    public static void RemapObject(object source, object dst, string path)
+    {
+        System.Reflection.FieldInfo[] ps = source.GetType().GetFields();
+        foreach (var item in ps)
+        {
+            var o = item.GetValue(source);
+            var p = dst.GetType().GetField(item.Name);
+
+            if (o != null)
+            {
+                switch (o.GetType().Name) //Extract from bundle resources and remap
+                {
+                    case nameof(Sprite):
+                        o = SaveSprite((Sprite)o, System.IO.Path.ChangeExtension(path, null) + ".png");
+                        break;
+                    case nameof(TextAsset):
+                        o = SaveTextAsset((TextAsset)o, System.IO.Path.ChangeExtension(path, null) + ".json");
+                        break;
+                }
+            }
+
+            if (p != null)
+            {
+                System.Type t = System.Nullable.GetUnderlyingType(p.FieldType) ?? p.FieldType;
+                object safeValue = (o == null) ? null : System.Convert.ChangeType(o, t);
+                p.SetValue(dst, safeValue);
+            }
+        }
+    }
+
     private void DownloadAsset(Object asset, string assetName)
     {
         string dataPath = Application.dataPath.ToLower().Replace("/assets", "/");
@@ -168,19 +247,25 @@ public class AssetViewer : EditorWindow
         System.IO.Directory.CreateDirectory(p);
         AssetDatabase.Refresh();
 
-        var textAsset = asset as TextAsset;
-        if (textAsset != null)
+        if (asset is TextAsset)
         {
-            File.WriteAllText(dataPath + assetName, textAsset.text);
+            Selection.activeObject = SaveTextAsset(asset as TextAsset, assetName);
+        }
+        else if (asset is ScriptableObject)
+        {
+
+            var obj = ScriptableObject.CreateInstance(asset.GetType().Name);
+            RemapObject(asset, obj, assetName);
+            AssetDatabase.CreateAsset(obj, assetName);
             AssetDatabase.Refresh();
-            Selection.activeObject = AssetDatabase.LoadAssetAtPath<TextAsset>(assetName);
+
+            Selection.activeObject = AssetDatabase.LoadAssetAtPath<Object>(assetName);
         }
         else
         {
-            AssetDatabase.CreateAsset(Instantiate(asset), assetName);
-            AssetDatabase.Refresh();
-            Selection.activeObject = AssetDatabase.LoadAssetAtPath<Object>(assetName);
+            Debug.LogWarning("TODO " + asset.GetType().Name);
         }
+    
         EditorGUIUtility.PingObject(Selection.activeObject);
     }
 }
