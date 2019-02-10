@@ -2,6 +2,7 @@
 using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 public class AssetViewer : EditorWindow
 {
@@ -17,12 +18,35 @@ public class AssetViewer : EditorWindow
         base.Show();
     }
 
-    Vector2 scrollPosition = Vector2.zero;
+    private Vector2 scrollPosition = Vector2.zero;
 
     private GUISkin guiSkin;
+
+    private string searchText = "";
+
+    private int selectedCategoryIdx = -1;
+    private string[] categoryNames;
+
     private void OnEnable()
     {
         guiSkin = (GUISkin)Resources.Load("AssetViewer");
+        if (AssetViewerDB.IsLoaded)
+        {
+            HandleDataUpdated();
+        }
+        AssetViewerDB.OnUpdated += HandleDataUpdated;
+    }
+
+    private void OnDisable()
+    {
+        AssetViewerDB.OnUpdated -= HandleDataUpdated;
+    }
+
+    private void HandleDataUpdated()
+    {
+        categoryNames = new []{"ALL"}.Concat(AssetViewerDB.AssetCategories).ToArray();
+        selectedCategoryIdx = 0;
+        searchText = "";
     }
 
     private Rect actualCanvas
@@ -32,9 +56,10 @@ public class AssetViewer : EditorWindow
 
     Texture2D GetThumbnail(Object obj)
     {
-        if (obj is EntityProto)
+        var proto = obj as EntityProto;
+        if (proto != null)
         {
-            Sprite sp = ((EntityProto)obj).Icon;
+            Sprite sp = proto.Icon;
             if (sp)
                 return sp.texture;
         }
@@ -45,21 +70,30 @@ public class AssetViewer : EditorWindow
     const int ITEM_WIDTH = 100;
     const int ITEM_HEIGHT = 80;
 
-    private string searchText = "";
-
     private void OnGUI()
     {
         GUISkin lastSkin = GUI.skin;
         GUI.skin = guiSkin;
 
-        if (GUILayout.Button("Reload"))
+        EditorGUILayout.Space();
+        EditorGUILayout.BeginHorizontal();
+
+        if (GUI.Button(EditorGUILayout.GetControlRect(false),
+            new GUIContent("Reload", "Reload assets from source bundle"),
+            lastSkin.button))
         {
             AssetViewerDB.Load();
             guiSkin = (GUISkin)Resources.Load("AssetViewer");
             GUI.skin = guiSkin;
         }
 
-        searchText = GUILayout.TextField(searchText, 100);
+        searchText = EditorGUILayout.TextField(searchText);
+        if (categoryNames?.Length > 0)
+        {
+            selectedCategoryIdx = EditorGUILayout.Popup(selectedCategoryIdx, categoryNames);
+        }
+
+        EditorGUILayout.EndHorizontal();
 
         GUI.Box(actualCanvas, "", "scrollview");
 
@@ -74,12 +108,19 @@ public class AssetViewer : EditorWindow
         int hCount = -1;
         int hCountMax = Mathf.FloorToInt(scrollRect.width / ITEM_WIDTH);
 
-        foreach (var kv in AssetViewerDB.LoadedAssets)
+        foreach (var loadedAsset in AssetViewerDB.LoadedAssets)
         {
-            var asset = kv.Key;
-            var assetName = kv.Value;
+            var asset = loadedAsset.Asset;
+            var assetName = loadedAsset.AssetName;
 
-            if (!string.IsNullOrWhiteSpace(searchText) && !asset.name.Contains(searchText))
+            // Name filter
+            if (!string.IsNullOrWhiteSpace(searchText) && !asset.name.ToLower().Contains(searchText.ToLower()))
+            {
+                continue;
+            }
+
+            // Category filter
+            if (selectedCategoryIdx > 0 && loadedAsset.AssetCategory != categoryNames[selectedCategoryIdx])
             {
                 continue;
             }
@@ -116,12 +157,15 @@ public class AssetViewer : EditorWindow
 
             Texture2D t = GetThumbnail(asset);
 
-            GUILayout.Box(new GUIContent(asset.name, t), GUILayout.Height(80), GUILayout.Width(100));
+            GUILayout.Box(new GUIContent(asset.name, t, assetName), GUILayout.Height(80), GUILayout.Width(100));
 
             HandleAssetEvents(asset, assetName);
         }
 
-        EditorGUILayout.EndHorizontal();
+        if (hCount != hCountMax)
+        {
+            EditorGUILayout.EndHorizontal();
+        }
 
         EditorGUILayout.EndScrollView();
         GUI.skin = lastSkin;
