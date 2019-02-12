@@ -42,6 +42,20 @@ internal class AssetViewerDB
         }
     }
 
+    public static string GetBundleAssetPath(UnityEngine.Object obj)
+    {
+        foreach(var la in loadedAssets)
+        {
+            if(la.Asset == obj)
+            {
+                return la.AssetName;
+            }
+        }
+
+        return string.Empty;
+    }
+
+
     public static void Load()
     {
         loadedAssets.Clear();
@@ -49,6 +63,7 @@ internal class AssetViewerDB
         AssetBundle.UnloadAllAssetBundles(true);
 
         ResourceManager.Reset();
+        ResourceManager.SetAssetGetPathCallback(GetBundleAssetPath);
 
         var categoriesSet = new HashSet<string>();
 
