@@ -8,8 +8,9 @@ public class ModEntryPoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Mod Init");
-        ResourceManager.AddBundle(AssetBundle.LoadFromFile(Application.persistentDataPath + "/Mods/MyMod/resources"));
+        string modName = GetType().Assembly.GetName().Name; 
+        Debug.Log("Mod Init: " + modName);
+        ResourceManager.AddBundle(AssetBundle.LoadFromFile(Application.persistentDataPath + "/Mods/" + modName + "/resources"));
         GlobalEvents.AddListener<GlobalEvents.GameStart>(GameLoaded);
         GlobalEvents.AddListener<GlobalEvents.LevelLoaded>(LevelLoaded);
     }
