@@ -17,6 +17,16 @@ class SteamService
         }
     }
 
+    public void Logout()
+    {
+        if (_init)
+        {
+            SteamAPI.ReleaseCurrentThreadMemory();
+            SteamAPI.Shutdown();
+            _init = false;
+        }
+    }
+
 
     public void Update()
     {
@@ -54,7 +64,7 @@ public class ModBuilder : EditorWindow
     private int _modIndex = -1;
 
     SteamService steam = new SteamService();
-    string _modName = "MyMod";
+   // string _modName = typeof(ModEntryPoint).Assembly.GetName().Name;
     [MenuItem("Game/Build Mod")]
     static void BuildMod()
     {
@@ -64,7 +74,6 @@ public class ModBuilder : EditorWindow
 
     public void ShowWindow()
     {
-        RequestInfo();
         base.Show();
     }
 
@@ -122,12 +131,22 @@ public class ModBuilder : EditorWindow
 
     private void OnGUI()
     {
+
+        string modName = typeof(ModEntryPoint).Assembly.GetName().Name;
         GUILayout.Label("Build Settings", EditorStyles.boldLabel);
-        _modName = EditorGUILayout.TextField("Mod Name", _modName);
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Mod Name", modName);
+        if(GUILayout.Button("Change"))
+        {
+            var obj = AssetDatabase.LoadAssetAtPath<Object>("Assets/Scripts/MyMod.asmdef");
+            Selection.activeObject = obj;
+            EditorGUIUtility.PingObject(obj);
+        }
+        EditorGUILayout.EndHorizontal();
 
         if (GUILayout.Button("BUILD"))
         {
-            if (_modName.Length > 0)
+            if (modName.Length > 0)
             {
                 if (Directory.Exists(PATH_BUILD_BUNDLE))
                 {
@@ -139,24 +158,22 @@ public class ModBuilder : EditorWindow
                     throw new System.Exception("Temp/ModBuild exist");
                 }
 
-                Directory.CreateDirectory(PATH_BUILD_BUNDLE + "/" + _modName);
+                Directory.CreateDirectory(PATH_BUILD_BUNDLE + "/" + modName);
 
-                BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE + "/" + _modName, BuildAssetBundleOptions.DisableWriteTypeTree, BuildTarget.StandaloneWindows64);
+                BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE + "/" + modName, BuildAssetBundleOptions.DisableWriteTypeTree, BuildTarget.StandaloneWindows64);
 
                 //copy dll
                 string modsFolder = Application.persistentDataPath + "/../../AtomTeam/Atom/Mods";
-                string dllName = typeof(ModEntryPoint).Assembly.GetName().Name;
-                Debug.Log(dllName);
 
                 if (!Directory.Exists(modsFolder))
                 {
                     Directory.CreateDirectory(modsFolder);
                 }
 
-                Copy("Library/ScriptAssemblies/" + dllName + ".dll", modsFolder + "/" + dllName + ".dll");
+                Copy("Library/ScriptAssemblies/" + modName + ".dll", modsFolder + "/" + modName + ".dll");
 
                 //copy res
-                string modResFolder = modsFolder + "/" + _modName;
+                string modResFolder = modsFolder + "/" + modName;
 
                 if (!Directory.Exists(modResFolder))
                 {
@@ -166,9 +183,9 @@ public class ModBuilder : EditorWindow
                 string dataAsset = Application.dataPath;
                 int index = dataAsset.ToLower().IndexOf(PATH_TO_ASSETS);
                 dataAsset = dataAsset.Remove(index, PATH_TO_ASSETS.Length);
-                Copy(dataAsset + "/Temp/ModBuild/" + _modName + "/resources", modResFolder + "/resources");
-                Copy(dataAsset + "/Temp/ModBuild/" + _modName + "/resources.manifest", modResFolder + "/resources.manifest");
-                Copy("Library/ScriptAssemblies/" + dllName + ".dll", "Temp/ModBuild/" + dllName + ".dll");
+                Copy(dataAsset + "/Temp/ModBuild/" + modName + "/resources", modResFolder + "/resources");
+                Copy(dataAsset + "/Temp/ModBuild/" + modName + "/resources.manifest", modResFolder + "/resources.manifest");
+                Copy("Library/ScriptAssemblies/" + modName + ".dll", "Temp/ModBuild/" + modName + ".dll");
 
                 EditorUtility.RevealInFinder(modResFolder);
             }
@@ -251,9 +268,9 @@ public class ModBuilder : EditorWindow
         }
         else
         {
-            EditorGUILayout.HelpBox("Login to Steam failed", MessageType.Error);
+            EditorGUILayout.HelpBox("Login to Steam account", MessageType.Warning);
 
-            if (GUILayout.Button("Reload"))
+            if (GUILayout.Button("Login"))
             {
                 RequestInfo();
             }
@@ -264,5 +281,10 @@ public class ModBuilder : EditorWindow
     {
         Debug.Log("Copy " + src + " -> " + dst);
         File.Copy(src, dst, true);
+    }
+
+    void OnDestroy()
+    {
+        steam.Logout();
     }
 }
