@@ -8,9 +8,11 @@ public class ModEntryPoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string modName = GetType().Assembly.GetName().Name; 
-        Debug.Log("Mod Init: " + modName);
-        ResourceManager.AddBundle(AssetBundle.LoadFromFile(Application.persistentDataPath + "/Mods/" + modName + "/resources"));
+        var assembly = GetType().Assembly;
+        string modName = assembly.GetName().Name;
+        string dir = System.IO.Path.GetDirectoryName(assembly.Location);
+        Debug.Log("Mod Init: " + modName + "(" + dir + ")");
+        ResourceManager.AddBundle(AssetBundle.LoadFromFile(dir + "/" + modName + "/resources"));
         GlobalEvents.AddListener<GlobalEvents.GameStart>(GameLoaded);
         GlobalEvents.AddListener<GlobalEvents.LevelLoaded>(LevelLoaded);
     }
@@ -19,9 +21,6 @@ public class ModEntryPoint : MonoBehaviour
     {
         Localization.LoadStrings("mymod_strings_");
         Game.World.console.DeveloperMode();
-
-        
-
     }
 
     void FixCamera()
@@ -35,7 +34,7 @@ public class ModEntryPoint : MonoBehaviour
     void LevelLoaded(GlobalEvents.LevelLoaded evnt)
     {
         Debug.Log(evnt.levelName);
-        FixCamera();
+        //FixCamera();
     }
 
     // Update is called once per frame
