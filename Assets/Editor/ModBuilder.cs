@@ -160,7 +160,15 @@ public class ModBuilder : EditorWindow
 
                 Directory.CreateDirectory(PATH_BUILD_BUNDLE + "/" + modName);
 
+                //HACK move directory for unique id
+                AssetImporter.GetAtPath("Assets/Resources").SetAssetBundleNameAndVariant("resources", "");
+                AssetDatabase.MoveAsset("Assets/Resources", "Assets/Resources_" + modName);
+                AssetDatabase.Refresh();
+
                 BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE + "/" + modName, BuildAssetBundleOptions.DisableWriteTypeTree, BuildTarget.StandaloneWindows64);
+
+                AssetDatabase.MoveAsset("Assets/Resources_" + modName, "Assets/Resources");
+                AssetDatabase.Refresh();
 
                 //copy dll
                 string modsFolder = Application.persistentDataPath + "/../../AtomTeam/Atom/Mods";

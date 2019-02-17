@@ -74,7 +74,7 @@ internal class AssetViewerDB
                 if (!Path.HasExtension(f))
                 {
                     AssetBundle bundle = AssetBundle.LoadFromFile(f);
-                    ResourceManager.AddBundle(bundle);
+                    ResourceManager.AddBundle("", bundle);
 
                     string[] allAssetNames = bundle.GetAllAssetNames();
                     int progress = 0;
