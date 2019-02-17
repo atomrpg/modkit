@@ -12,7 +12,7 @@ public class ModEntryPoint : MonoBehaviour
         string modName = assembly.GetName().Name;
         string dir = System.IO.Path.GetDirectoryName(assembly.Location);
         Debug.Log("Mod Init: " + modName + "(" + dir + ")");
-        ResourceManager.AddBundle(modName, AssetBundle.LoadFromFile(dir + "/" + modName + "/resources"));
+        ResourceManager.AddBundle(modName, AssetBundle.LoadFromFile(dir + "/" + modName + "_resources"));
         GlobalEvents.AddListener<GlobalEvents.GameStart>(GameLoaded);
         GlobalEvents.AddListener<GlobalEvents.LevelLoaded>(LevelLoaded);
     }

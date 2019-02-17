@@ -158,17 +158,13 @@ public class ModBuilder : EditorWindow
                     throw new System.Exception("Temp/ModBuild exist");
                 }
 
-                Directory.CreateDirectory(PATH_BUILD_BUNDLE + "/" + modName);
+                Directory.CreateDirectory(PATH_BUILD_BUNDLE);
 
-                //HACK move directory for unique id
-                AssetImporter.GetAtPath("Assets/Resources").SetAssetBundleNameAndVariant("resources", "");
-                AssetDatabase.MoveAsset("Assets/Resources", "Assets/Resources_" + modName);
+                //HACK for unique id
+                AssetImporter.GetAtPath("Assets/Resources").SetAssetBundleNameAndVariant(modName + "_resources", "");
                 AssetDatabase.Refresh();
 
-                BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE + "/" + modName, BuildAssetBundleOptions.DisableWriteTypeTree, BuildTarget.StandaloneWindows64);
-
-                AssetDatabase.MoveAsset("Assets/Resources_" + modName, "Assets/Resources");
-                AssetDatabase.Refresh();
+                BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE, BuildAssetBundleOptions.DisableWriteTypeTree, BuildTarget.StandaloneWindows64);
 
                 //copy dll
                 string modsFolder = Application.persistentDataPath + "/../../AtomTeam/Atom/Mods";
@@ -181,21 +177,15 @@ public class ModBuilder : EditorWindow
                 Copy("Library/ScriptAssemblies/" + modName + ".dll", modsFolder + "/" + modName + ".dll");
 
                 //copy res
-                string modResFolder = modsFolder + "/" + modName;
-
-                if (!Directory.Exists(modResFolder))
-                {
-                    Directory.CreateDirectory(modResFolder);
-                }
+                string modResFolder = modsFolder;
 
                 string dataAsset = Application.dataPath;
                 int index = dataAsset.ToLower().IndexOf(PATH_TO_ASSETS);
                 dataAsset = dataAsset.Remove(index, PATH_TO_ASSETS.Length);
-                Copy(dataAsset + "/Temp/ModBuild/" + modName + "/resources", modResFolder + "/resources");
-                Copy(dataAsset + "/Temp/ModBuild/" + modName + "/resources.manifest", modResFolder + "/resources.manifest");
+                Copy(dataAsset + "/Temp/ModBuild/" + modName + "_resources", modResFolder + "/"+ modName + "_resources");
                 Copy("Library/ScriptAssemblies/" + modName + ".dll", "Temp/ModBuild/" + modName + ".dll");
 
-                EditorUtility.RevealInFinder(modResFolder);
+                EditorUtility.RevealInFinder(modsFolder + "/" + modName + ".dll");
             }
         }
 
