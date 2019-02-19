@@ -60,7 +60,7 @@ public class AssetViewer : EditorWindow
         var proto = obj as EntityProto;
         if (proto != null)
         {
-            Sprite sp = proto.Icon;
+            Sprite sp = proto.Icon.Get();
             if (sp)
                 return sp.texture;
         }

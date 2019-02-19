@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1749288165
+CRC: 2425251715
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 333388d8c60daeb2ffc78ae77e5a7801
+    Hash: 4ef6201a269f2dab503a9a577c4282c8
   TypeTreeHash:
     serializedVersion: 2
-    Hash: b03b5de5007ea33179511be19f712edb
+    Hash: cb993f811b831f9d1ca9133623f0890c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -17,19 +17,13 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 28
   Script: {instanceID: 0}
-- Class: 43
-  Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
 - Class: 49
   Script: {instanceID: 0}
-- Class: 74
-  Script: {instanceID: 0}
 - Class: 82
   Script: {instanceID: 0}
 - Class: 83
-  Script: {instanceID: 0}
-- Class: 91
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 63588430a94130d4ab4327b04cca3cea, type: 3}
@@ -42,17 +36,11 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 5293b7610aee8b84391ad23c8dc8b3be, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 217a5ef1537e1ef409c1078ee6eeca2c, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 998e82b24f121d349b79637de77566a8, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 8eb114c2d224b294f91efb5d8f8f28e1, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 40b924e2dad56384a8df2a1e111bb675, type: 3}
 - Class: 114
@@ -70,8 +58,6 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 8792cf08514b9ab49860ceb18a106ca8, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 4852e738289041749a617b9cf7f722ca, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: f968474859d6240b79b4826b14247b27, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: c027c6d8e2c4c0f40b900d3a245de004, type: 3}
@@ -84,11 +70,7 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 3dfc05fb7a4bc464795b4ffbd8367ba3, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 401ed81cce6fb7540b2972b9c1e46f5a, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 1af4a56c35ee09b4b8cc35be6c617f30, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: ba6130acff77e5c49a043fda5e25886e, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 175557dc71eafc94193a7a160c7c4f8a, type: 3}
 - Class: 114
@@ -100,8 +82,6 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: c1cb7e9e120078f43bce4f0b1be547a7, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: a46420ae1aa542b438b19d9006088cac, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 4d22b9ce7d8b0814f9c82d73f206a06a, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 0ebdc80f3cf5a4b3f897530809e8a9ed, type: 3}
@@ -111,15 +91,11 @@ ClassTypes:
   Script: {fileID: 11500000, guid: b0c3ae9f1d1b7b4448972f9b951293f0, type: 3}
 - Class: 115
   Script: {instanceID: 0}
-- Class: 119
-  Script: {instanceID: 0}
 - Class: 198
   Script: {instanceID: 0}
 - Class: 199
   Script: {instanceID: 0}
 - Class: 213
-  Script: {instanceID: 0}
-- Class: 221
   Script: {instanceID: 0}
 Assets:
 - Assets/Resources/Entities/Character/DeadCity_Mixa.asset
@@ -203,6 +179,7 @@ Assets:
 - Assets/Resources/Entities/Ammo/14_5mm_AP.png
 - Assets/Resources/Entities/Weapon/VVE.asset
 - Assets/Resources/Entities/Effect/Craft_Heal.asset
+- "Assets/Resources/Entities/Dialog/\u0421itySub_Smuggler.json"
 - Assets/Resources/Entities/Memo/Craft_Book17.png
 - Assets/Resources/Entities/Weapon/WrathLenin.asset
 - Assets/Resources/Entities/Character/City_Clerk.asset
@@ -253,6 +230,7 @@ Assets:
 - Assets/Resources/Entities/Effect/AntidoteZina.asset
 - Assets/Resources/Entities/Memo/Craft_Book6.asset
 - Assets/Resources/Entities/Behavior/Fidel_Whoop.json
+- "Assets/Resources/Entities/Character/\u0421itySub_Smuggler.jpg"
 - Assets/Resources/Entities/Behavior/Harbor.Trudomir.json
 - Assets/Resources/Entities/Character/Rat_Forest_CampFemale2.asset
 - Assets/Resources/Entities/Interactive/Svarog.json
@@ -485,6 +463,7 @@ Assets:
 - Assets/Resources/Entities/Interactive/Raider_1_Sign.json
 - Assets/Resources/Entities/Dialog/DownBus_Man3.json
 - Assets/Resources/Entities/Item/Scanner.asset
+- Assets/Resources/Entities/Interactive/CitySub_11_kartina.asset
 - Assets/Resources/Entities/Item/FishingRod.asset
 - Assets/Resources/Entities/Character/Baza_Niko.asset
 - Assets/Resources/Entities/Item/LockPicks.asset
@@ -524,6 +503,7 @@ Assets:
 - Assets/Resources/Entities/Creature/BaseFemale6_Op.asset
 - Assets/Resources/Entities/Weapon/WormBite.asset
 - Assets/Resources/Entities/Behavior/Harbor.W5.json
+- "Assets/Resources/Entities/Behavior/\u0421itySub_Smuggler.json"
 - Assets/Resources/Entities/Character/GasStation_Man4.asset
 - Assets/Resources/Entities/Behavior/Z_OPG_1.json
 - Assets/Resources/Entities/Chest/Skeleton_4.asset
@@ -540,6 +520,7 @@ Assets:
 - Assets/Resources/Entities/Interactive/Z_1.asset
 - Assets/Resources/Entities/Encounter/opg_1.png
 - Assets/Resources/Entities/Interactive/Ruins.Patifon_2.asset
+- Assets/Resources/Entities/Interactive/CitySub_12_drakon.asset
 - Assets/Resources/Entities/Behavior/Level_Harbor_Help.json
 - Assets/Resources/Entities/Memo/CBunker.Tobik.png
 - Assets/Resources/Entities/Character/Zvezda_PMan.asset
@@ -888,6 +869,8 @@ Assets:
 - Assets/Resources/Entities/Character/Caravan.Guard0.asset
 - Assets/Resources/Entities/Interactive/DeadCityBunker_Lab_Door_2.asset
 - Assets/Resources/Entities/Character/LakePier_Whipped.asset
+- Assets/Resources/Entities/Character/CitySub_Fade.asset
+- Assets/Resources/Entities/Interactive/CitySub_10_kartiny.asset
 - Assets/Resources/Entities/Character/Fidel_Water.png
 - Assets/Resources/Entities/Uniform/Tyubeteyka.png
 - Assets/Resources/Entities/Behavior/Stripteaser.Show.json
@@ -896,6 +879,7 @@ Assets:
 - Assets/Resources/Entities/Effect/CannedMeat.asset
 - Assets/Resources/Entities/Dialog/Krz_Varia.whoop.json
 - Assets/Resources/Entities/Behavior/Village.Caravan_Trader.json
+- Assets/Resources/Entities/Interactive/CitySub_Items.json
 - Assets/Resources/Entities/Interactive/Rat_Cave_Egg.asset
 - Assets/Resources/Entities/Character/Headhunter_Wolf.asset
 - Assets/Resources/Entities/Behavior/Alexander.json
@@ -963,6 +947,7 @@ Assets:
 - Assets/Resources/Entities/Character/Baza_Cowboy.asset
 - Assets/Resources/Entities/Dialog/Help_Caravan.json
 - Assets/Resources/Entities/Craft/Ciggy.asset
+- Assets/Resources/Entities/Behavior/CitySub_Fade.json
 - Assets/Resources/Entities/Behavior/Koval.WaitEnd.json
 - Assets/Resources/Entities/Character/Caravanserai_Marina.png
 - Assets/Resources/Entities/Interactive/Fishing_2.asset
@@ -985,6 +970,7 @@ Assets:
 - Assets/Resources/Entities/Character/Krz_Gensek_Guard.asset
 - Assets/Resources/Entities/Dialog/LakePier_Head.json
 - Assets/Resources/Entities/Consumable/Antidote.png
+- Assets/Resources/Entities/Interactive/CitySub_15_oldbook.asset
 - Assets/Resources/Entities/Dialog/City_Debt2.json
 - Assets/Resources/Entities/Dialog/Krz_Guard_17.json
 - Assets/Resources/Entities/Character/Bot.asset
@@ -1089,10 +1075,12 @@ Assets:
 - Assets/Resources/Entities/Behavior/Fogelevka.Hunter.json
 - Assets/Resources/Entities/Dialog/Harbor_TicketMan.json
 - Assets/Resources/Entities/Item/Wires.asset
+- Assets/Resources/Entities/Interactive/CitySub_SpiderEgg.asset
 - Assets/Resources/Entities/Character/City_Alfa_Team_9.asset
 - Assets/Resources/Entities/Memo/CBunker_Memo_2.json
 - Assets/Resources/Entities/Character/City_Lera.asset
 - Assets/Resources/Entities/Character/DeadCity_FortGuard2.png
+- Assets/Resources/Entities/Interactive/CitySub_6_lev.asset
 - Assets/Resources/Entities/Dialog/IL_Ufi_Crowd.json
 - Assets/Resources/Entities/Consumable/Fish.Som.png
 - Assets/Resources/Entities/Character/Harbor_Stepan.png
@@ -1172,6 +1160,7 @@ Assets:
 - Assets/Resources/Entities/Weapon/Pipe_Sniper.asset
 - Assets/Resources/Entities/Consumable/Kasparamid.png
 - Assets/Resources/Entities/Character/Lab_Raider_Old.asset
+- Assets/Resources/Entities/Behavior/CitySub_SpiderEgg.json
 - Assets/Resources/Entities/Uniform/Shlemofon.png
 - Assets/Resources/Entities/Memo/Tunnel_Memo_3.asset
 - Assets/Resources/Entities/Interactive/Ruins.Comp.json
@@ -1253,6 +1242,7 @@ Assets:
 - Assets/Resources/Entities/Interactive/GazVoda.json
 - Assets/Resources/Entities/Behavior/Harbor.Trade1.json
 - Assets/Resources/Entities/Memo/Ruins.KeyBook.asset
+- Assets/Resources/Entities/Character/CitySub_Fade.jpg
 - Assets/Resources/Entities/Character/Lab_Bator.png
 - Assets/Resources/Entities/Behavior/Cinematic_Baza.json
 - Assets/Resources/Entities/Behavior/Baza.Scavenger.json
@@ -1315,6 +1305,7 @@ Assets:
 - Assets/Resources/Entities/Uniform/PanamaRanger.png
 - Assets/Resources/Entities/Behavior/Goon_1.json
 - Assets/Resources/Entities/Character/Lab_Shasa.asset
+- Assets/Resources/Entities/Interactive/CitySub_5_kartina.asset
 - Assets/Resources/Entities/Character/Cult_DoorGuard.asset
 - Assets/Resources/Entities/Weapon/SpecialKnife.png
 - Assets/Resources/Entities/Weapon/Grenade.asset
@@ -1324,6 +1315,7 @@ Assets:
 - Assets/Resources/Entities/Character/IL_Porn2.asset
 - Assets/Resources/Entities/Uniform/Glasses.png
 - Assets/Resources/Entities/Character/DeadCity_KeyMan.png
+- Assets/Resources/Entities/Memo/Suicide_Diary.asset
 - Assets/Resources/Entities/Character/Gexgen.png
 - Assets/Resources/Entities/Interactive/Harbor.TapeRecorder.json
 - Assets/Resources/Entities/Behavior/Ruins.Usatiy2.json
@@ -1444,6 +1436,7 @@ Assets:
 - Assets/Resources/Entities/Uniform/Helmet_Home.png
 - Assets/Resources/Entities/Interactive/CBunker.Trap_5.png
 - Assets/Resources/Entities/Character/Harbor_T3.asset
+- Assets/Resources/Entities/Interactive/CitySub_4_kartina.asset
 - Assets/Resources/Entities/Behavior/ASim.Swing.json
 - Assets/Resources/Entities/Character/IL_Porn3.asset
 - Assets/Resources/Entities/Ammo/9mm_AP.png
@@ -1708,6 +1701,7 @@ Assets:
 - Assets/Resources/Entities/Behavior/Lab.Raider_Head.json
 - Assets/Resources/Entities/Interactive/Trove.json
 - Assets/Resources/Entities/Dialog/Zvezda_Crowd_Girl3.json
+- Assets/Resources/Entities/Interactive/CitySub_7_lev.asset
 - Assets/Resources/Entities/Character/Krz_Guard_15.asset
 - Assets/Resources/Entities/Weapon/DesertEagle.png
 - Assets/Resources/Entities/Character/Karavan.Guard_3.asset
@@ -1757,6 +1751,7 @@ Assets:
 - Assets/Resources/Entities/Interactive/Trove.Grishka.json
 - Assets/Resources/Entities/Behavior/Chaos.json
 - Assets/Resources/Entities/Ammo/5_45mm_JHP.asset
+- Assets/Resources/Entities/Memo/Stinky_Note.png
 - Assets/Resources/Entities/Character/Zvezda_Lylka.asset
 - Assets/Resources/Entities/Effect/Heal_Full.asset
 - Assets/Resources/Entities/Memo/CBunker_Memo_6.png
@@ -2199,6 +2194,7 @@ Assets:
 - Assets/Resources/Entities/Consumable/Beetroot.asset
 - Assets/Resources/Entities/Character/LakePier_Head.png
 - Assets/Resources/Entities/Behavior/Fidel.json
+- Assets/Resources/Entities/Memo/Suicide_Diary.png
 - Assets/Resources/Entities/Memo/Rogue_Slang.asset
 - Assets/Resources/Entities/Encounter/shift.png
 - Assets/Resources/Entities/Behavior/Zvezda.TraderGirl.json
@@ -2436,6 +2432,7 @@ Assets:
 - Assets/Resources/Entities/Character/DownBus_1_Man1.asset
 - Assets/Resources/Entities/Dialog/Canyon_Talk.json
 - Assets/Resources/Entities/Behavior/ASim.DrinkingSitting.json
+- Assets/Resources/Entities/Interactive/CitySub_16_oldbook.asset
 - Assets/Resources/Entities/Uniform/Helmet_3.png
 - Assets/Resources/Entities/Behavior/Zvezda.WallGuard.json
 - Assets/Resources/Entities/Memo/Z_4_2_Memo5.asset
@@ -2492,6 +2489,7 @@ Assets:
 - Assets/Resources/Entities/Item/NutGold.asset
 - Assets/Resources/Entities/Behavior/Z_Z_RedBaron.json
 - Assets/Resources/Entities/Character/Semka_Team.asset
+- "Assets/Resources/Entities/Character/\u0421itySub_Smuggler.asset"
 - Assets/Resources/Entities/Uniform/Necklace_2.asset
 - Assets/Resources/UI/Ava/ava21.asset
 - Assets/Resources/Entities/Weapon/Pipe_Rifle.asset
@@ -2531,6 +2529,7 @@ Assets:
 - Assets/Resources/Entities/Weapon/MP5K.asset
 - Assets/Resources/Entities/Behavior/DenEquip.json
 - Assets/Resources/Entities/Item/WhiteKey.png
+- "Assets/Resources/Entities/Dialog/\u0421itySub_Fade.json"
 - Assets/Resources/Entities/Effect/Portwein_Side.asset
 - Assets/Resources/Entities/Character/City_Bravo5.asset
 - Assets/Resources/Entities/Behavior/ASim.Idle_Wall_1.json
@@ -2685,6 +2684,7 @@ Assets:
 - Assets/Resources/Entities/Character/Krz_Guard_2.png
 - Assets/Resources/Entities/Chest/Wood_Shelf_1.asset
 - Assets/Resources/Entities/Dialog/GasStation_Man1.json
+- Assets/Resources/Entities/Interactive/CitySub_1_statue.asset
 - Assets/Resources/Entities/Weapon/APS.asset
 - Assets/Resources/Entities/Character/City_Klava.asset
 - Assets/Resources/UI/Ava/ava13.asset
@@ -2778,6 +2778,7 @@ Assets:
 - Assets/Resources/Entities/Behavior/City_Prisioner.json
 - Assets/Resources/Entities/Interactive/Y_C.asset
 - Assets/Resources/Entities/Item/CBunker_C2.png
+- "Assets/Resources/Entities/Character/\u0421itySub_Bravo5.png"
 - Assets/Resources/Entities/Interactive/Ladder_2.asset
 - Assets/Resources/Entities/Interactive/Baza.Radio.png
 - Assets/Resources/Entities/Character/City_Alfa_Team_8.asset
@@ -2905,6 +2906,7 @@ Assets:
 - Assets/Resources/Entities/Interactive/Lab_Level3_RopeOut.asset
 - Assets/Resources/Entities/Chest/Man_Dead_13.asset
 - Assets/Resources/Entities/Memo/D_Popov_3.json
+- Assets/Resources/Entities/Interactive/CitySub_Biven.asset
 - Assets/Resources/Entities/Dialog/Village_Raider_Guard.json
 - Assets/Resources/Entities/Dialog/TrainingCamp_Alfa1.json
 - Assets/Resources/Entities/Character/Rail_Lyda.png
@@ -2912,6 +2914,7 @@ Assets:
 - Assets/Resources/Entities/Dialog/Village_Mech.json
 - Assets/Resources/Entities/Interactive/Y_1.asset
 - Assets/Resources/Entities/Character/Harbor_Zahar.asset
+- "Assets/Resources/Entities/Dialog/\u0421itySub_Bravo5.json"
 - Assets/Resources/Entities/Dialog/Z_Man1.json
 - Assets/Resources/Entities/Dialog/OPG_Death_Igor.json
 - Assets/Resources/Entities/Item/Harbor_Ticket.png
@@ -2971,6 +2974,7 @@ Assets:
 - Assets/Resources/Entities/Creature/Pig.asset
 - Assets/Resources/Entities/Character/Rat_Forest_CampMan1.png
 - Assets/Resources/Entities/Consumable/MedKit.asset
+- Assets/Resources/Entities/Memo/Stinky_Note.json
 - Assets/Resources/Entities/Ammo/Rubber_BP.png
 - Assets/Resources/UI/Ava/ava_hostage.png
 - Assets/Resources/Entities/Behavior/Beginning.Raid.json
@@ -3248,6 +3252,7 @@ Assets:
 - Assets/Resources/Entities/Behavior/ASim.PursuitPlayer.json
 - Assets/Resources/Entities/Interactive/ArtemyevAxe.asset
 - Assets/Resources/Entities/Dialog/IL_62_Jess.json
+- Assets/Resources/Entities/Memo/Suicide_Diary.json
 - Assets/Resources/Entities/Interactive/DeadCityBunker_Box.png
 - Assets/Resources/Entities/Uniform/Tyrban.png
 - Assets/Resources/Entities/Dialog/Godgin_Baza_Start.json
@@ -3320,6 +3325,7 @@ Assets:
 - Assets/Resources/Entities/Dialog/City_Informator.json
 - Assets/Resources/Entities/Creature/BaseFemale6_Ranger.asset
 - Assets/Resources/Entities/Character/DBunker_Meet.asset
+- Assets/Resources/Entities/Interactive/CitySub_14_oldbook.asset
 - Assets/Resources/Entities/Character/Clawed.asset
 - Assets/Resources/Entities/Effect/PotatoEat.asset
 - Assets/Resources/Entities/Character/Caravanserai_Trader.png
@@ -3351,6 +3357,7 @@ Assets:
 - Assets/Resources/Entities/Behavior/Hardway.WarriorEquip.json
 - Assets/Resources/Entities/Craft/PB.asset
 - Assets/Resources/Entities/Effect/Beginning.asset
+- Assets/Resources/Entities/Interactive/CitySub_2_tron.asset
 - Assets/Resources/Entities/Dialog/Baza_Maid.json
 - Assets/Resources/Entities/Uniform/PanamaAfghan.asset
 - Assets/Resources/Entities/Dialog/Castle_Alina.json
@@ -3926,6 +3933,7 @@ Assets:
 - Assets/Resources/Entities/Uniform/Glasses.asset
 - Assets/Resources/Entities/Dialog/Village_Barman_2.json
 - Assets/Resources/Entities/Behavior/Level_Rail.json
+- Assets/Resources/Entities/Interactive/CitySub_9_samovar.asset
 - Assets/Resources/Entities/Interactive/Rat_Cave_Stalagmit_1.json
 - Assets/Resources/Entities/Character/GasStation_Lyda.asset
 - Assets/Resources/Entities/Character/Caravanserai_Driver.asset
@@ -3987,6 +3995,7 @@ Assets:
 - Assets/Resources/Entities/Door/Wood_Door_1.asset
 - Assets/Resources/Entities/Dialog/Village_Ivan.json
 - Assets/Resources/Entities/Memo/DeadCityBunkerPhoto.png
+- Assets/Resources/Entities/Interactive/CitySub_3_kartina.asset
 - Assets/Resources/Entities/Interactive/DBunker.Comp.png
 - Assets/Resources/Entities/Encounter/racket.png
 - Assets/Resources/Entities/Character/City_Hotel.asset
@@ -4060,6 +4069,7 @@ Assets:
 - Assets/Resources/Entities/Character/Alexander.asset
 - Assets/Resources/Entities/Character/City_Borislava.png
 - Assets/Resources/Entities/Character/Zvezda_Crowd_Man1.png
+- Assets/Resources/Entities/Memo/Stinky_Note.asset
 - Assets/Resources/Entities/Interactive/FogelevkaZil.png
 - Assets/Resources/Entities/Effect/Shower.asset
 - Assets/Resources/Entities/Item/Kaseta2.png
@@ -4115,6 +4125,7 @@ Assets:
 - Assets/Resources/Entities/Weapon/Nagant_Rust.png
 - Assets/Resources/Entities/Dialog/City_Alfa_Team.json
 - Assets/Resources/Entities/Item/Porn.png
+- Assets/Resources/Entities/Interactive/CitySub_13_oldbook.asset
 - Assets/Resources/Entities/Dialog/RojoLogo.json
 - Assets/Resources/Entities/Weapon/SpikedTruncheon.asset
 - Assets/Resources/Entities/Dialog/Krz_Guard_1.json
@@ -4182,6 +4193,7 @@ Assets:
 - Assets/Resources/UI/Ava/ava12.asset
 - Assets/Resources/UI/Ava/ava23.png
 - Assets/Resources/Entities/Uniform/Kolpak.asset
+- Assets/Resources/Entities/Interactive/CitySub_AmuletSatanik.asset
 - Assets/Resources/Entities/Memo/Redbaron.json
 - Assets/Resources/Entities/Behavior/Zvezda.Ryba.json
 - Assets/Resources/Entities/Creature/Spider.asset
@@ -4199,7 +4211,6 @@ Assets:
 - Assets/Resources/Entities/Consumable/MedKit.png
 - Assets/Resources/Entities/Character/Moonshiner_2.png
 - Assets/Resources/Entities/Dialog/Zvezda_Smirnov.json
-- Assets/Resources/Entities/Dialog/CitySub_Bravo5.json
 - Assets/Resources/Entities/Behavior/Level_BusStop_2.json
 - Assets/Resources/Entities/Interactive/CBunker_M1.json
 - Assets/Resources/Entities/Character/Zvezda_Fortune.png
