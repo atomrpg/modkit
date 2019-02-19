@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2425251715
+CRC: 2807511141
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4ef6201a269f2dab503a9a577c4282c8
+    Hash: a1ed415ecb45bc8a1c12472d6cdd7772
   TypeTreeHash:
     serializedVersion: 2
-    Hash: cb993f811b831f9d1ca9133623f0890c
+    Hash: c8bebe9b3972b68d476230971b9e6b5f
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,6 +25,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 83
   Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 12001, guid: 0000000000000000e000000000000000, type: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 63588430a94130d4ab4327b04cca3cea, type: 3}
 - Class: 114
@@ -90,6 +92,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: b0c3ae9f1d1b7b4448972f9b951293f0, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 128
   Script: {instanceID: 0}
 - Class: 198
   Script: {instanceID: 0}
@@ -2082,6 +2086,7 @@ Assets:
 - Assets/Resources/Entities/Weapon/Brick.png
 - Assets/Resources/Entities/Character/IL_Rat.png
 - Assets/Resources/Entities/Chest/Book_Shelf_1.asset
+- Assets/Editor/Resources/Editor/Graph/GraphSkinLight.guiskin
 - Assets/Resources/Entities/Weapon/Pipe_Revolver_2.png
 - Assets/Resources/Entities/Behavior/Rat_Cave_Egg.json
 - Assets/Resources/UI/Ava/ava14.asset
@@ -3153,6 +3158,7 @@ Assets:
 - Assets/Resources/Entities/Chest/Man_Dead_wo_head.asset
 - Assets/Resources/Entities/Item/Wastemetal.asset
 - Assets/Resources/Entities/Memo/BusStop_2.png
+- Assets/Editor/Resources/Editor/Graph/GraphSkin.guiskin
 - Assets/Resources/Entities/Behavior/Village.Alex.json
 - Assets/Resources/Entities/Interactive/CitySub_GangDoor.json
 - Assets/Resources/Entities/Behavior/GasBallon_E.json
@@ -4237,4 +4243,5 @@ Assets:
 - Assets/Resources/Entities/Interactive/Radio_1.json
 - Assets/Resources/Entities/Behavior/Baza.Cow.json
 - Assets/Resources/Entities/Behavior/Generator_Surname.json
-Dependencies: []
+Dependencies:
+- I:/Atom/AssetBundles/editor

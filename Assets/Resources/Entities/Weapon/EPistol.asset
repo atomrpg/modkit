@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 1397509372, guid: ba80931603c2dbc40ab113c533efa2ed, type: 3}
   m_Name: EPistol
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 994ca5bd17ba8e941addb7e59c31cafa, type: 3}
+  Icon:
+    path: entities/Weapon/EPistol
   m_Localization: weapon.epistol
   Takeable: 1
   Cost: 0
@@ -20,7 +21,8 @@ MonoBehaviour:
   Collectable: 1
   Modifiers: []
   weaponType: 1
-  Ammo: {fileID: 11400000, guid: 70186c1067b727340bcae2993dd6057e, type: 2}
+  Ammo:
+    path: 
   AmmoCapacity: 4
   BothHands: 0
   DamageMin: 50
