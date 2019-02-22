@@ -182,7 +182,12 @@ public class ModBuilder : EditorWindow
                 string dataAsset = Application.dataPath;
                 int index = dataAsset.ToLower().IndexOf(PATH_TO_ASSETS);
                 dataAsset = dataAsset.Remove(index, PATH_TO_ASSETS.Length);
-                Copy(dataAsset + "/Temp/ModBuild/" + modName + "_resources", modResFolder + "/"+ modName + "_resources");
+
+                var resPath = dataAsset + "/Temp/ModBuild/" + modName + "_resources";
+                if (File.Exists(resPath))
+                {
+                    Copy(resPath, modResFolder + "/" + modName + "_resources");
+                }
                 Copy("Library/ScriptAssemblies/" + modName + ".dll", "Temp/ModBuild/" + modName + ".dll");
 
                 EditorUtility.RevealInFinder(modsFolder + "/" + modName + ".dll");
@@ -266,9 +271,9 @@ public class ModBuilder : EditorWindow
         }
         else
         {
-            EditorGUILayout.HelpBox("Login to Steam account", MessageType.Warning);
+            EditorGUILayout.HelpBox("Attach to Steam account", MessageType.Warning);
 
-            if (GUILayout.Button("Login"))
+            if (GUILayout.Button("Attach"))
             {
                 RequestInfo();
             }
