@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using JSon;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
-public class ModEntryPoint : MonoBehaviour
+[assembly: AssemblyTitle("My Mod")] // ENTER MOD TITLE
+
+
+public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NAME
 {
-    // Start is called before the first frame update
     void Start()
     {
         var assembly = GetType().Assembly;
@@ -23,21 +27,11 @@ public class ModEntryPoint : MonoBehaviour
         Game.World.console.DeveloperMode();
     }
 
-    void FixCamera()
-    {
-        var inst = Game.World.cameraControl;
-        var prop = inst.GetType().GetField("mouseYMin", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-        float mouseYMin = 0.1f;
-        prop.SetValue(inst, mouseYMin);
-    }
-
     void LevelLoaded(GlobalEvents.LevelLoaded evnt)
     {
         Debug.Log(evnt.levelName);
-        //FixCamera();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
