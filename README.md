@@ -5,6 +5,7 @@
 [2018.3.8](https://unity3d.com/ru/get-unity/download?ref=personal)
 
 ### Примеры использования:
+[Пример мода](https://github.com/atomrpg/modkit/tree/test_mod)
 [Вводный курс по использованию ModKit](https://steamcommunity.com/sharedfiles/filedetails/?id=1657083263)
 
 ### Список модов:
