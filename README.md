@@ -6,6 +6,7 @@
 
 ### Примеры использования:
 [Пример мода](https://github.com/atomrpg/modkit/tree/test_mod)
+
 [Вводный курс по использованию ModKit](https://steamcommunity.com/sharedfiles/filedetails/?id=1657083263)
 
 ### Список модов:
