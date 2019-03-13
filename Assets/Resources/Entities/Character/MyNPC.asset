@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 395181009, guid: ba80931603c2dbc40ab113c533efa2ed, type: 3}
+  m_Name: MyNPC
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 0e014b08607e8674a8d8103d94bf38b4, type: 3}
+  m_Localization: character.mynpc
+  Takeable: 1
+  aiBehavior: 0
+  Dialog: {fileID: 4900000, guid: 3e8a53d0f460914488e5151b6abbacc9, type: 3}
+  OnPocket: {fileID: 0}
+  TalkAddDist: 0
+  BackToPosition: 0
+  StoreStats: 0
+  Summon: 1
+  SummonAddDist: 40
+  SummonCheckVisibility: 1
+  BattleAddDist: 0
+  Shiftable: 0
+  AcceptingRestriction: 3
+  specialtyMask: 0
+  Stats:
+    _modifiers: []
+    Level: 1
+    ExperiencePoints: 0
+    Strength: 5
+    Perception: 8
+    Endurance: 5
+    Charisma: 5
+    Intelligence: 5
+    Agility: 5
+    Luck: 5
+    skillsBonus:
+      SmallGuns: 0
+      BigGuns: 0
+      AutomaticFirearms: 0
+      Unarmed: 0
+      MeleeWeapons: 0
+      Throwing: 0
+      FirstAid: 0
+      Crafting: 0
+      Sneak: 0
+      Lockpick: 0
+      Steal: 0
+      Alertness: 0
+      Science: 0
+      Speech: 0
+      Barter: 0
+      Gambling: 0
+      Outdoorsman: 0
+    Perks: 
+    FreeSkillPoints: 0
+    FreeStatPoints: 0
+    FreeSpecPoints: 0
+    SpecLevel: 1
