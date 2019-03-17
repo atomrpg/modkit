@@ -5,7 +5,7 @@ using JSon;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-[assembly: AssemblyTitle("My Mod")] // ENTER MOD TITLE
+//[assembly: AssemblyTitle("My Mod")] // ENTER MOD TITLE
 
 
 public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NAME
