@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 1928272209, guid: ba80931603c2dbc40ab113c533efa2ed, type: 3}
   m_Name: EHelmet
   m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
+  Icon:
+    path: Entities/Uniform/EHelmet
   m_Localization: uniform.ehelmet
   Takeable: 1
-  Cost: 0
+  Cost: 500
   Weight: 0
   Collectable: 1
-  Modifiers: []
+  Modifiers:
+  - _type: 42
+    _value: 20
   UniformType: 0
   HideMask: 0
   ArmorDurability: 0

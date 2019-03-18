@@ -3,6 +3,7 @@
       "class" : "Interactive", 
       "active" : "true", 
       "proto" : "MyMod_Level", 
+      "behavior" : "MyMod_Level", 
       "name" : "LogicLevel", 
       "transform" : { 
          "pos" : [ 
@@ -126,7 +127,6 @@
       "character" : "MyNPC", 
       "damage" : "0", 
       "ap" : "0", 
-      "bonusTurn" : "false", 
       "relationship" : "100", 
       "shotMode" : "0", 
       "inventory" : [ 

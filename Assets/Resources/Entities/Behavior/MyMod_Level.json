@@ -1,1 +1,57 @@
-{}
+{ 
+   "states" : { 
+      "500a1246-819b-45d1-a16c-4fec3a1b906a" : { 
+         "class" : "DummyNode", 
+         "desc" : { 
+            "x" : "-101128", 
+            "y" : "-100755"
+         }, 
+         "child" : [ 
+            "726f6e02-0d18-4fc5-8bb4-1155c5d098a0"
+         ]
+      }, 
+      "726f6e02-0d18-4fc5-8bb4-1155c5d098a0" : { 
+         "class" : "HasKeywordNode", 
+         "desc" : { 
+            "x" : "-101095", 
+            "y" : "-100616"
+         }, 
+         "child" : [ 
+            "7c353066-456a-45c1-9761-8ef157090e18", 
+            "8b475d45-5726-4cb8-9942-de83791d1e72"
+         ], 
+         "key" : "LEVEL_INIT"
+      }, 
+      "7c353066-456a-45c1-9761-8ef157090e18" : { 
+         "class" : "DummyNode", 
+         "desc" : { 
+            "x" : "-101289", 
+            "y" : "-100514"
+         }, 
+         "child" : [ 
+         ]
+      }, 
+      "8b475d45-5726-4cb8-9942-de83791d1e72" : { 
+         "class" : "LogNode", 
+         "desc" : { 
+            "x" : "-101116", 
+            "y" : "-100471"
+         }, 
+         "child" : [ 
+            "b33d8e6a-1cfa-46e8-be59-ce233ff33f2f"
+         ], 
+         "text" : "Тестовый уровень загружен."
+      }, 
+      "b33d8e6a-1cfa-46e8-be59-ce233ff33f2f" : { 
+         "class" : "AddKeywordNode", 
+         "desc" : { 
+            "x" : "-101035", 
+            "y" : "-100383"
+         }, 
+         "child" : [ 
+         ], 
+         "key" : "LEVEL_INIT"
+      }
+   }, 
+   "entry" : "500a1246-819b-45d1-a16c-4fec3a1b906a"
+}

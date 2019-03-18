@@ -34,6 +34,9 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
 
     void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.F2))
+        {
+            Game.World.NextLevel("MyMod", "EnterPoint", true, false);
+        }
     }
 }

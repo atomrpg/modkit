@@ -37,7 +37,8 @@ MonoBehaviour:
     Shots: 1
     Dispersion: 0
     ModeType: 0
-    Sounds: []
+    Sounds:
+    - path: Entities/Weapon/EPistol_shot
   Aimed:
     AP: 0
     Range: 0
