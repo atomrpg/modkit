@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EPistol
   m_EditorClassIdentifier: 
   Icon:
-    path: entities/Weapon/EPistol
+    path: Entities/Weapon/EPistol
   m_Localization: weapon.epistol
   Takeable: 1
   Cost: 0
@@ -22,7 +22,7 @@ MonoBehaviour:
   Modifiers: []
   weaponType: 1
   Ammo:
-    path: 
+    path: Entities/Ammo/Energy
   AmmoCapacity: 4
   BothHands: 0
   DamageMin: 50
@@ -32,9 +32,9 @@ MonoBehaviour:
   Perks: 0
   DamageType: 0
   Single:
-    AP: 0
-    Range: 0
-    Shots: 0
+    AP: 1
+    Range: 18
+    Shots: 1
     Dispersion: 0
     ModeType: 0
     Sounds: []

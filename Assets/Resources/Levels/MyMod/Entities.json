@@ -48,6 +48,7 @@
          }
       ], 
       "open" : "false", 
+      "touch" : "false", 
       "lockLevel" : "0", 
       "lockType" : "Mechanical", 
       "pin" : "0", 
@@ -125,6 +126,7 @@
       "character" : "MyNPC", 
       "damage" : "0", 
       "ap" : "0", 
+      "bonusTurn" : "false", 
       "relationship" : "100", 
       "shotMode" : "0", 
       "inventory" : [ 
