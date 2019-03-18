@@ -33,7 +33,7 @@
             "count" : "1", 
             "proto" : "EPistol", 
             "ammo" : { 
-               "count" : "0", 
+               "count" : "4", 
                "proto" : "Energy"
             }
          }, 
@@ -46,6 +46,11 @@
             "class" : "Uniform", 
             "count" : "1", 
             "proto" : "EArmor"
+         }, 
+         { 
+            "class" : "Ammo", 
+            "count" : "500", 
+            "proto" : "Energy"
          }
       ], 
       "open" : "false", 
@@ -59,54 +64,6 @@
             "9.66", 
             "1.24", 
             "7.1"
-         ], 
-         "rot" : [ 
-            "0", 
-            "0", 
-            "0"
-         ], 
-         "scale" : [ 
-            "1", 
-            "1", 
-            "1"
-         ]
-      }
-   }, 
-   { 
-      "class" : "Uniform", 
-      "active" : "true", 
-      "count" : "1", 
-      "proto" : "EArmor", 
-      "name" : "EArmor", 
-      "transform" : { 
-         "pos" : [ 
-            "-25.83827", 
-            "-49.04048", 
-            "46.97995"
-         ], 
-         "rot" : [ 
-            "0", 
-            "0", 
-            "0"
-         ], 
-         "scale" : [ 
-            "1", 
-            "1", 
-            "1"
-         ]
-      }
-   }, 
-   { 
-      "class" : "Uniform", 
-      "active" : "true", 
-      "count" : "1", 
-      "proto" : "EHelmet", 
-      "name" : "EHelmet", 
-      "transform" : { 
-         "pos" : [ 
-            "-25.83827", 
-            "-49.04048", 
-            "46.97995"
          ], 
          "rot" : [ 
             "0", 
