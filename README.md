@@ -1,8 +1,8 @@
 ### Требуемая версия игры ATOM RPG:
-[1.073 Beta-branch](https://store.steampowered.com/app/552620)
+[1.08](https://store.steampowered.com/app/552620)
 
 ### Требуемая версия Unity:
-[2018.3.8](https://unity3d.com/ru/get-unity/download?ref=personal)
+[2018.3.9](https://unity3d.com/ru/get-unity/download?ref=personal)
 
 ### Примеры использования:
 [Вводный курс по использованию ModKit](https://steamcommunity.com/sharedfiles/filedetails/?id=1657083263)
