@@ -1,4 +1,4 @@
-### Требуемая версия игры / Required version game version ATOM RPG:
+### Требуемая версия игры / Required game version ATOM RPG:
 [1.08](https://store.steampowered.com/app/552620)
 
 ### Требуемая версия Unity / Required Unity version:
