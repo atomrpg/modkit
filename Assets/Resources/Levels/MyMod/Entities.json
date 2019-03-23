@@ -24,6 +24,49 @@
       }
    }, 
    { 
+      "class" : "Character", 
+      "active" : "true", 
+      "proto" : "TestCreature", 
+      "character" : "MyNPC", 
+      "damage" : "0", 
+      "ap" : "0", 
+      "bonusTurn" : "false", 
+      "relationship" : "100", 
+      "shotMode" : "0", 
+      "inventory" : [ 
+      ], 
+      "mainItemIndex" : "0", 
+      "conditions" : { 
+         "toxic" : "0", 
+         "toxicTimer" : "-1", 
+         "radiation" : "0", 
+         "radiationTimer" : "-1", 
+         "hunger" : "0", 
+         "hungerDmg" : "0", 
+         "rolling" : "0"
+      }, 
+      "effects" : [ 
+      ], 
+      "name" : "TestCreature", 
+      "transform" : { 
+         "pos" : [ 
+            "6.83", 
+            "0", 
+            "14.84"
+         ], 
+         "rot" : [ 
+            "0", 
+            "90.00001", 
+            "0"
+         ], 
+         "scale" : [ 
+            "1", 
+            "1", 
+            "1"
+         ]
+      }
+   }, 
+   { 
       "class" : "Chest", 
       "active" : "true", 
       "proto" : "MyChest", 
@@ -84,6 +127,7 @@
       "character" : "MyNPC", 
       "damage" : "0", 
       "ap" : "0", 
+      "bonusTurn" : "false", 
       "relationship" : "100", 
       "shotMode" : "0", 
       "inventory" : [ 
