@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4101835779
+CRC: 2755206240
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a5efdc9225281cecf0438186307a4689
+    Hash: 5d4f207414f771fca30dda56a08e73dc
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 7ebd714c88c8c156258d21fcc7426cc3
+    Hash: 661d2b6d07bda10822527b815d6b2241
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -1990,7 +1990,6 @@ Assets:
 - Assets/Resources/Entities/Chest/Ammo_Box.asset
 - Assets/Resources/Entities/Behavior/Artemyev.json
 - Assets/Resources/Entities/Weapon/Pipe_Rifle_3.asset
-- Assets/Resources/Entities/Consumable/OblivionAmpoule_empty.asset
 - Assets/Resources/Entities/Behavior/IL_Ufi.json
 - Assets/Resources/Entities/Dialog/City_Egoria.json
 - Assets/Resources/Entities/Consumable/Stew.asset
@@ -2105,7 +2104,6 @@ Assets:
 - Assets/Resources/Entities/Character/Harbor_HTrade.asset
 - Assets/Resources/Entities/Behavior/ASim.AutoDialogDistance.json
 - Assets/Resources/Entities/Character/Harbor_Mambetov.asset
-- Assets/Resources/Entities/Consumable/OblivionAmpoule_empty.png
 - Assets/Resources/Entities/Character/Harbor_W5.png
 - Assets/Resources/Entities/Dialog/BalwanPlayer.json
 - Assets/Resources/Entities/Character/Pirat_18.asset
@@ -3037,6 +3035,7 @@ Assets:
 - Assets/Resources/Entities/Behavior/ASim.Sitting_1.json
 - Assets/Resources/Entities/Memo/CBunker_Memo_2.png
 - Assets/Resources/Entities/Memo/Z_8_Memo1.png
+- Assets/Resources/Entities/Item/OblivionAmpoule_empty.asset
 - Assets/Resources/Entities/Character/Krz_Guard_14.asset
 - Assets/Resources/Entities/Item/Wastemetal.png
 - Assets/Resources/Entities/Interactive/Training_6_Sign.json
@@ -3388,6 +3387,7 @@ Assets:
 - Assets/Resources/Entities/Effect/ActionPointsPosion.asset
 - Assets/Resources/Entities/Character/Fanatic_3.asset
 - Assets/Resources/Entities/Character/Alexander_Field.png
+- Assets/Resources/Entities/Interactive/City_1_Hole_Rope.png
 - Assets/Resources/Entities/Character/Caravanserai_Explorer.asset
 - Assets/Resources/Entities/Chest/Girl_Dead_1.asset
 - Assets/Resources/Entities/Memo/CBunker_Memo_5.json
@@ -3725,6 +3725,7 @@ Assets:
 - Assets/Resources/Entities/Character/CitySub_Sveta.asset
 - Assets/Resources/Entities/Dialog/Krz_Granevich.whoop.json
 - Assets/Resources/Entities/Item/Totem.asset
+- Assets/Resources/Entities/Item/OblivionAmpoule_empty.png
 - Assets/Resources/Entities/Item/Porn.asset
 - Assets/Resources/Entities/Weapon/Pipe_Revolver.asset
 - Assets/Resources/Entities/Ava/ava25.png
