@@ -6,7 +6,7 @@ public class FileSystemBundle : ResourceManager.Bundle
 
     public FileSystemBundle(string path)
     {
-        dir = Application.persistentDataPath + "/Mods/" + path;
+        dir = path;
     }
 
     const string PATH_MASK = "assets/resources/";
