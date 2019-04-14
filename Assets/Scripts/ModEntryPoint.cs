@@ -16,7 +16,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
 
         if (FILE_SYSTEM_LOAD)
         {
-            ResourceManager.AddBundle(modName, new FileSystemBundle("Avatar_Res"));
+            ResourceManager.AddBundle(modName, new FileSystemBundle(dir + "/" + "Avatar_Res"));
         }
         else
         {
