@@ -175,6 +175,7 @@ public class ModBuilder : EditorWindow
                 }
 
                 Copy("Library/ScriptAssemblies/" + modName + ".dll", modsFolder + "/" + modName + ".dll");
+                Copy("Library/ScriptAssemblies/" + modName + ".pdb", modsFolder + "/" + modName + ".pdb");
 
                 //copy res
                 string modResFolder = modsFolder;
@@ -189,6 +190,8 @@ public class ModBuilder : EditorWindow
                     Copy(resPath, modResFolder + "/" + modName + "_resources");
                 }
                 Copy("Library/ScriptAssemblies/" + modName + ".dll", "Temp/ModBuild/" + modName + ".dll");
+                Copy("Library/ScriptAssemblies/" + modName + ".pdb", "Temp/ModBuild/" + modName + ".pdb");
+
 
                 EditorUtility.RevealInFinder(modsFolder + "/" + modName + ".dll");
             }
