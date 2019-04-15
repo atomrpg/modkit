@@ -18,10 +18,17 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         Debug.Log("Mod Init: " + modName + "(" + dir + ")");
         ResourceManager.AddBundle(modName, AssetBundle.LoadFromFile(dir + "/" + modName + "_resources"));
 
+        GlobalEvents.AddListener<GlobalEvents.GameStart>(GameLoaded);
+
         //todo:AtomTeam make public
         var field = typeof(SettingLanguage).GetField("_lang", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
         List<string> langList = field.GetValue(null) as List<string>;
         langList.Add("ja");
         langList.Add("ch");
+    }
+
+    void GameLoaded(GlobalEvents.GameStart evnt)
+    {
+        Localization.LoadStrings("patch_strings_");
     }
 }
