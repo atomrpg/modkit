@@ -6720,7 +6720,7 @@
       "pocket_weight_right" : "{0:0.00}キログラム", 
       "itemweight" : "重み{0:0.00}キログラム", 
       "itemweight2" : "重み{0:0.00}キログラム（合計{1:0.00} kg", 
-      "totalweight_value" : "{0:0.0}", 
+      "totalweight_value" : "0:0.0}", 
       "totalweight" : "総重量は、 {0} / {1}  kg", 
       "distances" : { 
          "melee" : "白兵戦", 
@@ -7828,8 +7828,10 @@
       }, 
       "language" : { 
          "title" : "言語", 
-         "en" : "英語", 
-         "ru" : "Русский"
+         "en" : "English", 
+         "ru" : "Русский",
+		 "ch" : "汉语", 
+         "ja" : "日本語"
       }, 
       "videoclip" : "映画製作を再生", 
       "imageeffects" : "画像効果", 

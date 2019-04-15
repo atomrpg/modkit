@@ -21,10 +21,17 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         GlobalEvents.AddListener<GlobalEvents.GameStart>(GameLoaded);
 
         //todo:AtomTeam make public
-        var field = typeof(SettingLanguage).GetField("_lang", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
-        List<string> langList = field.GetValue(null) as List<string>;
-        langList.Add("ja");
-        langList.Add("ch");
+        {
+            var field = typeof(SettingLanguage).GetField("_lang", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+            List<string> langList = field.GetValue(null) as List<string>;
+            langList.Add("ja");
+            langList.Add("ch");
+        }
+
+        {
+            var field = typeof(Localization).GetField("_cultureInfo", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+            field.SetValue(null, new System.Globalization.CultureInfo("en-US"));
+        }
     }
 
     void GameLoaded(GlobalEvents.GameStart evnt)
