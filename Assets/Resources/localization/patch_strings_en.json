@@ -2,7 +2,8 @@
    "settings" : { 
       "language" : { 
          "ch" : "汉语", 
-         "ja" : "日本語"
+         "ja" : "日本語",
+		 "fr" : "French"
       }
    } 
 }

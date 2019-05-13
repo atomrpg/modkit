@@ -26,6 +26,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
             List<string> langList = field.GetValue(null) as List<string>;
             langList.Add("ja");
             langList.Add("ch");
+            langList.Add("fr");
         }
 
         {
