@@ -194,6 +194,8 @@ public class ModBuilder : EditorWindow
 
 
                 EditorUtility.RevealInFinder(modsFolder + "/" + modName + ".dll");
+
+                AssetViewerDB.Load();
             }
         }
 
