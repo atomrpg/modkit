@@ -74,7 +74,11 @@ public class AssetViewer : EditorWindow
     private void OnGUI()
     {
         GUISkin lastSkin = GUI.skin;
-        GUI.skin = guiSkin;
+
+        if (guiSkin != null)
+        {
+            GUI.skin = guiSkin;
+        }
 
         EditorGUILayout.Space();
         EditorGUILayout.BeginHorizontal();
@@ -112,6 +116,11 @@ public class AssetViewer : EditorWindow
         foreach (var loadedAsset in AssetViewerDB.LoadedAssets)
         {
             var asset = loadedAsset.Asset;
+
+            if(asset == null)
+            {
+                continue;
+            }
             var assetName = loadedAsset.AssetName;
 
             // Name filter
