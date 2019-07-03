@@ -23,7 +23,8 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
 
     void GameLoaded(GlobalEvents.GameStart evnt)
     {
-        Localization.LoadStrings("mymod_strings_");
+        Localization.LoadStrings("car_string_");
+        Localization.LoadTexts("car_text_");
         Game.World.console.DeveloperMode();
     }
 
@@ -34,6 +35,10 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
 
     void Update()
     {
-        
+        if(Game.World && Game.World.Vehicle != null)
+        {
+            Game.World.Vehicle.maxFuel = 77; //77l
+            Game.World.Vehicle.fuelConsumption = 0.015f; //+17% fuel consumption
+        }
     }
 }
