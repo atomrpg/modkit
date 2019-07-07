@@ -8,6 +8,7 @@
 [Пример мода / Example](https://github.com/atomrpg/modkit/tree/test_mod)
 
 [Вводный курс по использованию ModKit / Tutorial RU](https://steamcommunity.com/sharedfiles/filedetails/?id=1713655141)
+
 [Tutorial EN](https://steamcommunity.com/sharedfiles/filedetails/?id=1713752607)
 
 ### Список модов / Mod list:
