@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 323460396
+CRC: 1906185704
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f59a82b53a8ecacb086e1698fd7d948d
+    Hash: ae14953a40dc805efee2bef2ca9e6240
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 7385132f1ce73cb6517e47f92db96561
+    Hash: dc27d2d49344a7aad8fb8d57e54a805d
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -2785,6 +2785,7 @@ Assets:
 - Assets/Resources/Entities/Behavior/Z_Z_Racket.Check.json
 - Assets/Resources/Entities/Dialog/City_1_Sub_Krull.json
 - Assets/Resources/Entities/Creature/BaseMale12.asset
+- Assets/Resources/Entities/Behavior/Z_Dice_Loot.json
 - Assets/Resources/Entities/Dialog/Metro_Stanislav_Uzhgorod.json
 - Assets/Resources/Entities/Item/WaspFeet.png
 - Assets/Resources/Entities/Item/Potato.asset
@@ -3426,6 +3427,7 @@ Assets:
 - Assets/Resources/Entities/Dialog/Zvezda_Barman.json
 - Assets/Resources/Entities/Behavior/Village_Bunker.json
 - Assets/Resources/Entities/Behavior/City.Debt1.json
+- Assets/Resources/Entities/Encounter/Z_13.png
 - Assets/Resources/Entities/Memo/Tunnel_Memo_3.png
 - Assets/Resources/Entities/Consumable/Flask_Watter.asset
 - Assets/Resources/Entities/Behavior/BusStop_Ambush.json
@@ -3993,6 +3995,7 @@ Assets:
 - Assets/Resources/Entities/Dialog/Krz_Guard_4.json
 - Assets/Resources/Entities/Ammo/6_49mm_AP.asset
 - Assets/Resources/Entities/Memo/Craft_Note_Glove1.asset
+- Assets/Resources/Entities/Behavior/Z_13.json
 - Assets/Resources/Entities/Weapon/Punch_Hammer.asset
 - Assets/Resources/Entities/Dialog/Lab_Raider_Guard.json
 - Assets/Resources/Entities/Character/Wolf_14.asset
@@ -4495,6 +4498,7 @@ Assets:
 - Assets/Resources/Entities/Behavior/Level_TrainingCamp.json
 - Assets/Resources/Entities/Interactive/Wardrobe.asset
 - Assets/Resources/Entities/Interactive/Village.mech.switcher.json
+- Assets/Resources/Entities/Behavior/Z_Map_Loot.json
 - Assets/Resources/Entities/Character/SektaHead.asset
 - Assets/Resources/Entities/Creature/Gorilla.asset
 - Assets/Resources/Entities/Dialog/Krz_Greta.whoop.json
