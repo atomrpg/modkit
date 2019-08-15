@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3312626018
+CRC: 707365386
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d122ff93198122cb3c4a6b3ff428633f
+    Hash: 4e144bc647debffa3942438e86c871e9
   TypeTreeHash:
     serializedVersion: 2
-    Hash: dc27d2d49344a7aad8fb8d57e54a805d
+    Hash: c984b1d7715217e8fb42fa76d82b5167
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -40,6 +40,12 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
 - Class: 114
+  Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 998e82b24f121d349b79637de77566a8, type: 3}
@@ -72,6 +78,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: c4b45cba4ef064ad895cc488d863511f, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 60a2810b4ad72e342bf5216459f77141, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 5a02569bb9340e048bfdd52ab35c3056, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 3dfc05fb7a4bc464795b4ffbd8367ba3, type: 3}
@@ -101,11 +109,17 @@ ClassTypes:
   Script: {fileID: 11500000, guid: b0c3ae9f1d1b7b4448972f9b951293f0, type: 3}
 - Class: 115
   Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
 - Class: 198
   Script: {instanceID: 0}
 - Class: 199
   Script: {instanceID: 0}
 - Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
   Script: {instanceID: 0}
 Assets:
 - Assets/Resources/Entities/Character/DeadCity_Mixa.asset
@@ -968,6 +982,7 @@ Assets:
 - Assets/Resources/Entities/Character/Fogelevka_Guard_1.png
 - Assets/Resources/Entities/Character/Village_Barman.png
 - Assets/Resources/Entities/Dialog/Krz_Guard_14.json
+- Assets/Resources/UI/Console/Proto/PS4.asset
 - Assets/Resources/Entities/Memo/D_Popov_5.png
 - Assets/Resources/Entities/Item/Bottle_Empty2.asset
 - Assets/Resources/Entities/Character/Cult_Artem2.png
@@ -1342,6 +1357,7 @@ Assets:
 - Assets/Resources/Entities/Memo/CBunker_Memo_12.json
 - Assets/Resources/Entities/Item/Quest.Factory.Ring.asset
 - Assets/Resources/Entities/Character/DeadCity_Family_Manya.png
+- Assets/Resources/UI/Console/Proto/STEAM.asset
 - Assets/Resources/Entities/Behavior/Caravanserai.Trader.json
 - Assets/Resources/Entities/Interactive/Y_C.json
 - Assets/Resources/Entities/Character/Tunnel_2_1_Tunnel_Guard.asset
@@ -3046,6 +3062,7 @@ Assets:
 - Assets/Resources/Entities/Behavior/Level_City_1_Sub.json
 - Assets/Resources/Entities/Dialog/Harbor_Rikusyo.json
 - Assets/Resources/Entities/Character/Metro_Stanislav_Uzhgorod.png
+- Assets/Resources/UI/Console/Proto/XBOX.asset
 - Assets/Resources/Entities/Dialog/Military_Man2.dlg.json
 - Assets/Resources/Entities/Character/SektaMan_1.png
 - Assets/Resources/Entities/Interactive/DeadCityBunker_Out.png
@@ -3922,6 +3939,7 @@ Assets:
 - Assets/Resources/Entities/Dialog/Fogelevka_Tuglov.json
 - Assets/Resources/Entities/Dialog/DeadCity_ZavalMan.json
 - Assets/Resources/Entities/Weapon/AK47_Rust.png
+- Assets/Resources/Entities/Uniform/OZK_Equip.png
 - Assets/Resources/Entities/Character/Rat_Forest_CampMan1.asset
 - Assets/Resources/Entities/Character/Zvezda_Strateg.png
 - Assets/Resources/Entities/Behavior/Level_Hardway.json
@@ -4802,6 +4820,7 @@ Assets:
 - Assets/Resources/Entities/Character/DeadCity_Pijon.png
 - Assets/Resources/Entities/Character/Fogelevka_Kostya.asset
 - Assets/Resources/Entities/Uniform/Armor_Home.asset
+- Assets/Resources/Entities/Character/Crowd_8l_110_aggresive.asset
 - Assets/Resources/Localization/Subtitles/TheEnd/ru_16.json
 - Assets/Resources/Entities/Dialog/Metro_Bomba_2.json
 - Assets/Resources/Entities/Character/Farmer_4.png
