@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 572441547
+CRC: 156851262
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1695b72759a48d41a340159333a9911a
+    Hash: 62ad4eecef57c487b99f923054a067f0
   TypeTreeHash:
     serializedVersion: 2
     Hash: de602e9d86fddcc6722add0302911a03
@@ -138,6 +138,7 @@ Assets:
 - Assets/Resources/Entities/Character/Wolfter_Field_2.png
 - Assets/Resources/Entities/Character/TraningCamp_Doc.asset
 - Assets/Resources/Entities/Behavior/Z_Z_Bandits_Metro.json
+- Assets/Resources/Entities/Weapon/Rifle_M.asset
 - Assets/Resources/Entities/Chest/Book_Shelf_2.asset
 - Assets/Resources/Entities/Dialog/Zvezda_Ryba.json
 - Assets/Resources/Entities/Character/IL_Varvara.png
@@ -247,6 +248,7 @@ Assets:
 - Assets/Resources/Entities/Dialog/DeadCity_Vaxta_Ludka_Male.json
 - Assets/Resources/Entities/Weapon/Glove_2.asset
 - Assets/Resources/Entities/Door/Setka_Door_1.asset
+- Assets/Resources/Entities/Weapon/Nagant_M.png
 - Assets/Resources/Entities/Memo/CBunker_Taro_2.asset
 - Assets/Resources/Entities/Weapon/10mmPistol_top.png
 - Assets/Resources/Entities/Character/Zvezda_Observer.png
@@ -830,6 +832,7 @@ Assets:
 - Assets/Resources/Entities/Character/Fogelevka_Guard_4.png
 - Assets/Resources/Localization/Subtitles/TheEnd/en_16.json
 - Assets/Resources/Localization/Subtitles/TheEnd/ru_10.json
+- Assets/Resources/Entities/Craft/PKM_M.asset
 - Assets/Resources/Entities/Creature/GrayWolf.asset
 - Assets/Resources/Entities/Dialog/Fogelevka_Gusev.json
 - Assets/Resources/Entities/Behavior/Chaos.Warrior.json
@@ -1193,6 +1196,7 @@ Assets:
 - Assets/Resources/Entities/Behavior/Baza.Larisa.json
 - Assets/Resources/Entities/Creature/Devourer.asset
 - Assets/Resources/Entities/Craft/BB_JHP.asset
+- Assets/Resources/Entities/Weapon/AK47_M.png
 - Assets/Resources/Entities/Interactive/DeadCity_EnterVent1.json
 - Assets/Resources/Entities/Interactive/Grave_11.asset
 - Assets/Resources/Entities/Ava/ava27.png
@@ -1287,6 +1291,7 @@ Assets:
 - Assets/Resources/Entities/Interactive/CitySub_6_lev.asset
 - Assets/Resources/Entities/Dialog/IL_Ufi_Crowd.json
 - Assets/Resources/Entities/Consumable/Fish.Som.png
+- Assets/Resources/PostProcess/Robbery.asset
 - Assets/Resources/Entities/Character/Tunnel_2_Sub_Bandit_9.asset
 - Assets/Resources/Entities/Character/Harbor_Stepan.png
 - Assets/Resources/Entities/Memo/CBunker_Memo_3.asset
@@ -1355,6 +1360,7 @@ Assets:
 - Assets/Resources/UI/Console/Proto/STEAM.asset
 - Assets/Resources/Entities/Behavior/Caravanserai.Trader.json
 - Assets/Resources/Entities/Interactive/Y_C.json
+- Assets/Resources/Entities/Craft/Nagant_M.asset
 - Assets/Resources/Entities/Character/Tunnel_2_1_Tunnel_Guard.asset
 - Assets/Resources/Entities/Character/IL_Varvara.asset
 - Assets/Resources/Entities/Item/AntGland.asset
@@ -1451,6 +1457,7 @@ Assets:
 - Assets/Resources/Entities/Behavior/City.Barman.json
 - Assets/Resources/Entities/Behavior/Level_LostDownBus2.json
 - Assets/Resources/Entities/Character/Cult_Adriana.asset
+- Assets/Resources/Entities/Weapon/Mosin_M.asset
 - Assets/Resources/Entities/Character/Galina_Village.png
 - Assets/Resources/Entities/Item/BitCoin.png
 - Assets/Resources/Entities/Character/Krz_Guard_17.png
@@ -1707,6 +1714,7 @@ Assets:
 - Assets/Resources/Entities/Item/Lupa.asset
 - Assets/Resources/Entities/Behavior/Caravanserai.Surveyor.json
 - Assets/Resources/Entities/Interactive/Shower.png
+- Assets/Resources/Entities/Weapon/Tokarev_M.asset
 - Assets/Resources/Entities/Uniform/Helmet_Home.png
 - Assets/Resources/Entities/Interactive/CBunker.Trap_5.png
 - Assets/Resources/Entities/Character/Harbor_T3.asset
@@ -1914,6 +1922,7 @@ Assets:
 - Assets/Resources/Entities/Memo/Book_4.asset
 - Assets/Resources/Entities/Character/Lab_Raider_Inspector.asset
 - Assets/Resources/Entities/Behavior/Level_DeadCity_Fort.json
+- Assets/Resources/Entities/Craft/AK47_M.asset
 - Assets/Resources/Entities/Item/Kaseta3.asset
 - Assets/Resources/Entities/Character/Tunnel_air_pump_on.png
 - Assets/Resources/Entities/Character/Village_Mag.asset
@@ -2103,6 +2112,7 @@ Assets:
 - Assets/Resources/Entities/Interactive/Village.mech.switcher.asset
 - Assets/Resources/Entities/Character/GiantRat_11.asset
 - Assets/Resources/Entities/Effect/Morphine.asset
+- Assets/Resources/Entities/Craft/Mosin_M.asset
 - Assets/Resources/Entities/Behavior/ASim.Suicidal.json
 - Assets/Resources/Entities/Uniform/Hand_Bag.png
 - Assets/Resources/Entities/Dialog/DeadCity_Fort_Medetative_Stalker.json
@@ -2123,6 +2133,7 @@ Assets:
 - Assets/Resources/Entities/Uniform/SkiHat.png
 - Assets/Resources/Entities/Character/Zvezda_SlumGuard_2.asset
 - Assets/Resources/Entities/Consumable/AntidoteZina.asset
+- Assets/Resources/Entities/Weapon/Nagant_M.asset
 - Assets/Resources/Entities/Ava/ava8.asset
 - Assets/Resources/Entities/Uniform/CraftDogTop_1.asset
 - Assets/Resources/Entities/Interactive/GhostGrave.asset
@@ -2139,6 +2150,7 @@ Assets:
 - Assets/Resources/Entities/Item/Herbal.asset
 - Assets/Resources/Entities/Character/City_Guard_Mom.png
 - Assets/Resources/Entities/Creature/Stag.asset
+- Assets/Resources/Entities/Weapon/SVD_M.asset
 - Assets/Resources/Entities/Character/Wolfter_Bunker.png
 - Assets/Resources/Entities/Memo/CBunker_Taro_2.png
 - Assets/Resources/Entities/Character/Karavan.Trader_4.asset
@@ -2682,6 +2694,7 @@ Assets:
 - Assets/Resources/Entities/Dialog/Cult_Adriana_3.json
 - Assets/Resources/Entities/Dialog/City_Rada.json
 - Assets/Resources/Entities/Dialog/Caravanserai_Janitor.json
+- Assets/Resources/Entities/Craft/SVD_M.asset
 - Assets/Resources/Entities/Item/Medal.asset
 - Assets/Resources/Entities/Weapon/DesertEagle.asset
 - Assets/Resources/Entities/Interactive/CBunker.Comp_2_Off.png
@@ -2883,6 +2896,7 @@ Assets:
 - Assets/Resources/Entities/Memo/Ruins_Lazarenko.asset
 - Assets/Resources/Entities/Ava/ava34.png
 - Assets/Resources/Entities/Weapon/Pipe_Rifle_2.asset
+- Assets/Resources/Entities/Weapon/SVD_M.png
 - Assets/Resources/Entities/Memo/DeadCityBunker_Memo7.png
 - Assets/Resources/Entities/Ammo/7mm_54R.asset
 - Assets/Resources/Entities/Character/DownBus_1_Man1.asset
@@ -3013,6 +3027,7 @@ Assets:
 - Assets/Resources/Entities/Interactive/Comp_1.json
 - Assets/Resources/Entities/Character/Z_3_Bandit_3.asset
 - Assets/Resources/Entities/Memo/CBunker_Memo_3.json
+- Assets/Resources/Entities/Craft/Rifle_M.asset
 - Assets/Resources/Entities/Weapon/Zatochka.png
 - Assets/Resources/Entities/Behavior/Metro.Crowd.Sad.json
 - Assets/Resources/Entities/Behavior/Rat.Forest.Female2.json
@@ -3047,6 +3062,7 @@ Assets:
 - Assets/Resources/Entities/Creature/BaseMale25.asset
 - Assets/Resources/Entities/Character/DeadCity_Vaxta_Rachehan.png
 - Assets/Resources/Entities/Character/Cult_Trader.asset
+- Assets/Resources/Entities/Craft/Tokarev_M.asset
 - Assets/Resources/Entities/Chest/Man_Dead_14.asset
 - Assets/Resources/Entities/Interactive/Rat_Cave_RopeOut.png
 - Assets/Resources/Entities/Weapon/PTRD.png
@@ -3064,6 +3080,7 @@ Assets:
 - Assets/Resources/Entities/Character/Metro_Detective.asset
 - Assets/Resources/Entities/Behavior/Level_City_1_Sub.json
 - Assets/Resources/Entities/Dialog/Harbor_Rikusyo.json
+- Assets/Resources/Entities/Weapon/Scorpion_M.asset
 - Assets/Resources/Entities/Character/Metro_Stanislav_Uzhgorod.png
 - Assets/Resources/UI/Console/Proto/XBOX.asset
 - Assets/Resources/Entities/Dialog/Military_Man2.dlg.json
@@ -3127,6 +3144,7 @@ Assets:
 - Assets/Resources/Entities/Interactive/Barricade.json
 - Assets/Resources/Entities/Weapon/Rifle_Rust.png
 - Assets/Resources/Entities/Memo/Karpov_Memo.png
+- Assets/Resources/Entities/Weapon/PKM_M.asset
 - Assets/Resources/Entities/Memo/Z_4_2_Memo4.asset
 - Assets/Resources/Entities/Character/City_Grigoriy.asset
 - Assets/Resources/Entities/Character/GaintSpider.asset
@@ -3357,6 +3375,7 @@ Assets:
 - Assets/Resources/Entities/Character/Village_OldMan.asset
 - Assets/Resources/Entities/Creature/BaseMale4.asset
 - Assets/Resources/Entities/Dialog/FidelBarman.json
+- Assets/Resources/Entities/Weapon/Mosin_M.png
 - Assets/Resources/Entities/Chest/Metal_Shelf_2.asset
 - Assets/Resources/Entities/Creature/Boar.asset
 - Assets/Resources/Entities/Weapon/Sawed-off_Rust.asset
@@ -3501,6 +3520,7 @@ Assets:
 - Assets/Resources/Entities/Weapon/M4A1.png
 - Assets/Resources/Entities/Dialog/CitySub_Bravo4.json
 - Assets/Resources/Entities/Ammo/Bolt_AP.png
+- Assets/Resources/Entities/Weapon/AK47_M.asset
 - Assets/Resources/Entities/Creature/PigKrz.asset
 - Assets/Resources/Entities/Memo/Cult_Code2.json
 - Assets/Resources/Entities/Effect/Cake.asset
@@ -3511,6 +3531,7 @@ Assets:
 - Assets/Resources/Entities/Memo/Help_Memo.png
 - Assets/Resources/Entities/Dialog/Harbor_Mambetov_Girl.json
 - Assets/Resources/PostProcess/Default.asset
+- Assets/Resources/Entities/Craft/Scorpion_M.asset
 - Assets/Resources/Entities/Interactive/Cooker.png
 - Assets/Resources/Entities/Ava/ava23.asset
 - Assets/Resources/Entities/Consumable/Milk.png
@@ -3562,6 +3583,7 @@ Assets:
 - Assets/Resources/Entities/Character/Village_Ahmed.png
 - Assets/Resources/Entities/Effect/CornEat.asset
 - Assets/Resources/Entities/Consumable/OblivionAmpoule.png
+- Assets/Resources/Entities/Weapon/Scorpion_M.png
 - Assets/Resources/Entities/Dialog/Tunnel_2_Sub_Uncle_Hook2.json
 - Assets/Resources/Entities/Character/City_Doxy.asset
 - Assets/Resources/Entities/Weapon/Knife_War.asset
@@ -4187,6 +4209,7 @@ Assets:
 - Assets/Resources/Entities/Character/Metro_Uzhgorod.asset
 - Assets/Resources/Entities/Uniform/Armor_Home.png
 - Assets/Resources/Entities/Behavior/Harbor_WHead_Global.json
+- Assets/Resources/Entities/Weapon/PKM_M.png
 - Assets/Resources/Entities/Weapon/LacodonBite.asset
 - Assets/Resources/Entities/Behavior/City.Monitor.json
 - Assets/Resources/Entities/Weapon/Knife_Saber.asset
@@ -4401,6 +4424,7 @@ Assets:
 - Assets/Resources/Entities/Character/Village_Maria.asset
 - Assets/Resources/Entities/Character/DeadCity_Vaxta_Ludka.png
 - Assets/Resources/Entities/Character/Slavers_7.asset
+- Assets/Resources/Entities/Weapon/Rifle_M.png
 - Assets/Resources/Entities/Dialog/TrainingCamp_Alfa6.json
 - Assets/Resources/Entities/Effect/Amnesia.asset
 - Assets/Resources/Entities/Behavior/BusStop_Cook.json
@@ -4727,6 +4751,7 @@ Assets:
 - Assets/Resources/Entities/Memo/DeadCityBunker_Memo1.asset
 - Assets/Resources/Entities/Weapon/Pistol04_00.png
 - Assets/Resources/Entities/Character/Baza_Cow.asset
+- Assets/Resources/PostProcess/Ruins.asset
 - Assets/Resources/Entities/Consumable/AmanitaEat.png
 - Assets/Resources/Entities/Encounter/american_warrior.png
 - Assets/Resources/Entities/Character/OPG_Death_Dima.asset
@@ -4834,6 +4859,7 @@ Assets:
 - Assets/Resources/Entities/Dialog/Metro_Bomba_2.json
 - Assets/Resources/Entities/Character/Farmer_4.png
 - Assets/Resources/Entities/Effect/CannedStew_2.asset
+- Assets/Resources/Entities/Weapon/Tokarev_M.png
 - Assets/Resources/Entities/Weapon/Kick_Strong.asset
 - Assets/Resources/Entities/Behavior/Caravanserai.Explorer.json
 - Assets/Resources/Entities/Consumable/Apple.png
