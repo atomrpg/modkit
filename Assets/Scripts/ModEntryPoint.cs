@@ -264,7 +264,13 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
     {
         if (_loginForm && GameObject.Find("MainMenu_HUD(Clone)"))
         {
-            Instantiate(_loginForm, GameObject.Find("MainMenu_HUD(Clone)").transform);
+            var mainMenu = GameObject.Find("MainMenu_HUD(Clone)").transform.Find("Panel/MainMenu");
+
+            mainMenu.Find("Continue").gameObject.SetActive(false);
+            mainMenu.Find("NewGame").gameObject.SetActive(false);
+            mainMenu.Find("LoadGame").gameObject.SetActive(false);
+
+            Instantiate(_loginForm, mainMenu).transform.SetAsFirstSibling();
             _loginForm = null;
 
             Instantiate(ResourceManager.Load<GameObject>("ChatPanel", ResourceManager.EXT_PREFAB), Game.World.HUD.Log.transform);
