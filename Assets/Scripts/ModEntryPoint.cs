@@ -13,10 +13,15 @@ namespace OnlineEvents
     public struct Login
     {
         public int uid;
-        public int mapid;
+        public int room;
         public int x, y;
         public int lastActionId;
         public JSon.JNode data;
+    }
+
+    public struct Travel
+    {
+        public int dir;
     }
 
     public struct Chat
@@ -30,7 +35,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
     private bool _signed = false;
     private bool _fetch = false;
     private int _uid = 0;
-    private int _mapid = 0;
+    private int _room = 0;
     private int _lastActionId = 0;
     public GameObject _loginForm;
     Dictionary<int, CharacterComponent> _characters = new Dictionary<int, CharacterComponent>();
@@ -53,6 +58,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         GlobalEvents.AddListener<GlobalEvents.CharacterTurnEnd>(OnCharacterTurnEnd);
         GlobalEvents.AddListener<GlobalEvents.CharacterOnAttack>(OnCharacterOnAttack);
         GlobalEvents.AddListener<OnlineEvents.Chat>(OnChat);
+        GlobalEvents.AddListener<OnlineEvents.Travel>(OnTravel);
 
         _loginForm = ResourceManager.Load<GameObject>("LoginForm", ResourceManager.EXT_PREFAB);
     }
@@ -61,6 +67,20 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
     {
         //Localization.LoadStrings("mymod_strings_");
         Game.World.console.DeveloperMode();
+    }
+
+    void OnTravel(OnlineEvents.Travel evnt)
+    {
+        StartCoroutine(TryTravel(evnt.dir));
+    }
+
+    IEnumerator TryTravel(int dir)
+    {
+        WebRequest request = new WebRequest();
+        yield return request.Do(server + "worldmap_travel.php",
+            new MultipartFormDataSection("uid", _uid.ToString()),
+            new MultipartFormDataSection("dir", dir.ToString()),
+            new MultipartFormDataSection("room", _room.ToString()));
     }
 
     void LevelLoaded(GlobalEvents.LevelLoaded evnt)
@@ -86,7 +106,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         WebRequest request = new WebRequest();
         yield return request.Do(server + "character_turnend.php",
             new MultipartFormDataSection("uid", _uid.ToString()),
-            new MultipartFormDataSection("mapid", _mapid.ToString()));
+            new MultipartFormDataSection("room", _room.ToString()));
     }
 
     void OnChat(OnlineEvents.Chat chat)
@@ -99,7 +119,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         WebRequest request = new WebRequest();
         yield return request.Do(server + "chat_send.php",
             new MultipartFormDataSection("uid", _uid.ToString()),
-            new MultipartFormDataSection("mapid", _mapid.ToString()),
+            new MultipartFormDataSection("room", _room.ToString()),
             new MultipartFormDataSection("msg", msg)
             );
     }
@@ -108,7 +128,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
     {
         _signed = true;
         _uid = evnt.uid;
-        _mapid = evnt.mapid;
+        _room = evnt.room;
         _lastActionId = evnt.lastActionId;
 
         Game.World.NextLevel("Z_1", "EnterPoint", false, false);
@@ -123,7 +143,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
     {
         WebRequest request = new WebRequest();
         yield return request.Do(server + "actions_get.php",
-            new MultipartFormDataSection("mapid", _mapid.ToString()),
+            new MultipartFormDataSection("room", _room.ToString()),
             new MultipartFormDataSection("aid", _lastActionId.ToString())
             );
 
@@ -198,11 +218,11 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         }
     }
 
-    IEnumerator TryGetCharacters(int mapid)
+    IEnumerator TryGetCharacters(int room)
     {
         WebRequest request = new WebRequest();
         yield return request.Do(server + "characters_get.php",
-            new MultipartFormDataSection("mapid", mapid.ToString())
+            new MultipartFormDataSection("room", room.ToString())
             );
 
         _fetch = true;
