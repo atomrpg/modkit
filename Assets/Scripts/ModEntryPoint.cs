@@ -8,8 +8,18 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle("Machine Translation")] // ENTER MOD TITLE
 
 
-public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NAME
+public class ModEntryPoint : MonoBehaviour, ILocalizedText // ModEntryPoint - RESERVED LOOKUP NAME
 {
+    void ILocalizedText.UpdateText()
+    {
+        PatchLangList();
+    }
+
+    void PatchLangList()
+    {
+        Localization.LoadStrings("patch_strings_");
+    }
+
     void Start()
     {
         var assembly = GetType().Assembly;
@@ -20,23 +30,22 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
 
         GlobalEvents.AddListener<GlobalEvents.GameStart>(GameLoaded);
 
-        //todo:AtomTeam make public
         {
-            var field = typeof(SettingLanguage).GetField("_lang", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
-            List<string> langList = field.GetValue(null) as List<string>;
-            langList.Add("ja");
-            langList.Add("ch");
-            langList.Add("fr");
+            SettingLanguage.AvaibleLanguage.Add("ja");
+            SettingLanguage.AvaibleLanguage.Add("ch");
+            SettingLanguage.AvaibleLanguage.Add("fr");
         }
 
+        /* out of date
         {
             var field = typeof(Localization).GetField("_cultureInfo", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
             field.SetValue(null, new System.Globalization.CultureInfo("en-US"));
         }
+        */
     }
 
     void GameLoaded(GlobalEvents.GameStart evnt)
     {
-        Localization.LoadStrings("patch_strings_");
+        PatchLangList();
     }
 }
