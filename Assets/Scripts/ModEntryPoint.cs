@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using JSon;
+using Harmony;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -10,30 +11,44 @@ using System.Runtime.CompilerServices;
 
 public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NAME
 {
+    void ScriptsPatch()
+    {
+        //Debug.Log("!!!Patch begin");
+        var assembly = GetType().Assembly;
+        string modName = assembly.GetName().Name;
+
+        var harmony = HarmonyInstance.Create("com.atomrpg.mod." + modName);
+        harmony.PatchAll();
+        //Debug.Log("!!!Patch end");
+    }
+
+    [HarmonyPatch(typeof(Weapon))]
+    [HarmonyPatch("GetChance")]
+    [HarmonyPatch(new System.Type[] { typeof(Character), typeof(ShotMode), typeof(int), typeof(int) })]
+    class Patch
+    {
+        /*
+        static bool Prefix(Character c, ShotMode shotMode, int dist, int targetAC)
+        {
+            //Debug.Log("!!!Prefix");
+            //return true; // do original code
+            //return false;// skip original code
+        }
+        */
+
+        static void Postfix(ref int __result)
+        {
+            //Debug.Log("!!!Postfix");
+            __result += 99; // +99% chance to hit
+        }
+    }
+
     void Start()
     {
         var assembly = GetType().Assembly;
         string modName = assembly.GetName().Name;
         string dir = System.IO.Path.GetDirectoryName(assembly.Location);
         Debug.Log("Mod Init: " + modName + "(" + dir + ")");
-        ResourceManager.AddBundle(modName, AssetBundle.LoadFromFile(dir + "/" + modName + "_resources"));
-        GlobalEvents.AddListener<GlobalEvents.GameStart>(GameLoaded);
-        GlobalEvents.AddListener<GlobalEvents.LevelLoaded>(LevelLoaded);
-    }
-
-    void GameLoaded(GlobalEvents.GameStart evnt)
-    {
-        Localization.LoadStrings("mymod_strings_");
-        Game.World.console.DeveloperMode();
-    }
-
-    void LevelLoaded(GlobalEvents.LevelLoaded evnt)
-    {
-        Debug.Log(evnt.levelName);
-    }
-
-    void Update()
-    {
-        
+        ScriptsPatch();
     }
 }

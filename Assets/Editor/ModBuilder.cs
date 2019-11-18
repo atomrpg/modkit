@@ -161,11 +161,13 @@ public class ModBuilder : EditorWindow
                 Directory.CreateDirectory(PATH_BUILD_BUNDLE);
 
                 //HACK for unique id
-                AssetImporter.GetAtPath("Assets/Resources").SetAssetBundleNameAndVariant(modName + "_resources", "");
-                AssetDatabase.Refresh();
+                if (AssetImporter.GetAtPath("Assets/Resources") != null)
+                {
+                    AssetImporter.GetAtPath("Assets/Resources").SetAssetBundleNameAndVariant(modName + "_resources", "");
+                    AssetDatabase.Refresh();
 
-                BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE, BuildAssetBundleOptions.None/*BuildAssetBundleOptions.DisableWriteTypeTree*/, BuildTarget.StandaloneWindows64);
-
+                    BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE, BuildAssetBundleOptions.None/*BuildAssetBundleOptions.DisableWriteTypeTree*/, BuildTarget.StandaloneWindows64);
+                }
                 //copy dll
                 string modsFolder = Application.persistentDataPath + "/../../AtomTeam/Atom/Mods";
 
@@ -176,6 +178,9 @@ public class ModBuilder : EditorWindow
 
                 Copy("Library/ScriptAssemblies/" + modName + ".dll", modsFolder + "/" + modName + ".dll");
                 Copy("Library/ScriptAssemblies/" + modName + ".pdb", modsFolder + "/" + modName + ".pdb");
+
+                // LOOK HERE
+                Copy("Assets/0Harmony.dll", modsFolder + "/0Harmony.dll");
 
                 //copy res
                 string modResFolder = modsFolder;
