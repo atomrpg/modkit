@@ -1,0 +1,27 @@
+{ 
+   "states" : { 
+      "67ca20b6-0089-49d8-b7ed-0108b8d56c77" : { 
+         "class" : "DummyNode", 
+         "desc" : { 
+            "x" : "-100841", 
+            "y" : "-100513"
+         }, 
+         "child" : [ 
+            "a7a38194-3e0f-4570-8bc2-edf446b62b01"
+         ]
+      }, 
+      "a7a38194-3e0f-4570-8bc2-edf446b62b01" : { 
+         "class" : "CharacterHeroNode", 
+         "desc" : { 
+            "x" : "-100854", 
+            "y" : "-100420", 
+            "comment" : "NEW NODE HERE"
+         }, 
+         "child" : [ 
+         ], 
+         "objectName" : "Player", 
+         "msg" : "I'M SUPER HERO!"
+      }
+   }, 
+   "entry" : "67ca20b6-0089-49d8-b7ed-0108b8d56c77"
+}
