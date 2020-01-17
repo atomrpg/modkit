@@ -129,6 +129,8 @@ public class ModBuilder : EditorWindow
     const string PATH_TO_ASSETS = "/assets";
     const string PATH_BUILD_BUNDLE = "Temp/ModBuild";
 
+    bool buildAssetBundle = true;
+
     private void OnGUI()
     {
 
@@ -144,6 +146,8 @@ public class ModBuilder : EditorWindow
         }
         EditorGUILayout.EndHorizontal();
 
+        buildAssetBundle = GUILayout.Toggle(buildAssetBundle, "Build Asset Bundle");
+
         if (GUILayout.Button("BUILD"))
         {
             if (modName.Length > 0)
@@ -158,13 +162,23 @@ public class ModBuilder : EditorWindow
                     throw new System.Exception("Temp/ModBuild exist");
                 }
 
+                if(!UnityEditor.SceneManagement.EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
+                {
+                    return;
+                }
+
+                UnityEditor.SceneManagement.EditorSceneManager.NewScene(UnityEditor.SceneManagement.NewSceneSetup.EmptyScene, UnityEditor.SceneManagement.NewSceneMode.Single);
+
                 Directory.CreateDirectory(PATH_BUILD_BUNDLE);
 
                 //HACK for unique id
                 AssetImporter.GetAtPath("Assets/Resources").SetAssetBundleNameAndVariant(modName + "_resources", "");
                 AssetDatabase.Refresh();
 
-                BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE, BuildAssetBundleOptions.None/*BuildAssetBundleOptions.DisableWriteTypeTree*/, BuildTarget.StandaloneWindows64);
+                if (buildAssetBundle)
+                {
+                    BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE, BuildAssetBundleOptions.None/*BuildAssetBundleOptions.DisableWriteTypeTree*/, BuildTarget.StandaloneWindows64);
+                }
 
                 //copy dll
                 string modsFolder = Application.persistentDataPath + "/../../AtomTeam/Atom/Mods";
