@@ -17,7 +17,7 @@ public class WebChatSend : MonoBehaviour
     {
         if(inputField.text.Length > 0)
         {
-        GlobalEvents.PerformEvent<OnlineEvents.Chat>(new OnlineEvents.Chat(){ msg=inputField.text});
+        GlobalEvents.PerformEvent(new OnlineEvents.ChatSend(){ msg=inputField.text});
         inputField.text = "";
         }
     }
@@ -34,6 +34,5 @@ public class WebChatSend : MonoBehaviour
         {
             Send();
         }
-
     }
 }

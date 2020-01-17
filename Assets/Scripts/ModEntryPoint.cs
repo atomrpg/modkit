@@ -24,14 +24,21 @@ namespace OnlineEvents
         public int dir;
     }
 
-    public struct Chat
+    public struct ChatSend
     {
         public string msg;
+    }
+
+    public struct ChatGet
+    {
+        public string msg;
+        public int initiator;
     }
 }
 
 public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NAME
 {
+    private bool _inBattle = false;
     private bool _signed = false;
     private bool _fetch = false;
     private int _uid = 0;
@@ -41,6 +48,11 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
     Dictionary<int, CharacterComponent> _characters = new Dictionary<int, CharacterComponent>();
 
     public static string server = "http://online.theatomgame.com/";
+
+    public void SetMessagesFetch(bool fetch)
+    {
+        _fetch = fetch;
+    }
 
     void Start()
     {
@@ -57,7 +69,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         GlobalEvents.AddListener<GlobalEvents.CharacterMove>(OnCharacterMove);
         GlobalEvents.AddListener<GlobalEvents.CharacterTurnEnd>(OnCharacterTurnEnd);
         GlobalEvents.AddListener<GlobalEvents.CharacterOnAttack>(OnCharacterOnAttack);
-        GlobalEvents.AddListener<OnlineEvents.Chat>(OnChat);
+        GlobalEvents.AddListener<OnlineEvents.ChatSend>(OnChat);
         GlobalEvents.AddListener<OnlineEvents.Travel>(OnTravel);
 
         _loginForm = ResourceManager.Load<GameObject>("LoginForm", ResourceManager.EXT_PREFAB);
@@ -109,7 +121,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
             new MultipartFormDataSection("room", _room.ToString()));
     }
 
-    void OnChat(OnlineEvents.Chat chat)
+    void OnChat(OnlineEvents.ChatSend chat)
     {
         StartCoroutine(TryChatSend(chat.msg));
     }
@@ -131,7 +143,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         _room = evnt.room;
         _lastActionId = evnt.lastActionId;
 
-        Game.World.NextLevel("Z_1", "EnterPoint", false, false);
+        //Game.World.NextLevel("Z_1", "EnterPoint", false, false);
     }
 
     private void Whoop(CharacterComponent cc, string whoop, bool fromPlayer)
@@ -172,7 +184,11 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
 
                 if (type == 1) // chat
                 {
-                    Whoop(GetCC(initiator), data["msg"], initiator == _uid);
+                    GlobalEvents.PerformEvent(new OnlineEvents.ChatGet(){ msg = data["msg"], initiator = initiator});
+                    if(_inBattle)
+                    {
+                        Whoop(GetCC(initiator), data["msg"], initiator == _uid);
+                    }
                 }
 
                 if (type == 2) //turn end
@@ -226,6 +242,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
             );
 
         _fetch = true;
+        _inBattle = true;
         if (request.Success)
         {
             foreach (JSon.JNode jData in request.GetData().AsArray)

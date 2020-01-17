@@ -13,8 +13,19 @@ public class WebServerState : MonoBehaviour
         var assembly = GetType().Assembly;
         string modName = assembly.GetName().Name;
         string dir = System.IO.Path.GetDirectoryName(assembly.Location);
-
-        _dropDown.AddOptions(new List<string>(System.IO.File.ReadAllLines(dir + System.IO.Path.DirectorySeparatorChar + "servers.cfg")));
+        string[] serverList = null;
+        if(System.IO.File.Exists(dir + System.IO.Path.DirectorySeparatorChar + "servers.cfg"))
+        {
+        System.IO.File.ReadAllLines(dir + System.IO.Path.DirectorySeparatorChar + "servers.cfg");
+        }
+        if(serverList != null && serverList.Length != 0)
+        {
+         _dropDown.AddOptions(new List<string>(serverList));
+        }
+        else
+        {
+            _dropDown.AddOptions(new List<string>(){ModEntryPoint.server});
+        }
     }
 
     public void OnServerChanged(int index)
