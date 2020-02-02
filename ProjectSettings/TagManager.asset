@@ -9,6 +9,7 @@ TagManager:
   - PathGround
   - Fire
   - GameObjects
+  - IgnoreOutline
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - PostProcess
   - Character
   - Ragdoll
-  - 
+  - Particles
   - 
   - 
   - 
