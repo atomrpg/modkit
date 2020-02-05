@@ -168,6 +168,7 @@ public class ModBuilder : EditorWindow
                 }
 
                 UnityEditor.SceneManagement.EditorSceneManager.NewScene(UnityEditor.SceneManagement.NewSceneSetup.EmptyScene, UnityEditor.SceneManagement.NewSceneMode.Single);
+                RenderSettings.fog = true; // force enable fog
 
                 Directory.CreateDirectory(PATH_BUILD_BUNDLE);
 
