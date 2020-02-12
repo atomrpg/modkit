@@ -52,3 +52,15 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         ScriptsPatch();
     }
 }
+
+#if UNITY_EDITOR
+[UnityEditor.InitializeOnLoad]
+public class Editor_Harmony_Patch_All {
+    static Editor_Harmony_Patch_All()
+    {
+        var harmony = HarmonyInstance.Create("com.atomrpg.editor");
+        harmony.PatchAll();
+        Debug.Log("Editor: Harmony patch all");
+    }
+}
+#endif
