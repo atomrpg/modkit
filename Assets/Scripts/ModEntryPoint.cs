@@ -43,6 +43,38 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         }
     }
 
+    [HarmonyPatch(typeof(CharacterComponent))]
+    [HarmonyPatch("Attack")]
+    [HarmonyPatch(new System.Type[] {})]
+    class Patch_CharacterComponent_Attack
+    {
+        static int ammoCount = 0;
+
+        static bool Prefix(CharacterComponent __instance)
+        {
+            if(__instance.Character.Weapon != null && __instance.Character.Weapon.Ammo != null)
+            {
+                ammoCount = __instance.Character.Weapon.Ammo.Count;
+            }
+
+            return true;
+        }
+
+        static void Postfix(CharacterComponent __instance)
+        {
+            if (ammoCount > 0 && __instance.HasPerk((CharacterStats.Perk)ModCharacterPerk.REFILL_AMMO))
+            {
+                var ammo = __instance.FindAmmo(__instance.Character.Weapon);
+                if (ammo != null)
+                {
+                    ammo.Count += (ammoCount - __instance.Character.Weapon.Ammo.Count);
+                }
+            }
+
+            ammoCount = 0;
+        }
+    }
+
     void Start()
     {
         var assembly = GetType().Assembly;

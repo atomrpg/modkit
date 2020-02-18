@@ -15,6 +15,7 @@ enum ModCharacterPerk
     SUPER_PERK1 = 150,
     SUPER_PERK2 = 151,
     SUPER_PERK3 = 152,
+    REFILL_AMMO = 153,
 }
 
 [AttributeUsage(AttributeTargets.Enum, AllowMultiple = true)]
