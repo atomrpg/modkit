@@ -5,6 +5,7 @@ using JSon;
 using Harmony;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using UnityEngine.Video;
 
 //[assembly: AssemblyTitle("My Mod")] // ENTER MOD TITLE
 
@@ -16,30 +17,50 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         //Debug.Log("!!!Patch begin");
         var assembly = GetType().Assembly;
         string modName = assembly.GetName().Name;
+        string dir = System.IO.Path.GetDirectoryName(assembly.Location);
+        ResourceManager.AddBundle(modName, AssetBundle.LoadFromFile(dir + "/" + modName + "_resources"));
 
         var harmony = HarmonyInstance.Create("com.atomrpg.mod." + modName);
         harmony.PatchAll();
         //Debug.Log("!!!Patch end");
     }
 
-    [HarmonyPatch(typeof(Weapon))]
-    [HarmonyPatch("GetChance")]
-    [HarmonyPatch(new System.Type[] { typeof(Character), typeof(ShotMode), typeof(int), typeof(int) })]
-    class Patch
+    [HarmonyPatch(typeof(IntroMovie))]
+    [HarmonyPatch("GetAudioTrackIdByLang")]
+    [HarmonyPatch(new System.Type[] { typeof(string) })]
+    class Patch_IntroMovie_GetAudioTrackIdByLang
     {
-        /*
-        static bool Prefix(Character c, ShotMode shotMode, int dist, int targetAC)
+        static void Postfix(string lang, ref int __result)
         {
-            //Debug.Log("!!!Prefix");
-            //return true; // do original code
-            //return false;// skip original code
+            //if(lang == "de")
+            {
+                __result = 255; // skip all audio from video clip
+            }
         }
-        */
+    }
 
-        static void Postfix(ref int __result)
+    [HarmonyPatch(typeof(IntroMovie))]
+    [HarmonyPatch("Prepared")]
+    [HarmonyPatch(new System.Type[] { typeof(VideoPlayer) })]
+    class Patch_IntroMovie_Prepared
+    {
+        static bool Prefix(VideoPlayer __instance)
         {
-            //Debug.Log("!!!Postfix");
-            __result += 99; // +99% chance to hit
+            Debug.Log("!!!Patch audio track for VideoPlayer");
+            var videoPlayer = __instance.GetComponent<VideoPlayer>();
+            var audioPlayer = __instance.GetComponent<AudioSource>();
+            string clipName = videoPlayer.clip.name;
+            Debug.Log("!!!Patch Try to load override audio videotrack from: " + "Movie/" + clipName + ".ogg");
+            AudioClip audioClip = ResourceManager.Load<AudioClip>("Movie/" + clipName, ResourceManager.EXT_AUDIO);
+            if (audioClip != null) // repleace current audio clip
+            {
+                videoPlayer.audioOutputMode = VideoAudioOutputMode.None;
+
+                audioPlayer.clip = ResourceManager.Load<AudioClip>("Movie/" + clipName, ResourceManager.EXT_AUDIO);
+                audioPlayer.Play();
+            }
+
+            return true;
         }
     }
 
@@ -52,15 +73,3 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         ScriptsPatch();
     }
 }
-
-#if UNITY_EDITOR
-[UnityEditor.InitializeOnLoad]
-public class Editor_Harmony_Patch_All {
-    static Editor_Harmony_Patch_All()
-    {
-        var harmony = HarmonyInstance.Create("com.atomrpg.editor");
-        harmony.PatchAll();
-        Debug.Log("Editor: Harmony patch all");
-    }
-}
-#endif

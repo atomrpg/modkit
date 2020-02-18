@@ -1,7 +1,6 @@
 {
-    "name": "HarmonyExample",
+    "name": "AudioTrack",
     "references": [],
-    "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
