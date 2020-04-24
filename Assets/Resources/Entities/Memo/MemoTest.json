@@ -1,0 +1,81 @@
+{ 
+   "states" : { 
+      "7920ef58-463b-4978-84be-f385410fa3c8" : { 
+         "class" : "MemoBeginNode", 
+         "desc" : { 
+            "x" : "-100811", 
+            "y" : "-100569"
+         }, 
+         "child" : [ 
+            "65f736be-aef3-4cb9-bdd9-dd5fb3be759d"
+         ]
+      }, 
+      "65f736be-aef3-4cb9-bdd9-dd5fb3be759d" : { 
+         "class" : "HasKeywordNode", 
+         "desc" : { 
+            "x" : "-100827", 
+            "y" : "-100510"
+         }, 
+         "child" : [ 
+            "8b7ef5f2-74da-4e86-8fe6-6d80f0b08cf2", 
+            "6f7c8efe-1b03-42a2-b7b6-fdae4e3ab683"
+         ], 
+         "key" : "CRAFT_TEST_1"
+      }, 
+      "8b7ef5f2-74da-4e86-8fe6-6d80f0b08cf2" : { 
+         "class" : "MemoPageNode", 
+         "desc" : { 
+            "x" : "-101037", 
+            "y" : "-100082"
+         }, 
+         "child" : [ 
+            "dd116cfc-e5c1-4c37-aeeb-78e435c4a292"
+         ], 
+         "text" : "#MemoTest.8b7ef5f2-74da-4e86-8fe6-6d80f0b08cf2"
+      }, 
+      "dd116cfc-e5c1-4c37-aeeb-78e435c4a292" : { 
+         "class" : "MemoPageNode", 
+         "desc" : { 
+            "x" : "-101035", 
+            "y" : "-99967"
+         }, 
+         "child" : [ 
+         ], 
+         "text" : "#MemoTest.dd116cfc-e5c1-4c37-aeeb-78e435c4a292"
+      }, 
+      "6f7c8efe-1b03-42a2-b7b6-fdae4e3ab683" : { 
+         "class" : "DummyNode", 
+         "desc" : { 
+            "x" : "-100564", 
+            "y" : "-100425"
+         }, 
+         "child" : [ 
+            "1a7eb1b4-32e2-41bb-8bc0-c1e25955aa25"
+         ]
+      }, 
+      "1a7eb1b4-32e2-41bb-8bc0-c1e25955aa25" : { 
+         "class" : "PlayerAddRecipeNode", 
+         "desc" : { 
+            "x" : "-100740", 
+            "y" : "-100304"
+         }, 
+         "child" : [ 
+            "2339286d-181f-4453-b736-b1f8e822618c"
+         ], 
+         "recipe" : "CraftTest", 
+         "showMsg" : "true"
+      }, 
+      "2339286d-181f-4453-b736-b1f8e822618c" : { 
+         "class" : "AddKeywordNode", 
+         "desc" : { 
+            "x" : "-100821", 
+            "y" : "-100189"
+         }, 
+         "child" : [ 
+            "8b7ef5f2-74da-4e86-8fe6-6d80f0b08cf2"
+         ], 
+         "key" : "CRAFT_TEST_1"
+      }
+   }, 
+   "entry" : "7920ef58-463b-4978-84be-f385410fa3c8"
+}

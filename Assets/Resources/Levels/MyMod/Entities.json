@@ -1,0 +1,291 @@
+[ 
+   { 
+      "class" : "Interactive", 
+      "active" : "true", 
+      "proto" : "MyMod_Level", 
+      "behavior" : "MyMod_Level", 
+      "name" : "LogicLevel", 
+      "transform" : { 
+         "pos" : [ 
+            "0", 
+            "0", 
+            "0"
+         ], 
+         "rot" : [ 
+            "0", 
+            "0", 
+            "0"
+         ], 
+         "scale" : [ 
+            "1", 
+            "1", 
+            "1"
+         ]
+      }
+   }, 
+   { 
+      "class" : "Character", 
+      "active" : "true", 
+      "proto" : "TestCreature", 
+      "character" : "MyNPC", 
+      "damage" : "0", 
+      "ap" : "0", 
+      "bonusTurn" : "false", 
+      "relationship" : "100", 
+      "shotMode" : "0", 
+      "inventory" : [ 
+      ], 
+      "mainItemIndex" : "0", 
+      "conditions" : { 
+         "toxic" : "0", 
+         "toxicTimer" : "-1", 
+         "radiation" : "0", 
+         "radiationTimer" : "-1", 
+         "hunger" : "0", 
+         "hungerDmg" : "0", 
+         "rolling" : "0"
+      }, 
+      "effects" : [ 
+      ], 
+      "name" : "TestCreature", 
+      "transform" : { 
+         "pos" : [ 
+            "8.688802", 
+            "0", 
+            "17.27957"
+         ], 
+         "rot" : [ 
+            "0", 
+            "90.00001", 
+            "0"
+         ], 
+         "scale" : [ 
+            "1", 
+            "1", 
+            "1"
+         ]
+      }
+   }, 
+   { 
+      "class" : "Chest", 
+      "active" : "true", 
+      "proto" : "MyChest", 
+      "inventory" : [ 
+         { 
+            "class" : "Weapon", 
+            "count" : "1", 
+            "proto" : "EPistol", 
+            "ammo" : { 
+               "count" : "4", 
+               "proto" : "Energy"
+            }
+         }, 
+         { 
+            "class" : "Uniform", 
+            "count" : "1", 
+            "proto" : "EHelmet"
+         }, 
+         { 
+            "class" : "Uniform", 
+            "count" : "1", 
+            "proto" : "EArmor"
+         }, 
+         { 
+            "class" : "Ammo", 
+            "count" : "500", 
+            "proto" : "Energy"
+         }, 
+         { 
+            "class" : "Memo", 
+            "count" : "1", 
+            "proto" : "MemoTest"
+         }, 
+         { 
+            "class" : "Item", 
+            "count" : "1", 
+            "proto" : "Wires"
+         }, 
+         { 
+            "class" : "Item", 
+            "count" : "1", 
+            "proto" : "Wood"
+         }, 
+         { 
+            "class" : "Weapon", 
+            "count" : "1", 
+            "proto" : "PTRD", 
+            "ammo" : { 
+               "count" : "1", 
+               "proto" : "14_5mm_JHP"
+            }
+         }
+      ], 
+      "open" : "false", 
+      "touch" : "false", 
+      "lockLevel" : "0", 
+      "lockType" : "Mechanical", 
+      "pin" : "0", 
+      "name" : "Chest", 
+      "transform" : { 
+         "pos" : [ 
+            "9.66", 
+            "1.24", 
+            "7.1"
+         ], 
+         "rot" : [ 
+            "0", 
+            "0", 
+            "0"
+         ], 
+         "scale" : [ 
+            "1", 
+            "1", 
+            "1"
+         ]
+      }
+   }, 
+   { 
+      "class" : "Character", 
+      "active" : "true", 
+      "proto" : "BaseMale9", 
+      "character" : "MyNPC", 
+      "damage" : "0", 
+      "ap" : "0", 
+      "bonusTurn" : "false", 
+      "relationship" : "100", 
+      "shotMode" : "0", 
+      "inventory" : [ 
+      ], 
+      "mainItemIndex" : "0", 
+      "item1" : { 
+         "class" : "Weapon", 
+         "count" : "1", 
+         "proto" : "EPistol", 
+         "ammo" : { 
+            "count" : "4", 
+            "proto" : "Energy"
+         }
+      }, 
+      "cap" : { 
+         "class" : "Uniform", 
+         "count" : "1", 
+         "proto" : "EHelmet"
+      }, 
+      "conditions" : { 
+         "toxic" : "0", 
+         "toxicTimer" : "-1", 
+         "radiation" : "0", 
+         "radiationTimer" : "-1", 
+         "hunger" : "0", 
+         "hungerDmg" : "0", 
+         "rolling" : "0"
+      }, 
+      "effects" : [ 
+      ], 
+      "name" : "MyNPC", 
+      "transform" : { 
+         "pos" : [ 
+            "11.08", 
+            "0", 
+            "13.12"
+         ], 
+         "rot" : [ 
+            "0", 
+            "0", 
+            "0"
+         ], 
+         "scale" : [ 
+            "1", 
+            "1", 
+            "1"
+         ]
+      }
+   }, 
+   { 
+      "class" : "Character", 
+      "active" : "true", 
+      "proto" : "BaseMale7", 
+      "character" : "test_trade", 
+      "damage" : "0", 
+      "ap" : "0", 
+      "bonusTurn" : "false", 
+      "relationship" : "100", 
+      "shotMode" : "0", 
+      "inventory" : [ 
+      ], 
+      "mainItemIndex" : "0", 
+      "conditions" : { 
+         "toxic" : "0", 
+         "toxicTimer" : "-1", 
+         "radiation" : "0", 
+         "radiationTimer" : "-1", 
+         "hunger" : "0", 
+         "hungerDmg" : "0", 
+         "rolling" : "0"
+      }, 
+      "effects" : [ 
+      ], 
+      "behavior" : "trade_behavior", 
+      "name" : "Trader", 
+      "transform" : { 
+         "pos" : [ 
+            "19.57", 
+            "0", 
+            "12.75"
+         ], 
+         "rot" : [ 
+            "0", 
+            "0", 
+            "0"
+         ], 
+         "scale" : [ 
+            "1", 
+            "1", 
+            "1"
+         ]
+      }
+   }, 
+   { 
+      "class" : "Character", 
+      "active" : "true", 
+      "proto" : "basemale7", 
+      "character" : "test_companion", 
+      "damage" : "0", 
+      "ap" : "0", 
+      "bonusTurn" : "false", 
+      "relationship" : "100", 
+      "shotMode" : "0", 
+      "inventory" : [ 
+      ], 
+      "mainItemIndex" : "0", 
+      "conditions" : { 
+         "toxic" : "0", 
+         "toxicTimer" : "-1", 
+         "radiation" : "0", 
+         "radiationTimer" : "-1", 
+         "hunger" : "0", 
+         "hungerDmg" : "0", 
+         "rolling" : "0"
+      }, 
+      "effects" : [ 
+      ], 
+      "name" : "test_companion", 
+      "transform" : { 
+         "pos" : [ 
+            "27.06", 
+            "0", 
+            "13.08"
+         ], 
+         "rot" : [ 
+            "0", 
+            "0", 
+            "0"
+         ], 
+         "scale" : [ 
+            "1", 
+            "1", 
+            "1"
+         ]
+      }
+   }
+]

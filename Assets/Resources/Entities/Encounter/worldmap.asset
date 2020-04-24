@@ -1,0 +1,1918 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -861160848, guid: ba80931603c2dbc40ab113c533efa2ed, type: 3}
+  m_Name: worldmap
+  m_EditorClassIdentifier: 
+  encounters:
+  - _chance: 50
+    _type: Wolfs
+    _period: 2
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: ac4ee59dc3197c447b5bd7c27ab49427, type: 3}
+    _desc: encounter.wolves
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances:
+    - _skill: 17
+      _skillModify: 0
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_wolfes
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 50
+    _type: Rats
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: 5a49841cad4584343a788e2bf50a5aec, type: 3}
+    _desc: encounter.rats
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances:
+    - _skill: 17
+      _skillModify: 20
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_rats
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 1
+    _type: Rats_2
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: 161ed1d3aea6cb04c90a0c5fae62499e, type: 3}
+    _desc: encounter.rats_2
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_4
+    - Z_5
+    - Z_6
+    chances:
+    - _skill: 17
+      _skillModify: 40
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_rats2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements:
+    - _type: 39
+      _value: 3
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 1
+    _type: Ants
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: 8ba1e77764de14c4dafe2194d4f452a4, type: 3}
+    _desc: encounter.ants.title
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances:
+    - _skill: 17
+      _skillModify: 20
+      _description: encounter.try_skip1
+      _success: encounter.ants.success_skip
+      _successButton: encounter.gotravel
+      _fail: encounter.ants.fail_skip
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 1
+    _type: Spiders
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: c174cdaa2a4ed4d498bd7024242c6fcd, type: 3}
+    _desc: encounter.spiders.title
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_3
+    chances:
+    - _skill: 17
+      _skillModify: 20
+      _description: encounter.try_skip1
+      _success: encounter.spiders.success_skip
+      _successButton: encounter.gotravel
+      _fail: encounter.spiders.fail_skip
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 1
+    _type: Spiders_2
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: 0b76a3717475d9c45b65f0f75f941605, type: 3}
+    _desc: encounter.spiders_2.title
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    chances:
+    - _skill: 17
+      _skillModify: 40
+      _description: encounter.try_skip1
+      _success: encounter.spiders_2.success_skip
+      _successButton: encounter.gotravel
+      _fail: encounter.spiders_2.fail_skip
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 5
+    _type: Monster
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: 8cf0f84d97c884746835088a7e40c0ed, type: 3}
+    _desc: encounter.monster.title
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances:
+    - _skill: 17
+      _skillModify: -10
+      _description: encounter.try_skip1
+      _success: encounter.monster.success_skip
+      _successButton: encounter.gotravel
+      _fail: encounter.monster.fail_skip
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 60
+    _type: Bandits
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: a30db454b5127e440a75d8888b68b183, type: 3}
+    _desc: encounter.bandits
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances:
+    - _skill: 17
+      _skillModify: -10
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 14
+      _skillModify: -15
+      _description: encounter.try_skip2
+      _success: encounter.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 0
+    _type: Ment_Bandits_1
+    _period: 0
+    _trigger: REQUEST_MENT_BANDIT_1
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: a30db454b5127e440a75d8888b68b183, type: 3}
+    _desc: encounter.ment_bandits
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances:
+    - _skill: 17
+      _skillModify: -20
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 14
+      _skillModify: -25
+      _description: encounter.try_skip2
+      _success: encounter.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 0
+    _type: Ment_Bandits_2
+    _period: 0
+    _trigger: REQUEST_MENT_BANDIT_2
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: a30db454b5127e440a75d8888b68b183, type: 3}
+    _desc: encounter.ment_bandits
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances:
+    - _skill: 17
+      _skillModify: -20
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 14
+      _skillModify: -25
+      _description: encounter.try_skip2
+      _success: encounter.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 0
+    _type: Ment_Bandits_3
+    _period: 0
+    _trigger: REQUEST_MENT_BANDIT_3
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: a30db454b5127e440a75d8888b68b183, type: 3}
+    _desc: encounter.ment_bandits
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances:
+    - _skill: 17
+      _skillModify: -20
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 14
+      _skillModify: -25
+      _description: encounter.try_skip2
+      _success: encounter.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 0
+    _type: Ment_Bandits_4
+    _period: 0
+    _trigger: REQUEST_MENT_BANDIT_4
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: a30db454b5127e440a75d8888b68b183, type: 3}
+    _desc: encounter.ment_bandits
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances:
+    - _skill: 17
+      _skillModify: -20
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 14
+      _skillModify: -25
+      _description: encounter.try_skip2
+      _success: encounter.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 35
+    _type: Fanatics
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 0
+    _once: 0
+    _icon: {fileID: 21300000, guid: 76960853d42117c42b91126218982e4a, type: 3}
+    _desc: encounter.fanatics
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances:
+    - _skill: 17
+      _skillModify: -10
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 14
+      _skillModify: -15
+      _description: encounter.try_skip2
+      _success: encounter.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 500
+    _type: BookHaters
+    _period: 0
+    _trigger: INIT_BOOK_HATERS
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 0
+    _once: 0
+    _icon: {fileID: 21300000, guid: 397b75b6a81e69b4c87ca1d362845c09, type: 3}
+    _desc: encounter.bookhaters
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_4
+    - Z_5
+    - Z_6
+    chances:
+    - _skill: 17
+      _skillModify: -10
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 14
+      _skillModify: -15
+      _description: encounter.try_skip2
+      _success: encounter.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx:
+    - _type: 0
+      value: Quest.Books
+    _weatherCondition: 0
+  - _chance: 0
+    _type: OPG_1
+    _period: 0
+    _trigger: REQUEST_OPG_1
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 0
+    _once: 0
+    _icon: {fileID: 21300000, guid: c40390d4fbb416645a4c6cee4f1bb6a4, type: 3}
+    _desc: encounter.opg_1
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    chances:
+    - _skill: 17
+      _skillModify: -55
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 0
+    _type: OPG_2
+    _period: 0
+    _trigger: REQUEST_OPG_2
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 0
+    _once: 0
+    _icon: {fileID: 21300000, guid: c21a0337f252d344591ee48d19d90137, type: 3}
+    _desc: encounter.opg_2
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_2
+    chances:
+    - _skill: 17
+      _skillModify: -55
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 0
+    _type: OPG_3
+    _period: 0
+    _trigger: REQUEST_OPG_3
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 0
+    _once: 0
+    _icon: {fileID: 21300000, guid: 6c3fbf9c64cf5fe42bd3bfc40d6aad6f, type: 3}
+    _desc: encounter.opg_3
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_3
+    chances:
+    - _skill: 17
+      _skillModify: -55
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 0
+    _type: RedBaron_1
+    _period: 0
+    _trigger: MEET_REDBARON
+    _triggerInvert: 1
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: c1fa7c0a4cb24f34093b49f97d4aa93a, type: 3}
+    _desc: encounter.red_baron
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances:
+    - _skill: 17
+      _skillModify: -10
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 14
+      _skillModify: -15
+      _description: encounter.try_skip2
+      _success: encounter.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 0
+    _type: RedBaron_2
+    _period: 0
+    _trigger: REDBARON_TRIGGER
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: c1fa7c0a4cb24f34093b49f97d4aa93a, type: 3}
+    _desc: encounter.red_baron
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances:
+    - _skill: 17
+      _skillModify: -10
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 14
+      _skillModify: -15
+      _description: encounter.try_skip2
+      _success: encounter.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 1
+    _type: Gopniks
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: 9ebbf87f23863f542b0d5f3227fd464e, type: 3}
+    _desc: encounter.gopniks
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    - Z_11
+    chances:
+    - _skill: 17
+      _skillModify: -10
+      _description: encounter.try_skip1
+      _success: encounter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 14
+      _skillModify: -15
+      _description: encounter.try_skip2
+      _success: encounter.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.fail_skip_bandits2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 5
+    _type: Slavers
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 0
+    _once: 0
+    _icon: {fileID: 21300000, guid: a0b87afa95078e345b6ed703501d27e9, type: 3}
+    _desc: encounter.slavers.title
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances:
+    - _skill: 17
+      _skillModify: -20
+      _description: encounter.try_skip1
+      _success: encounter.slavers.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.slavers.fail_skip2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 14
+      _skillModify: -25
+      _description: encounter.try_skip2
+      _success: encounter.slavers.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.slavers.fail_skip2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 100
+    _type: Slavers
+    _period: 0
+    _trigger: SPEC_KILLLIST
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: a0b87afa95078e345b6ed703501d27e9, type: 3}
+    _desc: encounter.slavers.title
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances:
+    - _skill: 17
+      _skillModify: -20
+      _description: encounter.try_skip1
+      _success: encounter.slavers.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.slavers.fail_skip2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 14
+      _skillModify: -25
+      _description: encounter.try_skip2
+      _success: encounter.slavers.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.slavers.fail_skip2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 74
+    _type: Caravan
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 0
+    _icon: {fileID: 21300000, guid: 5be481e1e8d64784ba7e868e8704c890, type: 3}
+    _desc: encounter.caravan
+    _enter: encounter.meet_caravan
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances: []
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 5
+    _type: Caravan_2
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 0
+    _icon: {fileID: 21300000, guid: 532a6179a10e9154f87fe7f99c29bb6b, type: 3}
+    _desc: encounter.caravan
+    _enter: encounter.meet_caravan
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances: []
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 5
+    _type: Hunt
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 0
+    _icon: {fileID: 21300000, guid: 9da29fb10deb7544ba384ed6c6cbedee, type: 3}
+    _desc: encounter.hunt
+    _enter: 
+    _showIntro: 0
+    _levels:
+    - Z_Forest_1
+    chances:
+    - _skill: 17
+      _skillModify: 0
+      _description: encounter.hunt_enter
+      _success: encounter.hunt_success
+      _successButton: encounter.hunt_try
+      _fail: encounter.hunt_fail
+      _failButton: encounter.gotravel
+      _invert: 1
+      _canAttack: 1
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 70
+    _type: Scavenger
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 0
+    _icon: {fileID: 21300000, guid: c25e3857ca9ef794f8a4a7a38f3300ae, type: 3}
+    _desc: encounter.scavenger
+    _enter: encounter.meet_scavenger
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances: []
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 10
+    _type: Raid
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: 7ca308fb5aa21a844a8133aea813243c, type: 3}
+    _desc: encounter.raid
+    _enter: encounter.enter_raid
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances: []
+    _requirements:
+    - _type: 39
+      _value: 6
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 800
+    _type: SOS
+    _period: 0
+    _trigger: REQUEST_SOS
+    _triggerInvert: 0
+    _triggerReset: 1
+    _canSkip: 1
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: 9535736bcbc298342a0018b6e1db7c46, type: 3}
+    _desc: encounter.sos
+    _enter: encounter.enter_sos
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances: []
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 800
+    _type: SOS_2
+    _period: 0
+    _trigger: REQUEST_SOS
+    _triggerInvert: 0
+    _triggerReset: 1
+    _canSkip: 1
+    _canAttack: 1
+    _once: 0
+    _icon: {fileID: 21300000, guid: e4b7ff9d7144e2946bc052e468e31734, type: 3}
+    _desc: encounter.sos
+    _enter: encounter.enter_sos
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances: []
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 100
+    _type: Crazy
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: 422ae31ed8cdb6f44b8bcbe69c941305, type: 3}
+    _desc: encounter.crazy
+    _enter: encounter.check
+    _showIntro: 0
+    _levels:
+    - Z_Man
+    chances: []
+    _requirements:
+    - _type: 25
+      _value: 21
+    - _type: 39
+      _value: 4
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: -10
+    _type: Z_8
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: 9a45a35426b05074ea518c91db083cd3, type: 3}
+    _desc: encounter.z_8
+    _enter: encounter.check
+    _showIntro: 0
+    _levels:
+    - Z_8
+    chances: []
+    _requirements:
+    - _type: 25
+      _value: 31
+    - _type: 39
+      _value: 4
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 100
+    _type: Cave
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: 0b31f48bf667f31488ac76e95e09eaa3, type: 3}
+    _desc: encounter.cave
+    _enter: encounter.check
+    _showIntro: 0
+    _levels:
+    - Z_Mysterious
+    chances: []
+    _requirements:
+    - _type: 25
+      _value: 42
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 0
+    _type: Kovalev
+    _period: 0
+    _trigger: KOVAL.ENCOUNTER
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: 477539d804a900d40994f9b905776e8a, type: 3}
+    _desc: encounter.kovalev
+    _enter: encounter.kovalev_check
+    _showIntro: 1
+    _levels:
+    - Z_Kovalev
+    chances: []
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 100
+    _type: Mans
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: 8c90769cf6d2eef41bca92a62b31cf30, type: 3}
+    _desc: encounter.zman
+    _enter: encounter.check
+    _showIntro: 0
+    _levels:
+    - Z_3
+    chances: []
+    _requirements:
+    - _type: 25
+      _value: 21
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 100
+    _type: Wolfter
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: 840fe35360da82e47b41cb4c26d61e7b, type: 3}
+    _desc: encounter.wolfter
+    _enter: encounter.check
+    _showIntro: 0
+    _levels:
+    - Lost_Wolfter
+    chances: []
+    _requirements:
+    - _type: 25
+      _value: 35
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 0
+    _type: Mirage
+    _period: 1
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: f965cc9b0c7f4754fb3b15428d482cee, type: 3}
+    _desc: encounter.mirage
+    _enter: encounter.meet
+    _showIntro: 0
+    _levels:
+    - Z_1
+    chances: []
+    _requirements:
+    - _type: 25
+      _value: 35
+    _requirementsEx: []
+    _weatherCondition: 1
+  - _chance: 0
+    _type: SlaversFort
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: aaf3d753384dee142b1b18f651c7c802, type: 3}
+    _desc: encounter.slavers_fort
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_12
+    chances: []
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 0
+    _type: BanditsFort
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: e21bcbde79ee9d74a9c14d4cdcd761f7, type: 3}
+    _desc: encounter.bandits_fort
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_13
+    chances: []
+    _requirements:
+    - _type: 39
+      _value: 4
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 50
+    _type: Traveler
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 0
+    _icon: {fileID: 21300000, guid: 773b18708fa22c84abb2507560cda8b9, type: 3}
+    _desc: encounter.traveler
+    _enter: encounter.meet
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    - Z_3
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    chances: []
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 150
+    _type: Semka
+    _period: 0
+    _trigger: SEMKA_WANTED
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: 6c65061f1f5612647910641c2fe56471, type: 3}
+    _desc: encounter.semka.title
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_4
+    - Z_5
+    - Z_5
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    chances:
+    - _skill: 18
+      _skillModify: 0
+      _description: encounter.semka.try_skip3
+      _success: encounter.semka.success_skip3
+      _successButton: encounter.gotravel
+      _fail: encounter.semka.fail_skip3
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 1
+        _value: 3000
+      _overrideEncounterType: 
+    - _skill: 14
+      _skillModify: -65
+      _description: encounter.semka.try_skip2
+      _success: encounter.semka.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.semka.fail_skip2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 17
+      _skillModify: -55
+      _description: encounter.semka.try_skip1
+      _success: encounter.semka.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.semka.fail_skip1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx:
+    - _type: 0
+      value: Quest_Jewel
+    _weatherCondition: 0
+  - _chance: 250
+    _type: Drug
+    _period: 0
+    _trigger: LOTUS
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: c88235009e80e394bb21514c1ee0978b, type: 3}
+    _desc: encounter.drug.title
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_4
+    - Z_5
+    - Z_5
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    chances:
+    - _skill: 14
+      _skillModify: -65
+      _description: encounter.drug.try_skip2
+      _success: encounter.drug.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.drug.fail_skip2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 17
+      _skillModify: -55
+      _description: encounter.drug.try_skip1
+      _success: encounter.drug.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.drug.fail_skip1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 0
+    _type: Racket
+    _period: 0
+    _trigger: RACKET_WANTED
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 0
+    _once: 0
+    _icon: {fileID: 21300000, guid: 7370aa05ed09b114685c41a986103de9, type: 3}
+    _desc: encounter.racket.title
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_4
+    - Z_5
+    - Z_5
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    chances:
+    - _skill: 14
+      _skillModify: -45
+      _description: encounter.racket.try_skip2
+      _success: encounter.racket.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.racket.fail_skip2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 17
+      _skillModify: -35
+      _description: encounter.racket.try_skip1
+      _success: encounter.racket.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.racket.fail_skip1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 0
+    _type: AmericanWarrior
+    _period: 0
+    _trigger: AMERICAN_WARRIOR_ENCOUNTER
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: fd50a102cb83fbb46a9c5a2c634595f3, type: 3}
+    _desc: encounter.americanwarrior.title
+    _enter: encounter.check
+    _showIntro: 0
+    _levels:
+    - Z_6
+    chances: []
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 0
+    _type: Zolotoy
+    _period: 0
+    _trigger: ZOLOTOY_ENCOUNTER
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 0
+    _icon: {fileID: 21300000, guid: 95e5eb22c31eab144b95f09f6daaf87c, type: 3}
+    _desc: encounter.zolotoy.title
+    _enter: encounter.check
+    _showIntro: 0
+    _levels:
+    - Z_3
+    chances: []
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 250
+    _type: Headhunter_0
+    _period: 2
+    _trigger: HEADHUNTER_0_WANTED
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: f4240208c6a8cb44fa2d31805ee1885d, type: 3}
+    _desc: encounter.headhunter.special
+    _enter: encounter.meet
+    _showIntro: 0
+    _levels:
+    - Z_Forest_1
+    chances: []
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 150
+    _type: Headhunter_1
+    _period: 0
+    _trigger: HEADHUNTER_1_WANTED
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: 835bafee4c74e7145a87e95e7b587a46, type: 3}
+    _desc: encounter.headhunter.title
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_4
+    - Z_5
+    - Z_5
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    chances:
+    - _skill: 14
+      _skillModify: -65
+      _description: encounter.try_skip2
+      _success: encounter.headhunter.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.headhunter.fail_skip2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    - _skill: 17
+      _skillModify: -55
+      _description: encounter.try_skip1
+      _success: encounter.headhunter.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.headhunter.fail_skip1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 150
+    _type: Headhunter_2
+    _period: 0
+    _trigger: HEADHUNTER_2_WANTED
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: d472ff183f0362746aa805f6e397129f, type: 3}
+    _desc: encounter.headhunter2.title
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    chances:
+    - _skill: 18
+      _skillModify: 0
+      _description: encounter.try_skip3
+      _success: encounter.headhunter2.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.headhunter2.fail_skip1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 1
+        _value: 5000
+      _overrideEncounterType: 
+    - _skill: 14
+      _skillModify: -100
+      _description: encounter.try_skip2
+      _success: encounter.headhunter2.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.headhunter2.fail_skip2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 150
+    _type: Headhunter_3
+    _period: 0
+    _trigger: HEADHUNTER_3_WANTED
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 0
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: ef204fe4e2d4d364cb9d68497e2a4705, type: 3}
+    _desc: encounter.headhunter3.title
+    _enter: encounter.attack
+    _showIntro: 0
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    - Z_1_Cave
+    - Z_1_Mine
+    - Z_1_Bunker
+    chances:
+    - _skill: 18
+      _skillModify: 0
+      _description: encounter.try_skip3
+      _success: encounter.headhunter3.success_skip1
+      _successButton: encounter.gotravel
+      _fail: encounter.headhunter3.fail_skip1
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 1
+        _value: 15000
+      _overrideEncounterType: 
+    - _skill: 14
+      _skillModify: -150
+      _description: encounter.try_skip2
+      _success: encounter.headhunter3.success_skip2
+      _successButton: encounter.gotravel
+      _fail: encounter.headhunter3.fail_skip2
+      _failButton: encounter.gobattle
+      _invert: 0
+      _canAttack: 0
+      _condition:
+        _type: 0
+        _value: 0
+      _overrideEncounterType: 
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  - _chance: 250
+    _type: PumpkinHead
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 0
+    _once: 1
+    _icon: {fileID: 21300000, guid: 650c2af2c131590429fd099980ff5975, type: 3}
+    _desc: encounter.pumpkin
+    _enter: encounter.gobattle
+    _showIntro: 0
+    _levels:
+    - Z_Pumpkin
+    chances: []
+    _requirements:
+    - _type: 39
+      _value: 10
+    _requirementsEx:
+    - _type: 2
+      value: Pumpkin
+    _weatherCondition: 0
+  - _chance: 1000
+    _type: testbear
+    _period: 0
+    _trigger: 
+    _triggerInvert: 0
+    _triggerReset: 0
+    _canSkip: 1
+    _canAttack: 1
+    _once: 1
+    _icon: {fileID: 21300000, guid: 8cf0f84d97c884746835088a7e40c0ed, type: 3}
+    _desc: encounter.testbear
+    _enter: encounter.gobattle
+    _showIntro: 0
+    _levels:
+    - Z_1
+    chances: []
+    _requirements: []
+    _requirementsEx: []
+    _weatherCondition: 0
+  camping:
+    _levels:
+    - Z_1
+    - Z_2
+    - Z_3
+    - Z_4
+    - Z_5
+    - Z_6
+    - Z_7
+    - Z_10
+    - Z_Forest_1

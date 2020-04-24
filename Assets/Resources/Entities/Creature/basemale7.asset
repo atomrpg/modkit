@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1698890168, guid: ba80931603c2dbc40ab113c533efa2ed, type: 3}
+  m_Name: basemale7
+  m_EditorClassIdentifier: 
+  Icon:
+    path: 
+  m_Localization: 
+  Takeable: 1
+  Sounds:
+    BodyHit:
+    - path: Sounds/SFX/Creatures/Man/npc_male1
+    - path: Sounds/SFX/Creatures/Man/npc_male2
+    - path: Sounds/SFX/Creatures/Man/npc_male3
+    - path: Sounds/SFX/Creatures/Man/npc_male4
+    Dead:
+    - path: Sounds/SFX/Creatures/Man/Dead_1
+    - path: Sounds/SFX/Creatures/Man/Dead_2
+    - path: Sounds/SFX/Creatures/Man/dead_3
+    Fall:
+    - path: Sounds/SFX/Creatures/Man/Fall_1
+    - path: Sounds/SFX/Creatures/Man/Fall_2
+    Stun:
+    - path: Sounds/SFX/Creatures/Man/Stun_1
+    - path: Sounds/SFX/Creatures/Man/Stun_2
+    BurstHead:
+    - path: Sounds/SFX/Creatures/Misc/HeadBurst
+    BurstLimb:
+    - path: Sounds/SFX/Creatures/Misc/LimbsBurst
+    Steps:
+    - Ground: 0
+      Sounds:
+      - path: Sounds/SFX/Steps/FootstepsM/m_ground_1
+      - path: Sounds/SFX/Steps/FootstepsM/m_ground_2
+      - path: Sounds/SFX/Steps/FootstepsM/m_ground_3
+      - path: Sounds/SFX/Steps/FootstepsM/m_ground_4
+      - path: Sounds/SFX/Steps/FootstepsM/m_ground_5
+      - path: Sounds/SFX/Steps/FootstepsM/m_ground_6
+    - Ground: 6
+      Sounds:
+      - path: Sounds/SFX/Steps/FootstepsM/m_asphalt1
+      - path: Sounds/SFX/Steps/FootstepsM/m_asphalt2
+      - path: Sounds/SFX/Steps/FootstepsM/m_asphalt3
+      - path: Sounds/SFX/Steps/FootstepsM/m_asphalt4
+      - path: Sounds/SFX/Steps/FootstepsM/m_asphalt5
+      - path: Sounds/SFX/Steps/FootstepsM/m_asphalt6
+    - Ground: 3
+      Sounds:
+      - path: Sounds/SFX/Steps/FootstepsM/m_metal_1
+      - path: Sounds/SFX/Steps/FootstepsM/m_metal_2
+      - path: Sounds/SFX/Steps/FootstepsM/m_metal_3
+      - path: Sounds/SFX/Steps/FootstepsM/m_metal_4
+      - path: Sounds/SFX/Steps/FootstepsM/m_metal_5
+      - path: Sounds/SFX/Steps/FootstepsM/m_metal_6
+    - Ground: 2
+      Sounds:
+      - path: Sounds/SFX/Steps/FootstepsM/m_concrete_1
+      - path: Sounds/SFX/Steps/FootstepsM/m_concrete_2
+      - path: Sounds/SFX/Steps/FootstepsM/m_concrete_3
+      - path: Sounds/SFX/Steps/FootstepsM/m_concrete_4
+      - path: Sounds/SFX/Steps/FootstepsM/m_concrete_5
+      - path: Sounds/SFX/Steps/FootstepsM/m_concrete_6
+    - Ground: 1
+      Sounds:
+      - path: Sounds/SFX/Steps/FootstepsM/m_stone_1
+      - path: Sounds/SFX/Steps/FootstepsM/m_stone_2
+      - path: Sounds/SFX/Steps/FootstepsM/m_stone_3
+      - path: Sounds/SFX/Steps/FootstepsM/m_stone_4
+      - path: Sounds/SFX/Steps/FootstepsM/m_stone_5
+      - path: Sounds/SFX/Steps/FootstepsM/m_stone_6
+    - Ground: 5
+      Sounds:
+      - path: Sounds/SFX/Steps/FootstepsM/m_water_1
+      - path: Sounds/SFX/Steps/FootstepsM/m_water_2
+      - path: Sounds/SFX/Steps/FootstepsM/m_water_3
+      - path: Sounds/SFX/Steps/FootstepsM/m_water_4
+      - path: Sounds/SFX/Steps/FootstepsM/m_water_5
+      - path: Sounds/SFX/Steps/FootstepsM/m_water_6
+    - Ground: 4
+      Sounds:
+      - path: Sounds/SFX/Steps/FootstepsM/m_wood_1
+      - path: Sounds/SFX/Steps/FootstepsM/m_wood_2
+      - path: Sounds/SFX/Steps/FootstepsM/m_wood_3
+      - path: Sounds/SFX/Steps/FootstepsM/m_wood_4
+      - path: Sounds/SFX/Steps/FootstepsM/m_wood_5
+      - path: Sounds/SFX/Steps/FootstepsM/m_wood_6
+  AnimSounds: []
+  SoundSettings:
+    path: sounds/audiosourcesettings
+  MoveSpeedWalk: 3.4
+  MoveSpeedRun: 9
+  ShapeChance: 40
+  creatureType: 0
+  genderType: 0
+  BloodBlob:
+    path: Particles/BloodBloob
+  BloodSplash:
+    path: Particles/BloodHeadSplash
+  BloodBlobScale: 1
+  bloodType: 0
+  RagdollSetup: {fileID: 4900000, guid: 0be51994093c64b6f82fc659fcd4e495, type: 3}
+  Unarmed1:
+  - path: Entities/Weapon/Punch
+  - path: Entities/Weapon/Punch_Strong
+  - path: Entities/Weapon/Punch_Hammer
+  - path: Entities/Weapon/Punch_Haymaker
+  - path: Entities/Weapon/Punch_Master
+  Unarmed2:
+  - path: Entities/Weapon/Kick
+  - path: Entities/Weapon/Kick_Strong
+  - path: Entities/Weapon/Kick_Snap
+  - path: Entities/Weapon/Kick_Power
+  - path: Entities/Weapon/Kick_Master
+  UnarmedAnimatorController:
+    path: Models/Characters/Male/MaleAnimTreeUnarmed
+  UnarmedAndSheildAnimatorController:
+    path: Models/Characters/Male/MaleAnimTree_UnarmedAndShield
+  MeleeAnimatorController:
+    path: Models/Characters/Male/MaleAnimTree_Melee
+  MeleeAndShieldAnimatorController:
+    path: Models/Characters/Male/MaleAnimTree_MeleeAndShield
+  PistolAnimatorController:
+    path: Models/Characters/Male/MaleAnimTree_Pistol
+  PistolAndShieldAnimatorController:
+    path: Models/Characters/Male/MaleAnimTree_PistolAndShield
+  RifleAnimatorController:
+    path: Models/Characters/Male/MaleAnimTree_Rifle
+  MachineGunAnimatorController:
+    path: Models/Characters/Male/MaleAnimTree_MachineGun
+  Abilities: 0
+  StatisticsID: man

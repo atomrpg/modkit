@@ -1,0 +1,381 @@
+{ 
+   "states" : { 
+      "60318fa5-d8ce-42b7-b959-24c6f3c532f0" : { 
+         "class" : "DialogBeginNode", 
+         "desc" : { 
+            "x" : "-101550", 
+            "y" : "-102284"
+         }, 
+         "child" : [ 
+            "c9ff8d7d-c835-4970-9f9b-5d93eff7e8f5"
+         ], 
+         "canBarter" : "false"
+      }, 
+      "c9ff8d7d-c835-4970-9f9b-5d93eff7e8f5" : { 
+         "class" : "DialogPhraseNode", 
+         "desc" : { 
+            "x" : "-101603", 
+            "y" : "-102174"
+         }, 
+         "child" : [ 
+            "1e9bd2db-087f-449a-8ae9-4c6221020567", 
+            "4a67356f-43ee-42fb-a453-f035f6d1f8c5", 
+            "2aeebf12-9c2d-463a-a07d-95e36a77ccf3", 
+            "32fd502a-3201-4cb6-bb9d-586dd8de161c"
+         ], 
+         "text" : "#primer1.c9ff8d7d-c835-4970-9f9b-5d93eff7e8f5"
+      }, 
+      "1e9bd2db-087f-449a-8ae9-4c6221020567" : { 
+         "class" : "QuestStatusNode", 
+         "desc" : { 
+            "x" : "-102111", 
+            "y" : "-102019"
+         }, 
+         "child" : [ 
+            "c31a2be5-dcc0-4e8e-b6d4-c27a52abe100", 
+            "8f26fe57-7f34-49e9-8987-005e19e93015", 
+            "0c0ae46f-e7cf-48a1-b2b7-a1889d50bcec"
+         ], 
+         "quest_key" : "FIND_PTRD"
+      }, 
+      "c31a2be5-dcc0-4e8e-b6d4-c27a52abe100" : { 
+         "class" : "DialogAnswerNode", 
+         "desc" : { 
+            "x" : "-102336", 
+            "y" : "-101895"
+         }, 
+         "child" : [ 
+            "6f7784f6-cb06-4a2c-84de-56d68244f8b2"
+         ], 
+         "text" : "#primer1.c31a2be5-dcc0-4e8e-b6d4-c27a52abe100"
+      }, 
+      "6f7784f6-cb06-4a2c-84de-56d68244f8b2" : { 
+         "class" : "DialogPhraseNode", 
+         "desc" : { 
+            "x" : "-102348", 
+            "y" : "-101790"
+         }, 
+         "child" : [ 
+            "8c8f7d42-68c6-48af-8c9d-f8a38ec85594"
+         ], 
+         "text" : "#primer1.6f7784f6-cb06-4a2c-84de-56d68244f8b2"
+      }, 
+      "8c8f7d42-68c6-48af-8c9d-f8a38ec85594" : { 
+         "class" : "InventoryHasItemNode", 
+         "desc" : { 
+            "x" : "-102331", 
+            "y" : "-101714"
+         }, 
+         "child" : [ 
+            "6017123c-586f-4ec4-b9b9-688c2882378c", 
+            "1f5cef54-389d-46aa-8045-0e6b3cc946db"
+         ], 
+         "item" : { 
+            "class" : "Weapon", 
+            "count" : "1", 
+            "proto" : "ptrd", 
+            "ammo" : { 
+               "count" : "1", 
+               "proto" : "14_5mm_JHP"
+            }
+         }, 
+         "objectName" : "Player"
+      }, 
+      "6017123c-586f-4ec4-b9b9-688c2882378c" : { 
+         "class" : "DialogAnswerNode", 
+         "desc" : { 
+            "x" : "-102446", 
+            "y" : "-101586"
+         }, 
+         "child" : [ 
+            "c99ae85c-f79e-4fec-a4a4-094e7634ac56"
+         ], 
+         "text" : "#primer1.6017123c-586f-4ec4-b9b9-688c2882378c"
+      }, 
+      "c99ae85c-f79e-4fec-a4a4-094e7634ac56" : { 
+         "class" : "QuestDoneNode", 
+         "desc" : { 
+            "x" : "-102408", 
+            "y" : "-101508"
+         }, 
+         "child" : [ 
+            "fa730da3-66b8-41c6-8206-b012f157728d"
+         ], 
+         "quest_key" : "FIND_PTRD"
+      }, 
+      "fa730da3-66b8-41c6-8206-b012f157728d" : { 
+         "class" : "DialogPhraseNode", 
+         "desc" : { 
+            "x" : "-102483", 
+            "y" : "-101429"
+         }, 
+         "child" : [ 
+            "c48d1ba6-9c50-4608-8b42-bf94fec9a0b7"
+         ], 
+         "text" : "#primer1.fa730da3-66b8-41c6-8206-b012f157728d"
+      }, 
+      "c48d1ba6-9c50-4608-8b42-bf94fec9a0b7" : { 
+         "class" : "DialogAnswerNode", 
+         "desc" : { 
+            "x" : "-102490", 
+            "y" : "-101345"
+         }, 
+         "child" : [ 
+            "a5e4791e-cf31-4729-8244-4f01b00bdeaa"
+         ], 
+         "text" : "#primer1.c48d1ba6-9c50-4608-8b42-bf94fec9a0b7"
+      }, 
+      "a5e4791e-cf31-4729-8244-4f01b00bdeaa" : { 
+         "class" : "DialogEndNode", 
+         "desc" : { 
+            "x" : "-102442", 
+            "y" : "-101283"
+         }, 
+         "child" : [ 
+            "a650475b-5439-40a1-b17f-fdcc9c674e78"
+         ]
+      }, 
+      "a650475b-5439-40a1-b17f-fdcc9c674e78" : { 
+         "class" : "AddSkillNode", 
+         "desc" : { 
+            "x" : "-102464", 
+            "y" : "-101223"
+         }, 
+         "child" : [ 
+            "dbd7ae5e-b565-445f-9dc0-ddbc71b5a920"
+         ], 
+         "value" : "5", 
+         "skill" : "Barter"
+      }, 
+      "dbd7ae5e-b565-445f-9dc0-ddbc71b5a920" : { 
+         "class" : "AddExpNode", 
+         "desc" : { 
+            "x" : "-102502", 
+            "y" : "-101159"
+         }, 
+         "child" : [ 
+            "139d51ab-410f-48f7-9130-b0b4aa3449d3"
+         ], 
+         "exp" : "5000"
+      }, 
+      "139d51ab-410f-48f7-9130-b0b4aa3449d3" : { 
+         "class" : "InventoryRemoveItemNode", 
+         "desc" : { 
+            "x" : "-102580", 
+            "y" : "-101092"
+         }, 
+         "child" : [ 
+         ], 
+         "item" : { 
+            "class" : "Weapon", 
+            "count" : "1", 
+            "proto" : "ptrd", 
+            "ammo" : { 
+               "count" : "1", 
+               "proto" : "14_5mm_JHP"
+            }
+         }, 
+         "objectName" : "Player"
+      }, 
+      "1f5cef54-389d-46aa-8045-0e6b3cc946db" : { 
+         "class" : "DialogAnswerNode", 
+         "desc" : { 
+            "x" : "-102180", 
+            "y" : "-101584"
+         }, 
+         "child" : [ 
+            "914f6136-0a32-4bf9-adb9-31c95750d9c1"
+         ], 
+         "text" : "#primer1.1f5cef54-389d-46aa-8045-0e6b3cc946db"
+      }, 
+      "914f6136-0a32-4bf9-adb9-31c95750d9c1" : { 
+         "class" : "DialogEndNode", 
+         "desc" : { 
+            "x" : "-102126", 
+            "y" : "-101512"
+         }, 
+         "child" : [ 
+         ]
+      }, 
+      "8f26fe57-7f34-49e9-8987-005e19e93015" : { 
+         "class" : "DummyNode", 
+         "desc" : { 
+            "x" : "-102056", 
+            "y" : "-101884"
+         }, 
+         "child" : [ 
+         ]
+      }, 
+      "0c0ae46f-e7cf-48a1-b2b7-a1889d50bcec" : { 
+         "class" : "DialogAnswerNode", 
+         "desc" : { 
+            "x" : "-101922", 
+            "y" : "-101891"
+         }, 
+         "child" : [ 
+            "a2fa568e-3127-402d-a6a9-c4553611adb2"
+         ], 
+         "text" : "#primer1.0c0ae46f-e7cf-48a1-b2b7-a1889d50bcec"
+      }, 
+      "a2fa568e-3127-402d-a6a9-c4553611adb2" : { 
+         "class" : "DialogPhraseNode", 
+         "desc" : { 
+            "x" : "-101918", 
+            "y" : "-101793"
+         }, 
+         "child" : [ 
+            "4b4bf474-15f2-4e92-9774-1b8d5dd3ea54"
+         ], 
+         "text" : "#primer1.a2fa568e-3127-402d-a6a9-c4553611adb2"
+      }, 
+      "4b4bf474-15f2-4e92-9774-1b8d5dd3ea54" : { 
+         "class" : "DialogAnswerNode", 
+         "desc" : { 
+            "x" : "-101916", 
+            "y" : "-101703"
+         }, 
+         "child" : [ 
+            "fe945781-cb0b-4f18-9927-9bf7c80f86b9"
+         ], 
+         "text" : "#primer1.4b4bf474-15f2-4e92-9774-1b8d5dd3ea54"
+      }, 
+      "fe945781-cb0b-4f18-9927-9bf7c80f86b9" : { 
+         "class" : "QuestBeginNode", 
+         "desc" : { 
+            "x" : "-101864", 
+            "y" : "-101621"
+         }, 
+         "child" : [ 
+            "20d0e51d-7d46-4069-8149-4b0ce195075a"
+         ], 
+         "quest_key" : "FIND_PTRD"
+      }, 
+      "20d0e51d-7d46-4069-8149-4b0ce195075a" : { 
+         "class" : "DialogEndNode", 
+         "desc" : { 
+            "x" : "-101865", 
+            "y" : "-101568"
+         }, 
+         "child" : [ 
+         ]
+      }, 
+      "4a67356f-43ee-42fb-a453-f035f6d1f8c5" : { 
+         "class" : "DialogAnswerNode", 
+         "desc" : { 
+            "x" : "-101603", 
+            "y" : "-101856"
+         }, 
+         "child" : [ 
+            "ec49887a-ebc3-40f2-81ca-ec906a59869f"
+         ], 
+         "text" : "#primer1.4a67356f-43ee-42fb-a453-f035f6d1f8c5"
+      }, 
+      "ec49887a-ebc3-40f2-81ca-ec906a59869f" : { 
+         "class" : "AddExpNode", 
+         "desc" : { 
+            "x" : "-101577", 
+            "y" : "-101693"
+         }, 
+         "child" : [ 
+            "bf92929c-bd52-4f83-ac76-a4e1068f3c26"
+         ], 
+         "exp" : "50"
+      }, 
+      "bf92929c-bd52-4f83-ac76-a4e1068f3c26" : { 
+         "class" : "DialogPhraseNode", 
+         "desc" : { 
+            "x" : "-101630", 
+            "y" : "-101611"
+         }, 
+         "child" : [ 
+            "6d338dd0-a52f-4fb6-b72b-fcb1ded90aaf"
+         ], 
+         "text" : "#primer1.bf92929c-bd52-4f83-ac76-a4e1068f3c26"
+      }, 
+      "6d338dd0-a52f-4fb6-b72b-fcb1ded90aaf" : { 
+         "class" : "DialogAnswerNode", 
+         "desc" : { 
+            "x" : "-101354", 
+            "y" : "-101460"
+         }, 
+         "child" : [ 
+            "73591579-d08b-4c5b-9ea7-d2b509d5405c"
+         ], 
+         "text" : "#primer1.6d338dd0-a52f-4fb6-b72b-fcb1ded90aaf"
+      }, 
+      "73591579-d08b-4c5b-9ea7-d2b509d5405c" : { 
+         "class" : "DialogEndNode", 
+         "desc" : { 
+            "x" : "-101298", 
+            "y" : "-101372"
+         }, 
+         "child" : [ 
+         ]
+      }, 
+      "2aeebf12-9c2d-463a-a07d-95e36a77ccf3" : { 
+         "class" : "DialogAnswerNode", 
+         "desc" : { 
+            "x" : "-101312", 
+            "y" : "-101858"
+         }, 
+         "child" : [ 
+            "e3593cf4-03c9-42ff-a597-4cbebccc9ab0"
+         ], 
+         "text" : "#primer1.2aeebf12-9c2d-463a-a07d-95e36a77ccf3"
+      }, 
+      "e3593cf4-03c9-42ff-a597-4cbebccc9ab0" : { 
+         "class" : "IsFemaleNode", 
+         "desc" : { 
+            "x" : "-101239", 
+            "y" : "-101737"
+         }, 
+         "child" : [ 
+            "70ee620a-bab7-434d-a255-129b9707d3d4", 
+            "c0a8695d-0e18-4508-a566-4fecee4cc97b"
+         ]
+      }, 
+      "70ee620a-bab7-434d-a255-129b9707d3d4" : { 
+         "class" : "DialogPhraseNode", 
+         "desc" : { 
+            "x" : "-101353", 
+            "y" : "-101613"
+         }, 
+         "child" : [ 
+            "6d338dd0-a52f-4fb6-b72b-fcb1ded90aaf"
+         ], 
+         "text" : "#primer1.70ee620a-bab7-434d-a255-129b9707d3d4"
+      }, 
+      "c0a8695d-0e18-4508-a566-4fecee4cc97b" : { 
+         "class" : "DialogPhraseNode", 
+         "desc" : { 
+            "x" : "-101110", 
+            "y" : "-101614"
+         }, 
+         "child" : [ 
+            "6d338dd0-a52f-4fb6-b72b-fcb1ded90aaf"
+         ], 
+         "text" : "#primer1.c0a8695d-0e18-4508-a566-4fecee4cc97b"
+      }, 
+      "32fd502a-3201-4cb6-bb9d-586dd8de161c" : { 
+         "class" : "DialogAnswerNode", 
+         "desc" : { 
+            "x" : "-101061", 
+            "y" : "-101854"
+         }, 
+         "child" : [ 
+            "2826f6d7-fc82-4d29-a215-a1213b44b382"
+         ], 
+         "text" : "#primer1.32fd502a-3201-4cb6-bb9d-586dd8de161c"
+      }, 
+      "2826f6d7-fc82-4d29-a215-a1213b44b382" : { 
+         "class" : "DialogEndNode", 
+         "desc" : { 
+            "x" : "-100995", 
+            "y" : "-101763"
+         }, 
+         "child" : [ 
+         ]
+      }
+   }, 
+   "entry" : "60318fa5-d8ce-42b7-b959-24c6f3c532f0"
+}

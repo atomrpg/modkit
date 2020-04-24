@@ -1,0 +1,195 @@
+{ 
+   "states" : { 
+      "89e73491-2f58-4f79-a52e-56f7286b2ecb" : { 
+         "class" : "DummyNode", 
+         "desc" : { 
+            "x" : "-101155", 
+            "y" : "-100534"
+         }, 
+         "child" : [ 
+            "81738c2b-c2af-43a9-91f7-1f032840ba25"
+         ]
+      }, 
+      "81738c2b-c2af-43a9-91f7-1f032840ba25" : { 
+         "class" : "HasModifierNode", 
+         "desc" : { 
+            "x" : "-101188", 
+            "y" : "-100466"
+         }, 
+         "child" : [ 
+            "35163044-cce8-411c-8f30-6f7f16f6615e", 
+            "4b423696-4ebc-4f58-be54-d7dd105a8877"
+         ], 
+         "value" : "5", 
+         "modifier" : "Level"
+      }, 
+      "35163044-cce8-411c-8f30-6f7f16f6615e" : { 
+         "class" : "DummyNode", 
+         "desc" : { 
+            "x" : "-101327", 
+            "y" : "-100352"
+         }, 
+         "child" : [ 
+            "1f8373f5-6d97-4930-a5e4-62de60521b95", 
+            "ab411e1e-29f5-42c8-8595-6e19fc2433ff", 
+            "4b423696-4ebc-4f58-be54-d7dd105a8877"
+         ]
+      }, 
+      "1f8373f5-6d97-4930-a5e4-62de60521b95" : { 
+         "class" : "SpawnCharacterNode", 
+         "desc" : { 
+            "x" : "-101422", 
+            "y" : "-100271"
+         }, 
+         "child" : [ 
+         ], 
+         "spawnPoint" : "Spawn.Enemy.1", 
+         "item" : { 
+            "class" : "Character", 
+            "proto" : "bear", 
+            "character" : "bear", 
+            "damage" : "0", 
+            "ap" : "0", 
+            "bonusTurn" : "false", 
+            "relationship" : "0", 
+            "fraction" : "~encounter", 
+            "shotMode" : "0", 
+            "inventory" : [ 
+            ], 
+            "mainItemIndex" : "0", 
+            "conditions" : { 
+               "toxic" : "0", 
+               "toxicTimer" : "-1", 
+               "radiation" : "0", 
+               "radiationTimer" : "-1", 
+               "hunger" : "0", 
+               "hungerDmg" : "0", 
+               "rolling" : "0"
+            }, 
+            "effects" : [ 
+            ], 
+            "behavior" : "Rat.Swing"
+         }
+      }, 
+      "ab411e1e-29f5-42c8-8595-6e19fc2433ff" : { 
+         "class" : "SpawnCharacterNode", 
+         "desc" : { 
+            "x" : "-101283", 
+            "y" : "-100267"
+         }, 
+         "child" : [ 
+         ], 
+         "spawnPoint" : "Spawn.Enemy.2", 
+         "item" : { 
+            "class" : "Character", 
+            "proto" : "bear", 
+            "character" : "bear", 
+            "damage" : "0", 
+            "ap" : "0", 
+            "bonusTurn" : "false", 
+            "relationship" : "0", 
+            "fraction" : "~encounter", 
+            "shotMode" : "0", 
+            "inventory" : [ 
+            ], 
+            "mainItemIndex" : "0", 
+            "conditions" : { 
+               "toxic" : "0", 
+               "toxicTimer" : "-1", 
+               "radiation" : "0", 
+               "radiationTimer" : "-1", 
+               "hunger" : "0", 
+               "hungerDmg" : "0", 
+               "rolling" : "0"
+            }, 
+            "effects" : [ 
+            ], 
+            "behavior" : "Rat.Swing"
+         }
+      }, 
+      "4b423696-4ebc-4f58-be54-d7dd105a8877" : { 
+         "class" : "DummyNode", 
+         "desc" : { 
+            "x" : "-100975", 
+            "y" : "-100222"
+         }, 
+         "child" : [ 
+            "2e60c3a3-a2ac-446a-94fa-09a879a4fc96", 
+            "454721c2-496c-4f1f-8b1f-3e8d76143d90"
+         ]
+      }, 
+      "2e60c3a3-a2ac-446a-94fa-09a879a4fc96" : { 
+         "class" : "SpawnCharacterNode", 
+         "desc" : { 
+            "x" : "-101023", 
+            "y" : "-100147"
+         }, 
+         "child" : [ 
+         ], 
+         "spawnPoint" : "Spawn.Enemy.3", 
+         "item" : { 
+            "class" : "Character", 
+            "proto" : "bear", 
+            "character" : "bear", 
+            "damage" : "0", 
+            "ap" : "0", 
+            "bonusTurn" : "false", 
+            "relationship" : "0", 
+            "fraction" : "~encounter", 
+            "shotMode" : "0", 
+            "inventory" : [ 
+            ], 
+            "mainItemIndex" : "0", 
+            "conditions" : { 
+               "toxic" : "0", 
+               "toxicTimer" : "-1", 
+               "radiation" : "0", 
+               "radiationTimer" : "-1", 
+               "hunger" : "0", 
+               "hungerDmg" : "0", 
+               "rolling" : "0"
+            }, 
+            "effects" : [ 
+            ], 
+            "behavior" : "Rat.Swing"
+         }
+      }, 
+      "454721c2-496c-4f1f-8b1f-3e8d76143d90" : { 
+         "class" : "SpawnCharacterNode", 
+         "desc" : { 
+            "x" : "-100881", 
+            "y" : "-100153"
+         }, 
+         "child" : [ 
+         ], 
+         "spawnPoint" : "Spawn.Enemy.4", 
+         "item" : { 
+            "class" : "Character", 
+            "proto" : "bear", 
+            "character" : "bear", 
+            "damage" : "0", 
+            "ap" : "0", 
+            "bonusTurn" : "false", 
+            "relationship" : "0", 
+            "fraction" : "~encounter", 
+            "shotMode" : "0", 
+            "inventory" : [ 
+            ], 
+            "mainItemIndex" : "0", 
+            "conditions" : { 
+               "toxic" : "0", 
+               "toxicTimer" : "-1", 
+               "radiation" : "0", 
+               "radiationTimer" : "-1", 
+               "hunger" : "0", 
+               "hungerDmg" : "0", 
+               "rolling" : "0"
+            }, 
+            "effects" : [ 
+            ], 
+            "behavior" : "Rat.Swing"
+         }
+      }
+   }, 
+   "entry" : "89e73491-2f58-4f79-a52e-56f7286b2ecb"
+}

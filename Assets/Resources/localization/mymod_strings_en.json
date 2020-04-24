@@ -1,0 +1,156 @@
+{ 
+   "ammo" : { 
+      "energy" : { 
+         "short" : ".ammo.energy.short", 
+         "full" : ".ammo.energy.full"
+      }, 
+      "fuel" : { 
+         "fail" : ".ammo.fuel.fail"
+      }
+   }, 
+   "character" : { 
+      "mynpc" : { 
+         "short" : ".character.mynpc.short", 
+         "full" : ".character.mynpc.full"
+      }, 
+      "test_companion" : { 
+         "short" : ".character.test_companion.short", 
+         "full" : ".character.test_companion.full"
+      }, 
+      "test_trade" : { 
+         "short" : ".character.test_trade.short", 
+         "full" : ".character.test_trade.full"
+      }
+   }, 
+   "weapon" : { 
+      "epistol" : { 
+         "short" : ".weapon.epistol.short", 
+         "full" : ".weapon.epistol.full"
+      }, 
+      "ptrd" : { 
+         "short" : ".weapon.ptrd.short", 
+         "full" : ".weapon.ptrd.full"
+      }
+   }, 
+   "chest" : { 
+      "mychest" : { 
+         "short" : ".chest.mychest.short", 
+         "full" : ".chest.mychest.full"
+      }
+   }, 
+   "consumable" : { 
+   }, 
+   "interactive" : { 
+      "mymod_level" : { 
+         "short" : ".interactive.mymod_level.short", 
+         "full" : ".interactive.mymod_level.full"
+      }, 
+      "wmap_desert" : { 
+         "short" : ".interactive.wmap_desert.short", 
+         "full" : ".interactive.wmap_desert.full"
+      }
+   }, 
+   "item" : { 
+      "wires" : { 
+         "short" : ".item.wires.short", 
+         "full" : ".item.wires.full", 
+         "fail" : ".item.wires.fail"
+      }, 
+      "wood" : { 
+         "short" : ".item.wood.short", 
+         "full" : ".item.wood.full", 
+         "fail" : ".item.wood.fail"
+      }, 
+      "wastemetal" : { 
+         "fail" : ".item.wastemetal.fail"
+      }, 
+      "extinguisher" : { 
+         "fail" : ".item.extinguisher.fail"
+      }, 
+      "bottle_empty2" : { 
+         "fail" : ".item.bottle_empty2.fail"
+      }
+   }, 
+   "door" : { 
+   }, 
+   "memo" : { 
+      "memotest" : { 
+         "short" : ".memo.memotest.short", 
+         "full" : ".memo.memotest.full"
+      }
+   }, 
+   "uniform" : { 
+      "earmor" : { 
+         "short" : ".uniform.earmor.short", 
+         "full" : ".uniform.earmor.full"
+      }, 
+      "ehelmet" : { 
+         "short" : ".uniform.ehelmet.short", 
+         "full" : ".uniform.ehelmet.full"
+      }
+   }, 
+   "explosive" : { 
+   }, 
+   "quests" : { 
+      "find_ptrd" : ".quests.find_ptrd", 
+      "cult_pig" : ".quests.cult_pig"
+   }, 
+   "location" : { 
+      "mymod" : ".location.mymod", 
+      "worldmap_desert" : ".location.worldmap_desert", 
+      "0010_volumes" : ".location.0010_volumes", 
+      "0011_weight" : ".location.0011_weight", 
+      "0012_intersect" : ".location.0012_intersect", 
+      "0013_priority" : ".location.0013_priority"
+   }, 
+   "weaponperk" : { 
+      "skinning" : ".weaponperk.skinning", 
+      "scope" : ".weaponperk.scope", 
+      "pierce10" : ".weaponperk.pierce10", 
+      "pierce20" : ".weaponperk.pierce20", 
+      "stun5" : ".weaponperk.stun5", 
+      "stun10" : ".weaponperk.stun10", 
+      "stun20" : ".weaponperk.stun20", 
+      "poisoning100_2" : ".weaponperk.poisoning100_2", 
+      "poisoning100_5" : ".weaponperk.poisoning100_5", 
+      "poisoning100_10" : ".weaponperk.poisoning100_10", 
+      "longweapon" : ".weaponperk.longweapon", 
+      "rustweapon" : ".weaponperk.rustweapon", 
+      "rustblade" : ".weaponperk.rustblade", 
+      "stun40" : ".weaponperk.stun40", 
+      "stun60" : ".weaponperk.stun60", 
+      "midweapon" : ".weaponperk.midweapon", 
+      "effectpoison" : ".weaponperk.effectpoison", 
+      "crit10" : ".weaponperk.crit10", 
+      "crit15" : ".weaponperk.crit15", 
+      "crit20" : ".weaponperk.crit20", 
+      "crit50" : ".weaponperk.crit50", 
+      "craftable" : ".weaponperk.craftable", 
+      "fuel" : ".weaponperk.fuel", 
+      "panic10" : ".weaponperk.panic10", 
+      "nightvision" : ".weaponperk.nightvision", 
+      "woodweapon" : ".weaponperk.woodweapon", 
+      "stun8" : ".weaponperk.stun8", 
+      "crit2" : ".weaponperk.crit2", 
+      "crit4" : ".weaponperk.crit4", 
+      "stun2" : ".weaponperk.stun2", 
+      "crit6" : ".weaponperk.crit6", 
+      "ghostbuster30" : ".weaponperk.ghostbuster30", 
+      "ghostbuster70" : ".weaponperk.ghostbuster70", 
+      "rustblade5" : ".weaponperk.rustblade5", 
+      "stun15" : ".weaponperk.stun15", 
+      "stun25" : ".weaponperk.stun25", 
+      "pierce15" : ".weaponperk.pierce15", 
+      "crit5" : ".weaponperk.crit5", 
+      "panic25" : ".weaponperk.panic25", 
+      "poisoning100_50" : ".weaponperk.poisoning100_50", 
+      "kms" : ".weaponperk.kms", 
+      "ms" : ".weaponperk.ms", 
+      "pierce50" : ".weaponperk.pierce50", 
+      "projectile" : ".weaponperk.projectile", 
+      "blind100" : ".weaponperk.blind100", 
+      "removeprojectile" : ".weaponperk.removeprojectile", 
+      "breakingitem" : ".weaponperk.breakingitem", 
+      "crit100" : ".weaponperk.crit100"
+   }
+}
