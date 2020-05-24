@@ -42,6 +42,12 @@ public class FileSystemBundle : ResourceManager.Bundle
         }
     }
 
+    public override AsyncOperation LoadAssetAsync(string name, System.Type type)
+    {
+        // @todo add support override
+        return Resources.LoadAsync(System.IO.Path.ChangeExtension(name, null), type);
+    }
+
     override public void Unload(bool unloadAllLoadedObjects)
     {
         //skip
