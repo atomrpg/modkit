@@ -131,6 +131,7 @@ public class ModBuilder : EditorWindow
 
     bool buildAssetBundle = true;
     bool clearLogs = true;
+    bool copyModExternal = false;
 
     public static void ClearLogConsole()
     {
@@ -156,6 +157,7 @@ public class ModBuilder : EditorWindow
 
         clearLogs = GUILayout.Toggle(clearLogs, "Clear Logs");
         buildAssetBundle = GUILayout.Toggle(buildAssetBundle, "Build Asset Bundle");
+        copyModExternal = GUILayout.Toggle(buildAssetBundle, "Copy Mod External Assets");
 
         if (GUILayout.Button("BUILD"))
         {
@@ -220,6 +222,24 @@ public class ModBuilder : EditorWindow
                 }
                 Copy("Library/ScriptAssemblies/" + modName + ".dll", "Temp/ModBuild/" + modName + ".dll");
                 Copy("Library/ScriptAssemblies/" + modName + ".pdb", "Temp/ModBuild/" + modName + ".pdb");
+
+                if(copyModExternal)
+                {
+                    string exMod = modsFolder + "/" + modName + "_External";
+                    string exModTemp = "Temp/ModBuild/" + modName + "_External";
+                    if (!Directory.Exists(exModTemp))
+                    {
+                        Directory.CreateDirectory(exModTemp);
+                    }
+
+                    if (!Directory.Exists(exMod))
+                    {
+                        Directory.CreateDirectory(exMod);
+                    }
+
+                    CopyDir("Assets/External/", exMod);
+                    CopyDir("Assets/External/", exModTemp);
+                }
 
 
                 EditorUtility.RevealInFinder(modsFolder + "/" + modName + ".dll");
@@ -318,6 +338,33 @@ public class ModBuilder : EditorWindow
     {
         Debug.Log("Copy " + src + " -> " + dst);
         File.Copy(src, dst, true);
+    }
+
+    static void CopyDir(string sourceDirectory, string targetDirectory)
+    {
+        DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
+        DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
+
+        CopyDirInternal(diSource, diTarget);
+    }
+
+    static void CopyDirInternal(DirectoryInfo source, DirectoryInfo target)
+    {
+        Directory.CreateDirectory(target.FullName);
+
+        // Copy each file into the new directory.
+        foreach (FileInfo fi in source.GetFiles())
+        {
+            fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+        }
+
+        // Copy each subdirectory using recursion.
+        foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
+        {
+            DirectoryInfo nextTargetSubDir =
+                target.CreateSubdirectory(diSourceSubDir.Name);
+            CopyDirInternal(diSourceSubDir, nextTargetSubDir);
+        }
     }
 
     void OnDestroy()
