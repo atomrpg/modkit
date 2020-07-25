@@ -58,6 +58,10 @@ internal class AssetViewerDB
 
     public static void Load()
     {
+        if(Application.isPlaying)
+        {
+            return;
+        }
         loadedAssets.Clear();
         assetCategories.Clear();
         AssetBundle.UnloadAllAssetBundles(true);
