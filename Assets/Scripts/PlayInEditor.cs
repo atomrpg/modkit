@@ -1,24 +1,44 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using UnityEditor;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using JSon;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 
 
 public class PlayInEditor : MonoBehaviour
 {
-    void Start()
+    void Awake()
     {
-        AssetBundle.UnloadAllAssetBundles(true);
+        //AssetBundle.UnloadAllAssetBundles(true);
         ResourceManager.Reset();
         ResourceManager.SetAssetGetPathCallback(null);
-        ResourceManager.AddBundle("game", AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/entities"));
+        AssetBundle gameBundle = null;
+        
+        foreach (var f in AssetBundle.GetAllLoadedAssetBundles())
+        {
+            if (f != null)
+            {
+                ResourceManager.AddBundle("", f);
+            }
+        }
 
-        AssetBundle asb = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/game");
-        GameObject gm = asb.LoadAsset<GameObject>("Assets/Game.prefab");
-        ResourceManager.AddBundle("game", asb);
-        Instantiate(gm);
+        foreach (string f in Directory.GetFiles(Application.streamingAssetsPath + "/PIE"))
+        {
+            if (!Path.HasExtension(f))
+            {
+                AssetBundle bundle = AssetBundle.LoadFromFile(f);
+                ResourceManager.AddBundle("", bundle);
+
+                if (f.IndexOf("game") > 0)
+                {
+                    gameBundle = bundle;
+                }
+            }
+        }
+
+        GameObject game = gameBundle.LoadAsset<GameObject>("Game");
+        Instantiate(game);
+
         GameStorage.SetInt("PostImageEffects", 0);
 
         HBAOPlus.useHBOAPlus = false;

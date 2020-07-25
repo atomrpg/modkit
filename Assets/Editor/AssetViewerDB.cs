@@ -31,6 +31,18 @@ internal class AssetViewerDB
     static AssetViewerDB()
     {
         EditorApplication.update += Init;
+        if (!Application.isPlaying)
+        {
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        }
+    }
+
+    private static void OnPlayModeStateChanged(PlayModeStateChange obj)
+    {
+        if(obj == PlayModeStateChange.EnteredEditMode)
+        {
+            EditorApplication.update += Init;
+        }
     }
 
     static void Init()
