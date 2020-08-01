@@ -31,6 +31,18 @@ internal class AssetViewerDB
     static AssetViewerDB()
     {
         EditorApplication.update += Init;
+        if (!Application.isPlaying)
+        {
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        }
+    }
+
+    private static void OnPlayModeStateChanged(PlayModeStateChange obj)
+    {
+        if(obj == PlayModeStateChange.EnteredEditMode)
+        {
+            EditorApplication.update += Init;
+        }
     }
 
     static void Init()
@@ -58,6 +70,10 @@ internal class AssetViewerDB
 
     public static void Load()
     {
+        if(Application.isPlaying)
+        {
+            return;
+        }
         loadedAssets.Clear();
         assetCategories.Clear();
         AssetBundle.UnloadAllAssetBundles(true);

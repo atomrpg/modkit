@@ -1,0 +1,99 @@
+ManifestFileVersion: 0
+CRC: 1057744855
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0c91f356283ce35fca76e525bb517633
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c255c8b6ae192908f7f7972349630329
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: ac0a28e0d0b3d4d41b73d9bf70634ed7, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5293b7610aee8b84391ad23c8dc8b3be, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 217a5ef1537e1ef409c1078ee6eeca2c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8eb114c2d224b294f91efb5d8f8f28e1, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: dc7dec44767bfe3428fd8d8a448566cd, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e89e8515d7baac44ebfa9065bb8ae171, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 37727d067557cb646ad61e788970229b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4852e738289041749a617b9cf7f722ca, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6643f23b7f93845a7b26f5dfbe203f01, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 401ed81cce6fb7540b2972b9c1e46f5a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ba6130acff77e5c49a043fda5e25886e, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a46420ae1aa542b438b19d9006088cac, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: da09dc7f3c66499439610af21d928540, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+- Class: 205
+  Script: {instanceID: 0}
+- Class: 221
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Entities/Appearance/Girl_Wavy.prefab
+- Assets/Resources/Entities/Appearance/Girl_HighBangs.prefab
+- Assets/Resources/Entities/Appearance/ShortBeardAndMustache.prefab
+- Assets/Resources/Entities/Appearance/Whiskers.prefab
+- Assets/Resources/Entities/Appearance/Girl_PonyTail.prefab
+- Assets/Resources/Entities/Appearance/Mustache.prefab
+- Assets/Resources/Models/Characters/Male/MaleAnimTree_MachineGun.overrideController
+- Assets/Resources/Entities/Appearance/Girl_Bouffant.prefab
+- Assets/Resources/Entities/Appearance/Girl_PartedBangs.prefab
+- Assets/Resources/Entities/Appearance/Girl_MediumBangs.prefab
+- Assets/Resources/Models/Characters/Male/MaleAnimTree_UnarmedAndShield.overrideController
+- Assets/Resources/Entities/Appearance/Tail.prefab
+- Assets/Resources/Entities/Appearance/Facon.prefab
+- Assets/Resources/Models/Characters/Male/MaleAnimTree.controller
+- Assets/Resources/Entities/Appearance/BeardAndMustache.prefab
+- Assets/Resources/Entities/Appearance/UniqueShort.prefab
+- Assets/Resources/Entities/Appearance/ShortBeard.prefab
+- Assets/Resources/Entities/Appearance/Girl_Bob.prefab
+- Assets/Resources/Entities/Appearance/LongBeardAndMustache.prefab
+- Assets/Resources/Models/Characters/Male/MaleAnimTree_Pistol.overrideController
+- Assets/Resources/Models/Characters/Male/MaleAnimTree_Melee.overrideController
+- Assets/Resources/Models/Characters/Male/MaleAnimTree_Rifle.overrideController
+- Assets/Resources/Entities/Appearance/Girl_Braids.prefab
+- Assets/Resources/Models/Characters/Male/MaleAnimTree_MeleeAndShield.overrideController
+- Assets/Resources/Models/Characters/Male/MaleAnimTree_PistolAndShield.overrideController
+- Assets/Resources/Entities/Appearance/Beard.prefab
+- Assets/Resources/Models/Characters/Male/MaleAnimTreeUnarmed.overrideController
+- Assets/Resources/Entities/Appearance/Businessman.prefab
+Dependencies: []
