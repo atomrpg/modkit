@@ -184,8 +184,12 @@ public class ModBuilder : EditorWindow
                 Directory.CreateDirectory(PATH_BUILD_BUNDLE);
 
                 //HACK for unique id
-                AssetImporter.GetAtPath("Assets/Resources").SetAssetBundleNameAndVariant(modName + "_resources", "");
-                AssetDatabase.Refresh();
+                var resources = AssetImporter.GetAtPath("Assets/Resources");
+                if (resources != null)
+                {
+                    AssetImporter.GetAtPath("Assets/Resources").SetAssetBundleNameAndVariant(modName + "_resources", "");
+                    AssetDatabase.Refresh();
+                }
 
                 if (buildAssetBundle)
                 {
