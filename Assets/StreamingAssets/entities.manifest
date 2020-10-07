@@ -1,25 +1,47 @@
 ManifestFileVersion: 0
-CRC: 1981558729
+CRC: 664975128
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d0d0706d3acd592e4351d6f00b98e584
+    Hash: 1a5d8e57524f3f38794882b5132c2b41
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 76a782a5b58d6cdcbfa79de33a2db2a8
+    Hash: 6218679e5198e5453580cd02a7499ffb
 HashAppended: 0
 ClassTypes:
 - Class: 1
   Script: {instanceID: 0}
 - Class: 4
   Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
 - Class: 28
   Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
 - Class: 49
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 74
   Script: {instanceID: 0}
 - Class: 82
   Script: {instanceID: 0}
 - Class: 83
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 63588430a94130d4ab4327b04cca3cea, type: 3}
@@ -32,11 +54,21 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 433dd811f42aa9142a347ce64e627a75, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 989f24215ebafa942b5d56b17bc3430d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 217a5ef1537e1ef409c1078ee6eeca2c, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 00f9ca5236f09f544bbcf1a6094d40eb, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 998e82b24f121d349b79637de77566a8, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8eb114c2d224b294f91efb5d8f8f28e1, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 40b924e2dad56384a8df2a1e111bb675, type: 3}
 - Class: 114
@@ -50,35 +82,57 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 95b463d5a107c894aa4907b5e5086d16, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 3e780036f95b36341969c2e207b242ee, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: c530d3669e0df73469bc7f9503eafe44, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: bf7aeee69f3371e40a37a394996c727e, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4852e738289041749a617b9cf7f722ca, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f968474859d6240b79b4826b14247b27, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: c027c6d8e2c4c0f40b900d3a245de004, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: f4c1548958b011d42a3e9b494a2d6f6e, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: d7148c99640da96499680aed50736079, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: c4b45cba4ef064ad895cc488d863511f, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: d1d9d53bc56cc6c429e0dbfce871647b, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 5a02569bb9340e048bfdd52ab35c3056, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 97f980fb76bcb1d41afa5acee674564a, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 3dfc05fb7a4bc464795b4ffbd8367ba3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 401ed81cce6fb7540b2972b9c1e46f5a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a8481b4c74d06054b8d21c50b469ecff, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 1af4a56c35ee09b4b8cc35be6c617f30, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: d3018f9c4ceca6548a4f92702e5588ce, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 2a8be1ac30e5c5f43bab8ea8b7d30272, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 175557dc71eafc94193a7a160c7c4f8a, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 5f87826d60b4f3c40b135aab8c20ebfe, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 1052d2ad08064404b9967a3666633561, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 95b90fbdc6afa6347b54d764b5318ac2, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 02738fed1b8dab14a8f3228ce9f383db, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: c1cb7e9e120078f43bce4f0b1be547a7, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a46420ae1aa542b438b19d9006088cac, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 4d22b9ce7d8b0814f9c82d73f206a06a, type: 3}
 - Class: 114
@@ -286,6 +340,7 @@ Assets:
 - Assets/Resources/Entities/Consumable/Moonshine.png
 - Assets/Resources/Entities/Dialog/Z_Chigur_SMan.json
 - Assets/Resources/Entities/Behavior/Training_Target.json
+- Assets/Resources/Entities/Weapon/Fallback.prefab
 - Assets/Resources/Entities/Character/Waterfall_Arsen.png
 - Assets/Resources/Entities/Item/Quest.Carb.asset
 - Assets/Resources/Entities/Creature/BaseMale8.asset
@@ -1004,6 +1059,7 @@ Assets:
 - Assets/Resources/Entities/Memo/D_Popov_5.png
 - Assets/Resources/Entities/Item/Bottle_Empty2.asset
 - Assets/Resources/Entities/Character/Cult_Artem2.png
+- Assets/Resources/Entities/Memo/Fallback.prefab
 - Assets/Resources/Entities/Memo/Craft_Book14.png
 - Assets/Resources/Entities/Memo/Craft_Book2.png
 - Assets/Resources/Entities/Memo/Tunnel_Memo_2.asset
@@ -2024,6 +2080,7 @@ Assets:
 - Assets/Resources/Entities/Memo/CBunker_Taro_5.png
 - Assets/Resources/Entities/Character/Harbor_S2.png
 - Assets/Resources/Entities/Character/City_Grigoriy.png
+- Assets/Resources/Entities/Uniform/Fallback.prefab
 - Assets/Resources/Entities/Character/SektaGirl_Village.png
 - Assets/Resources/Entities/Item/Nails.asset
 - Assets/Resources/Entities/Memo/Shashlik_Memo1.png
@@ -2331,6 +2388,7 @@ Assets:
 - Assets/Resources/Entities/Character/Fidel_Forest_2.png
 - Assets/Resources/Localization/Subtitles/TheEnd/es_06.json
 - Assets/Resources/Entities/Chest/Ammo_Box.asset
+- Assets/Resources/Entities/Consumable/Fallback.prefab
 - Assets/Resources/Entities/Behavior/Artemyev.json
 - Assets/Resources/Entities/Weapon/Pipe_Rifle_3.asset
 - Assets/Resources/Entities/Behavior/IL_Ufi.json
@@ -2493,6 +2551,7 @@ Assets:
 - Assets/Resources/Localization/Subtitles/TheEnd/pl_04.json
 - Assets/Resources/Entities/Behavior/NYWolf.Beh.json
 - Assets/Resources/Entities/Interactive/Doxy_Trove_Rock.asset
+- Assets/Resources/Entities/Ammo/Fallback.prefab
 - Assets/Resources/Entities/Effect/Biscuit.asset
 - Assets/Resources/Entities/Behavior/City.Apothecary.json
 - Assets/Resources/Entities/Character/Castle_Eduard.png
@@ -2913,6 +2972,7 @@ Assets:
 - Assets/Resources/Entities/Ava/ava15.asset
 - Assets/Resources/Entities/Behavior/CitySub_Nastasia.json
 - Assets/Resources/Entities/Dialog/Godgin.json
+- Assets/Resources/Entities/Creature/Fallback.prefab
 - Assets/Resources/Entities/Behavior/IL.Ivan.json
 - Assets/Resources/Entities/Character/Harbor_W4.png
 - Assets/Resources/Entities/Dialog/City_Boris.json
@@ -2983,6 +3043,7 @@ Assets:
 - Assets/Resources/Entities/Craft/Crossbow_4.asset
 - Assets/Resources/Entities/Encounter/monster.png
 - Assets/Resources/Entities/Ava/ava26.asset
+- Assets/Resources/Entities/Door/Fallback.prefab
 - Assets/Resources/Entities/Memo/Craft_Note_Glove2.json
 - Assets/Resources/Entities/Memo/DeadCityBunker_Memo2.png
 - Assets/Resources/Entities/Character/T1.png
@@ -3172,6 +3233,7 @@ Assets:
 - Assets/Resources/Entities/Behavior/SpiderEgg.json
 - Assets/Resources/Entities/Weapon/Snowball.asset
 - Assets/Resources/Entities/Weapon/MP5K.asset
+- Assets/Resources/Entities/Item/Fallback.prefab
 - Assets/Resources/Entities/Behavior/DenEquip.json
 - Assets/Resources/Entities/Item/WhiteKey.png
 - "Assets/Resources/Entities/Dialog/\u0421itySub_Fade.json"
@@ -3645,6 +3707,7 @@ Assets:
 - Assets/Resources/Entities/Memo/Tunnel_Memo_3.png
 - Assets/Resources/Entities/Consumable/Flask_Watter.asset
 - Assets/Resources/Localization/Subtitles/TheEnd/fr_23.json
+- Assets/Resources/Entities/Interactive/Fallback.prefab
 - Assets/Resources/Entities/Behavior/BusStop_Ambush.json
 - Assets/Resources/Entities/Character/GiantRat_Head.asset
 - Assets/Resources/Entities/Interactive/FogelevkaZil.json
@@ -4094,6 +4157,7 @@ Assets:
 - Assets/Resources/Entities/Dialog/Godgin_Baza_Start.json
 - Assets/Resources/Entities/Ava/ava35.png
 - Assets/Resources/Entities/Character/Village_Raider_Guard3.asset
+- Assets/Resources/Entities/Chest/Fallback.prefab
 - Assets/Resources/Entities/Uniform/ArmorLA.png
 - Assets/Resources/Entities/Dialog/Tunnel_2_Sub_Tunnel_Bandit.json
 - Assets/Resources/Entities/Behavior/Z_Z_Drug.json
@@ -5160,6 +5224,7 @@ Assets:
 - Assets/Resources/Entities/Interactive/City_Manhole.png
 - Assets/Resources/Entities/Craft/Grenade.asset
 - Assets/Resources/Entities/Character/City_Alena.png
+- Assets/Resources/Entities/Explosive/Fallback.prefab
 - Assets/Resources/Entities/Character/Z_Man1.asset
 - Assets/Resources/Entities/Uniform/CivilCap.png
 - Assets/Resources/Entities/Creature/BaseMale11_Camo.asset
