@@ -157,7 +157,7 @@ public class ModBuilder : EditorWindow
 
         clearLogs = GUILayout.Toggle(clearLogs, "Clear Logs");
         buildAssetBundle = GUILayout.Toggle(buildAssetBundle, "Build Asset Bundle");
-        copyModExternal = GUILayout.Toggle(buildAssetBundle, "Copy Mod External Assets");
+        copyModExternal = GUILayout.Toggle(copyModExternal, "Copy Mod External Assets");
 
         if (GUILayout.Button("BUILD"))
         {
