@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+
+using UnityEngine;
 using UnityEditor;
 using System.IO;
 using System.Collections;
@@ -79,3 +81,4 @@ public class PlayInEditor : MonoBehaviour
         ResourceManager.SetAssetGetPathCallback(null);
     }
 }
+#endif
