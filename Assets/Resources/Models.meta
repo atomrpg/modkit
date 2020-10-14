@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Resources/Models.meta
 guid: 471e945ac6a51c147a28864f766dca63
+=======
+guid: 142107c07cbf9eb4c809e1f4a1ae88f1
+>>>>>>> master:Assets/StreamingAssets/PIE.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Resources/Particles/Textures.meta
 guid: 49f211f1bf8390c448c3c49a67c930c2
 folderAsset: yes
+=======
+guid: a28fe7d6a60791c45bafd2aa454daf84
+>>>>>>> master:Assets/StreamingAssets/PIE/game.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

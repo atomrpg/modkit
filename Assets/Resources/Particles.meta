@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Resources/Particles.meta
 guid: bd7f63cefcd87ba4aa81209c908efcaa
 folderAsset: yes
+=======
+guid: 980287dbeaafcee48840b976a083def1
+>>>>>>> master:Assets/StreamingAssets/PIE/game.manifest.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
