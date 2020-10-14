@@ -1,9 +1,31 @@
 {
-	"pobeda": {
-		"34929b91-46c3-47fc-b2a6-c326b2da3ced": "[You open the door of your loyal car \"UAZ-452\"]",
-		"4ef031ab-bb26-4cad-906c-5e9569121e5c": "[The tank has - $VEHICLE.FUEL$ litres of fuel from the maximum of 77 litres]"
-	},
-	"pobeda_worldmap": {
-		"34929b91-46c3-47fc-b2a6-c326b2da3ced": "[You open the door of your loyal car \"UAZ-452\"]"
-	}
+   "pobeda":{
+      "34929b91-46c3-47fc-b2a6-c326b2da3ced":"[You open the door of your loyal car \"UAZ 452\"]",
+      "278e2d13-e83d-40ec-a827-ba717484d84c":"[Open the rear doors]",
+      "2f62dbbd-9bed-49e4-b3f1-ddd6da941ae9":"[You take a quick look at the \"Bread Loaf' you got. The wheel is fixed, the ignition key is found, but there is no gas in the thing!]",
+      "f1f23ad1-e91b-44d6-9729-43754102e88f":"[Look for gas in the van]",
+      "b45a9cc8-456b-40ed-bb20-eae6fc434603":"[d]Success[/d] [After opening the rear doors you whistle with surprise. There's a lot of clutter back there… But seems like then you notice a small metal chest…]",
+      "6397cd6d-7f5c-48d9-b6c6-a1a3725d7923":"[After wasting some time digging through the trash packed into the van, you cannot find any gasoline. Was it even there to begin with?]",
+      "91e68096-8098-4e27-a0cd-8bb850ffa9c8":"[Start throwing stuff out of the van]",
+      "14a61240-0010-4987-89ff-4a325ba3a078":"[Seems like this van was being used as some kind of garbage storage. You spend an hour before finally noticing a small metal chest…]",
+      "9bfa8cc9-1329-4ac9-b23f-612999285fd9":"[After opening the chest lid easily (there's no more trash on it, after all) you find some rags, three glass bottles and a canister of gasoline. There's around ten liters of the stuff. Now that's a kit worthy of an arsonist!]",
+      "7fa84c72-0845-4062-87b6-75152e019035":"[f]Failure[/f] [You make a wrong step and fall over the pile of garbage you dug out of the van. The gasoline pours into the ground… Now you need to gather more yourself]",
+      "03d415ff-c05c-4267-8965-cf645f8e4186":"[After wasting a few minutes searching for gas, you notice a small metal chest inside the van]",
+      "ed3f4ff3-9a7b-427b-bf0a-ac0dcd501517":"[Start throwing stuff out of the van]",
+      "69682ad7-36d8-4b0f-82da-599465128e94":"[Look inside the small metal chest]",
+      "a32fb0fd-d16a-4de4-b132-8a58c7edf251":"[Start throwing stuff out of the van]",
+      "7a7e5e60-194d-43aa-941d-e419ad025453":"[Look inside the small metal chest]",
+      "bd557f48-58e3-4685-867f-a7a95b7e4c45":"[f]Failure[/f] [You whistle with surprise as you open the van. It's full of all sorts of garbage!]",
+      "38a1fc27-7bc2-4dd4-ae7b-e4bbb1f9464f":"[Start throwing stuff out of the van]",
+      "b997b416-0ffe-434a-ad93-639db4eec622":"[You inspect the \"Bread Loaf\". The wheel is fixed, the gasoline is there, but you still can't find the ignition key!]",
+      "c04a3795-5e66-4e40-9bf3-56ddeb67a5ae":"[After digging around in the glove compartment, you take out some sheets of wastepaper, that once were instructions on car usage, a bar of soap and a condom. The previous owner must have been quite the mad lad]",
+      "7b7ddf04-817d-4555-9c63-c799694beb3b":"[After searching through the central panel, you find a makeshift ashtray with an old blunt. Well… at least there are no used syringes]""54ca43aa-9f5b-4661-ba73-19942929fd13":"[You inspect the \"Bread Loaf\", looking into all matter of holes and checking out everything that might seem even a bit faulty. Turns out the situation isn't as bad as you thought. The wheel is fixed, and you only need an ignition key and some gasoline]",
+      "bdb89d5e-5b2b-45e2-b657-2fcff1ab8163":"[You inspect the \"Bread Loaf\". It turns out to be not as bad as you thought - one of the wheels is flat, but the ignition key is found, and the gasoline is in!]",
+      "6f833aee-e42a-44e0-8791-e0f3c42356dc":"[You calmly inspect the \"Bread Loaf\". It doesn't look as bad. The wheel is flat, but you found he ignition key. The tank is empty, though…]",
+      "7e137717-3e76-47ff-8df2-5854d23290d6":"[You carefully inspect the \"Bread Loaf\". One of the tires is flat… There is no key in the ignition… But the tank is full of gas!]",
+      "5c9cce61-b301-4b7e-9503-fe598f17301e":"[You carefully inspect the \"Bread Loaf\". One of the tires is flat… There is no key in the ignition… And the tank is empty as well! It's not as bad as you thought, but still, you will have to work to get this car started]",
+      "ad544c6e-07c5-45c8-881d-97676c392e47":"[A rather rusty van stands in front of you. Despite of its worn appearance it still looks servicable]",
+      "46209450-b85a-47b2-a514-6edc6ec2fd6c":"[Undobtedly, your trophy is one of the Soviet off-road vans of legends - UAZ-452, nicknamed as “Bread Loaf”! Lack of space in the garage doesn't let you see more. The dream of any Soviet villager came true. So first thing you'll need to do is getting the car out for a closer inspection]",
+      "b70d96f4-b1df-4d6b-90e5-5f572f7484ed":"[After rolling the van outside, you decide to rest for a while, looking at the \"Bread Loaf\". Street light lets you see that van condition indeed is much better, than it seemes in the dark garage...]"
+   }
 }
