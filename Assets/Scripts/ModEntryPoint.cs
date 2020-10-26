@@ -36,7 +36,7 @@ public class ModEntryPoint : MonoBehaviour, ILocalizedText // ModEntryPoint - RE
         string modName = assembly.GetName().Name;
         string dir = System.IO.Path.GetDirectoryName(assembly.Location);
         ResourceManager.AddBundle(modName, AssetBundle.LoadFromFile(dir + "/" + modName + "_resources"));
-   
+
     }
 
     void ILocalizedText.UpdateText()
