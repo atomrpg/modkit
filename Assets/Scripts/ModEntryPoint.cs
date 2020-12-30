@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//#define SUPPORT_LEVEL_BUNDLE
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using JSon;
@@ -10,15 +12,21 @@ using System.Runtime.CompilerServices;
 
 public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NAME
 {
+    string modName;
+    string dir;
+
     void Start()
     {
         var assembly = GetType().Assembly;
-        string modName = assembly.GetName().Name;
-        string dir = System.IO.Path.GetDirectoryName(assembly.Location);
+        modName = assembly.GetName().Name;
+        dir = System.IO.Path.GetDirectoryName(assembly.Location);
         Debug.Log("Mod Init: " + modName + "(" + dir + ")");
         ResourceManager.AddBundle(modName, AssetBundle.LoadFromFile(dir + "/" + modName + "_resources"));
         GlobalEvents.AddListener<GlobalEvents.GameStart>(GameLoaded);
         GlobalEvents.AddListener<GlobalEvents.LevelLoaded>(LevelLoaded);
+#if SUPPORT_LEVEL_BUNDLE
+        GlobalEvents.AddListener<GlobalEvents.PrepareNextLevel>(PrepareNextLevel);
+#endif
     }
 
     void GameLoaded(GlobalEvents.GameStart evnt)
@@ -26,6 +34,21 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         Localization.LoadStrings("mymod_strings_");
         Game.World.console.DeveloperMode();
     }
+
+#if SUPPORT_LEVEL_BUNDLE
+    AssetBundle lastLevelBundle = null;
+    void PrepareNextLevel(GlobalEvents.PrepareNextLevel evnt)
+    {
+        if(lastLevelBundle != null)
+        {
+            Debug.Log("Unload last level bundle: " + evnt.levelName);
+            ResourceManager.RemoveBundle(lastLevelBundle, true);
+        }
+
+        Debug.Log("Load level bundle: " + evnt.levelName);
+        ResourceManager.AddBundle(modName, lastLevelBundle = AssetBundle.LoadFromFile(dir + "/" + modName + "_" + evnt.levelName));
+    }
+#endif
 
     void LevelLoaded(GlobalEvents.LevelLoaded evnt)
     {

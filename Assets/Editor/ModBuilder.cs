@@ -130,6 +130,7 @@ public class ModBuilder : EditorWindow
     const string PATH_BUILD_BUNDLE = "Temp/ModBuild";
 
     bool buildAssetBundle = true;
+    bool buildLevelBundle = false;
     bool clearLogs = true;
 
     public static void ClearLogConsole()
@@ -139,6 +140,14 @@ public class ModBuilder : EditorWindow
         clearMethod.Invoke(null, null);
     }
 
+    void CopyBundle(string dataAsset, string modResFolder, string modName, string bundle)
+    {
+        var resPath = dataAsset + "/Temp/ModBuild/" + modName + "_" + bundle;
+        if (File.Exists(resPath))
+        {
+            Copy(resPath, modResFolder + "/" + modName + "_" + bundle);
+        }
+    }
     private void OnGUI()
     {
 
@@ -156,6 +165,11 @@ public class ModBuilder : EditorWindow
 
         clearLogs = GUILayout.Toggle(clearLogs, "Clear Logs");
         buildAssetBundle = GUILayout.Toggle(buildAssetBundle, "Build Asset Bundle");
+
+        if(buildAssetBundle)
+        {
+            buildLevelBundle = GUILayout.Toggle(buildLevelBundle, "Create Asset Bundle Each Level");
+        }
 
         if (GUILayout.Button("BUILD"))
         {
@@ -183,6 +197,19 @@ public class ModBuilder : EditorWindow
 
                 //HACK for unique id
                 AssetImporter.GetAtPath("Assets/Resources").SetAssetBundleNameAndVariant(modName + "_resources", "");
+
+                string[] levelBundleList = null;
+
+                if (buildLevelBundle)
+                {
+                    levelBundleList = AssetDatabase.GetSubFolders("Assets/Resources/Levels");
+
+                    foreach (var level in levelBundleList)
+                    {
+                        AssetImporter.GetAtPath(level).SetAssetBundleNameAndVariant(modName + "_" + Path.GetFileName(level), "");
+                    }
+                }
+
                 AssetDatabase.Refresh();
 
                 if (buildAssetBundle)
@@ -213,11 +240,16 @@ public class ModBuilder : EditorWindow
                 int index = dataAsset.ToLower().IndexOf(PATH_TO_ASSETS);
                 dataAsset = dataAsset.Remove(index, PATH_TO_ASSETS.Length);
 
-                var resPath = dataAsset + "/Temp/ModBuild/" + modName + "_resources";
-                if (File.Exists(resPath))
+                CopyBundle(dataAsset, modResFolder, modName, "resources");
+
+                if (buildLevelBundle)
                 {
-                    Copy(resPath, modResFolder + "/" + modName + "_resources");
+                    foreach (var level in levelBundleList)
+                    {
+                        CopyBundle(dataAsset, modResFolder, modName, Path.GetFileName(level));
+                    }
                 }
+
                 Copy("Library/ScriptAssemblies/" + modName + ".dll", "Temp/ModBuild/" + modName + ".dll");
                 Copy("Library/ScriptAssemblies/" + modName + ".pdb", "Temp/ModBuild/" + modName + ".pdb");
 
