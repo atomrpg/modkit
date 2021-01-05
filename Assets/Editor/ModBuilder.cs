@@ -130,7 +130,7 @@ public class ModBuilder : EditorWindow
     const string PATH_BUILD_BUNDLE = "Temp/ModBuild";
 
     bool buildAssetBundle = true;
-    bool buildLevelBundle = false;
+    bool buildLevelBundle = true;
     bool clearLogs = true;
 
     public static void ClearLogConsole()
@@ -146,7 +146,7 @@ public class ModBuilder : EditorWindow
         if (File.Exists(resPath))
         {
             Copy(resPath, modResFolder + "/" + bundle);
-            Copy(resPath + ".manifest", modResFolder + "/" + bundle + ".manifest");
+            //Copy(resPath + ".manifest", modResFolder + "/" + bundle + ".manifest");
         }
     }
 
@@ -279,6 +279,14 @@ public class ModBuilder : EditorWindow
                 {
                     levelBundleList = CreateSharedLevelBundle(modName);
                 }
+                else
+                {
+                    foreach (var assetBundleName in AssetDatabase.GetAllAssetBundleNames())
+                    {
+                        AssetDatabase.RemoveAssetBundleName(assetBundleName, true);
+                    }
+                    AssetDatabase.Refresh();
+                }
 
                 //HACK for unique id
                 AssetImporter.GetAtPath("Assets/Resources").SetAssetBundleNameAndVariant(modName + "_resources", "");
@@ -317,6 +325,7 @@ public class ModBuilder : EditorWindow
 
                 if (buildLevelBundle)
                 {
+                    Copy("Temp/ModBuild/ModBuild", modsFolder + "/" + modName);
                     foreach (var level in levelBundleList)
                     {
                         CopyBundle(dataAsset, modResFolder, Path.GetFileName(level));
