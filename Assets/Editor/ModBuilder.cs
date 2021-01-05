@@ -140,14 +140,92 @@ public class ModBuilder : EditorWindow
         clearMethod.Invoke(null, null);
     }
 
-    void CopyBundle(string dataAsset, string modResFolder, string modName, string bundle)
+    void CopyBundle(string dataAsset, string modResFolder, string bundle)
     {
-        var resPath = dataAsset + "/Temp/ModBuild/" + modName + "_" + bundle;
+        var resPath = dataAsset + "/Temp/ModBuild/" + bundle;
         if (File.Exists(resPath))
         {
-            Copy(resPath, modResFolder + "/" + modName + "_" + bundle);
+            Copy(resPath, modResFolder + "/" + bundle);
+            Copy(resPath + ".manifest", modResFolder + "/" + bundle + ".manifest");
         }
     }
+
+    string[] CreateSharedLevelBundle(string modName)
+    {
+        foreach (var assetBundleName in AssetDatabase.GetAllAssetBundleNames())
+        {
+            AssetDatabase.RemoveAssetBundleName(assetBundleName, true);
+        }
+
+        AssetDatabase.Refresh();
+
+        var levelBundleList = new List<string>();
+
+        foreach (var level in AssetDatabase.GetSubFolders("Assets/Resources/Levels"))
+        {
+            var v = modName + "_" + Path.GetFileName(level);
+            AssetImporter.GetAtPath(level).SetAssetBundleNameAndVariant(v, "");
+            levelBundleList.Add(v);
+        }
+
+        AssetDatabase.Refresh();
+
+        List<string> sharedAssets = new List<string>();
+        Dictionary<string, List<string>> sharedBundle = new Dictionary<string, List<string>>();
+        foreach (var assetBundleName in AssetDatabase.GetAllAssetBundleNames())
+        {
+            foreach (var assetPathAndNameAssign in AssetDatabase.GetAssetPathsFromAssetBundle(assetBundleName))
+            {
+                foreach (var assetPathAndName in AssetDatabase.GetDependencies(assetPathAndNameAssign, true))
+                {
+                    if (!sharedAssets.Contains(assetPathAndName))
+                    {
+                        sharedAssets.Add(assetPathAndName);
+                    }
+                    else
+                    {
+                        //var name = Path.GetFileNameWithoutExtension(assetPathAndName);
+                        //Debug.Log(name);
+                        if (!sharedBundle.ContainsKey(assetPathAndName))
+                        {
+                            sharedBundle.Add(assetPathAndName, new List<string>() { assetBundleName });
+                        }
+                        else
+                        {
+                            sharedBundle[assetPathAndName].Add(assetBundleName);
+                        }
+                    }
+                }
+            }
+        }
+
+        foreach (var it in sharedBundle)
+        {
+            it.Value.Sort();
+
+            string boundleSharedPath = "";
+
+            foreach (var b in it.Value)
+            {
+                boundleSharedPath = "_" + b;
+            }
+
+            var v = AssetImporter.GetAtPath(it.Key);
+            if (v != null)
+            {
+                string shareName = modName + boundleSharedPath + "_shared";
+                v.SetAssetBundleNameAndVariant(shareName, "");
+
+                if (!levelBundleList.Contains(shareName))
+                {
+                    levelBundleList.Add(shareName);
+                }
+            }
+        }
+
+        return levelBundleList.ToArray();
+    }
+
     private void OnGUI()
     {
 
@@ -195,20 +273,15 @@ public class ModBuilder : EditorWindow
 
                 Directory.CreateDirectory(PATH_BUILD_BUNDLE);
 
-                //HACK for unique id
-                AssetImporter.GetAtPath("Assets/Resources").SetAssetBundleNameAndVariant(modName + "_resources", "");
-
                 string[] levelBundleList = null;
 
                 if (buildLevelBundle)
                 {
-                    levelBundleList = AssetDatabase.GetSubFolders("Assets/Resources/Levels");
-
-                    foreach (var level in levelBundleList)
-                    {
-                        AssetImporter.GetAtPath(level).SetAssetBundleNameAndVariant(modName + "_" + Path.GetFileName(level), "");
-                    }
+                    levelBundleList = CreateSharedLevelBundle(modName);
                 }
+
+                //HACK for unique id
+                AssetImporter.GetAtPath("Assets/Resources").SetAssetBundleNameAndVariant(modName + "_resources", "");
 
                 AssetDatabase.Refresh();
 
@@ -240,13 +313,13 @@ public class ModBuilder : EditorWindow
                 int index = dataAsset.ToLower().IndexOf(PATH_TO_ASSETS);
                 dataAsset = dataAsset.Remove(index, PATH_TO_ASSETS.Length);
 
-                CopyBundle(dataAsset, modResFolder, modName, "resources");
+                CopyBundle(dataAsset, modResFolder, modName + "_resources");
 
                 if (buildLevelBundle)
                 {
                     foreach (var level in levelBundleList)
                     {
-                        CopyBundle(dataAsset, modResFolder, modName, Path.GetFileName(level));
+                        CopyBundle(dataAsset, modResFolder, Path.GetFileName(level));
                     }
                 }
 

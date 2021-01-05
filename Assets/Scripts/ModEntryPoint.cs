@@ -1,4 +1,4 @@
-﻿//#define SUPPORT_LEVEL_BUNDLE
+﻿#define SUPPORT_LEVEL_BUNDLE
 
 using System.Collections;
 using System.Collections.Generic;
@@ -15,16 +15,25 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
     string modName;
     string dir;
 
+
+    AssetBundleManifest manifest;
+
     void Start()
     {
         var assembly = GetType().Assembly;
         modName = assembly.GetName().Name;
         dir = System.IO.Path.GetDirectoryName(assembly.Location);
         Debug.Log("Mod Init: " + modName + "(" + dir + ")");
+
         ResourceManager.AddBundle(modName, AssetBundle.LoadFromFile(dir + "/" + modName + "_resources"));
         GlobalEvents.AddListener<GlobalEvents.GameStart>(GameLoaded);
         GlobalEvents.AddListener<GlobalEvents.LevelLoaded>(LevelLoaded);
 #if SUPPORT_LEVEL_BUNDLE
+        AssetBundle assetBundle = AssetBundle.LoadFromFile(dir + "/" + modName);
+        if (assetBundle != null)
+        {
+            manifest = assetBundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
+        }
         GlobalEvents.AddListener<GlobalEvents.PrepareNextLevel>(PrepareNextLevel);
 #endif
     }
@@ -36,17 +45,41 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
     }
 
 #if SUPPORT_LEVEL_BUNDLE
-    AssetBundle lastLevelBundle = null;
+    List<AssetBundle> lastLevelBundle = new List<AssetBundle>();
     void PrepareNextLevel(GlobalEvents.PrepareNextLevel evnt)
     {
-        if(lastLevelBundle != null)
+        if (manifest != null)
         {
-            Debug.Log("Unload last level bundle: " + evnt.levelName);
-            ResourceManager.RemoveBundle(lastLevelBundle, true);
-        }
+            if (lastLevelBundle.Count > 0)
+            {
+                Debug.Log("Unload last level bundle: " + evnt.levelName);
 
-        Debug.Log("Load level bundle: " + evnt.levelName);
-        ResourceManager.AddBundle(modName, lastLevelBundle = AssetBundle.LoadFromFile(dir + "/" + modName + "_" + evnt.levelName));
+                foreach (var bundle in lastLevelBundle)
+                {
+                    ResourceManager.RemoveBundle(bundle, true);
+                }
+            }
+
+
+            AssetBundle b;
+
+            foreach (var bundle in manifest.GetAllDependencies(modName + "_" + evnt.levelName))
+            {
+                if(bundle.Contains("_resources"))
+                {
+                    continue; // skip default resources pack
+                }
+
+                Debug.Log("Load shared level bundle: " + evnt.levelName);
+
+                ResourceManager.AddBundle(modName, b = AssetBundle.LoadFromFile(dir + "/" + bundle));
+                lastLevelBundle.Add(b);
+            }
+
+            Debug.Log("Load level bundle: " + evnt.levelName);
+            ResourceManager.AddBundle(modName, b = AssetBundle.LoadFromFile(dir + "/" + modName + "_" + evnt.levelName));
+            lastLevelBundle.Add(b);
+        }
     }
 #endif
 
