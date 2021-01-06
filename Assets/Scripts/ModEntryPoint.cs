@@ -70,15 +70,19 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
                     continue; // skip default resources pack
                 }
 
-                Debug.Log("Load shared level bundle: " + evnt.levelName);
+                Debug.Log("Load shared level bundle: " + bundle);
 
                 ResourceManager.AddBundle(modName, b = AssetBundle.LoadFromFile(dir + "/" + bundle));
                 lastLevelBundle.Add(b);
             }
 
             Debug.Log("Load level bundle: " + evnt.levelName);
-            ResourceManager.AddBundle(modName, b = AssetBundle.LoadFromFile(dir + "/" + modName + "_" + evnt.levelName));
-            lastLevelBundle.Add(b);
+            b = AssetBundle.LoadFromFile(dir + "/" + modName + "_" + evnt.levelName);
+            if (b != null)
+            {
+                ResourceManager.AddBundle(modName, b);
+                lastLevelBundle.Add(b);
+            }
         }
     }
 #endif

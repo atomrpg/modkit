@@ -244,7 +244,7 @@ public class ModBuilder : EditorWindow
         clearLogs = GUILayout.Toggle(clearLogs, "Clear Logs");
         buildAssetBundle = GUILayout.Toggle(buildAssetBundle, "Build Asset Bundle");
 
-        if(buildAssetBundle)
+        if (buildAssetBundle)
         {
             buildLevelBundle = GUILayout.Toggle(buildLevelBundle, "Create Asset Bundle Each Level");
         }
@@ -295,7 +295,7 @@ public class ModBuilder : EditorWindow
 
                 if (buildAssetBundle)
                 {
-                    BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE, BuildAssetBundleOptions.None/*BuildAssetBundleOptions.DisableWriteTypeTree*/, BuildTarget.StandaloneWindows64);
+                    BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE, BuildAssetBundleOptions.ChunkBasedCompression/*BuildAssetBundleOptions.DisableWriteTypeTree*/, BuildTarget.StandaloneWindows64);
                 }
 
                 if(clearLogs)
