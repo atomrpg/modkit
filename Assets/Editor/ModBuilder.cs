@@ -130,6 +130,14 @@ public class ModBuilder : EditorWindow
     const string PATH_BUILD_BUNDLE = "Temp/ModBuild";
 
     bool buildAssetBundle = true;
+    bool clearLogs = true;
+
+    public static void ClearLogConsole()
+    {
+        var logEntries = System.Type.GetType("UnityEditor.LogEntries, UnityEditor.dll");
+        var clearMethod = logEntries.GetMethod("Clear", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public);
+        clearMethod.Invoke(null, null);
+    }
 
     private void OnGUI()
     {
@@ -146,6 +154,7 @@ public class ModBuilder : EditorWindow
         }
         EditorGUILayout.EndHorizontal();
 
+        clearLogs = GUILayout.Toggle(clearLogs, "Clear Logs");
         buildAssetBundle = GUILayout.Toggle(buildAssetBundle, "Build Asset Bundle");
 
         if (GUILayout.Button("BUILD"))
@@ -168,6 +177,7 @@ public class ModBuilder : EditorWindow
                 }
 
                 UnityEditor.SceneManagement.EditorSceneManager.NewScene(UnityEditor.SceneManagement.NewSceneSetup.EmptyScene, UnityEditor.SceneManagement.NewSceneMode.Single);
+                RenderSettings.fog = true; // force enable fog
 
                 Directory.CreateDirectory(PATH_BUILD_BUNDLE);
 
@@ -178,6 +188,11 @@ public class ModBuilder : EditorWindow
                 if (buildAssetBundle)
                 {
                     BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE, BuildAssetBundleOptions.None/*BuildAssetBundleOptions.DisableWriteTypeTree*/, BuildTarget.StandaloneWindows64);
+                }
+
+                if(clearLogs)
+                {
+                    ClearLogConsole();
                 }
 
                 //copy dll
