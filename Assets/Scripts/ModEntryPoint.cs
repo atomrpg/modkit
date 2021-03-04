@@ -72,8 +72,12 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
 
                 Debug.Log("Load shared level bundle: " + bundle);
 
-                ResourceManager.AddBundle(modName, b = AssetBundle.LoadFromFile(dir + "/" + bundle));
-                lastLevelBundle.Add(b);
+                b = AssetBundle.LoadFromFile(dir + "/" + bundle);
+                if (b != null)
+                {
+                    ResourceManager.AddBundle(bundle, b);
+                    lastLevelBundle.Add(b);
+                }
             }
 
             Debug.Log("Load level bundle: " + evnt.levelName);
