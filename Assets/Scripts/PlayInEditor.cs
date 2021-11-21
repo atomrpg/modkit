@@ -57,11 +57,14 @@ public class PlayInEditor : MonoBehaviour
                     if (!IsValidEntityObject(r.gameObject))
                     {
                         var prefab = r.Entity.Prototype.Prefab;
-                        var copy = Instantiate<GameObject>(r.Entity.Prototype.Prefab);
+
+                        var copy = Instantiate<GameObject>(r.Entity.Prototype.Prefab, r.gameObject.transform.position, r.gameObject.transform.rotation);
+                        copy.transform.localScale = r.transform.lossyScale;
                         copy.name = r.name;
+
                         copy.GetComponent<EntityComponent>().SetEntity(r.Entity);
                         r.gameObject.SetActive(false);
-                        r.gameObject.name = "temp";
+                        r.gameObject.name += "_temp";
                     }
                 }
             }
