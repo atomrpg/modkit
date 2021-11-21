@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -171,7 +172,7 @@ Terrain:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 45471169}
   m_Enabled: 1
-  serializedVersion: 5
+  serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 2d3b3d7d7af9c52458cd0a497a2d905e, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
@@ -194,6 +195,7 @@ Terrain:
   m_ScaleInLightmap: 0.1024
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
+  m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
 --- !u!1001 &65367948
 PrefabInstance:
@@ -205,6 +207,10 @@ PrefabInstance:
     - target: {fileID: 109872, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
       propertyPath: m_LocalPosition.x
@@ -219,6 +225,10 @@ PrefabInstance:
       value: 17.84
       objectReference: {fileID: 0}
     - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -229,14 +239,6 @@ PrefabInstance:
     - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -252,11 +254,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11473766, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
       propertyPath: mEntityData
-      value: '{"class":"Character", "proto":"TestCreature", "character":"MyNPC", "caps":"Player",
-        "damage":"0", "ap":"0", "bonusTurn":"false", "relationship":"100", "fraction":"player",
-        "shotMode":"0", "inventory":[  ], "mainItemIndex":"0", "conditions":{"toxic":"0",
-        "toxicTimer":"-1", "radiation":"0", "radiationTimer":"-1", "hunger":"0", "hungerDmg":"0",
-        "rolling":"0"}, "effects":[  ]}'
+      value: '{"class":"Character", "proto":"TestCreature", "character":"MyNPC",
+        "caps":"Player", "damage":"0", "ap":"0", "bonusTurn":"false", "relationship":"100",
+        "fraction":"player", "shotMode":"0", "inventory":[  ], "mainItemIndex":"0",
+        "conditions":{"toxic":"0", "toxicTimer":"-1", "radiation":"0", "radiationTimer":"-1",
+        "hunger":"0", "hungerDmg":"0", "rolling":"0"}, "effects":[  ]}'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
@@ -320,6 +322,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -364,6 +367,10 @@ PrefabInstance:
       value: MyNPC
       objectReference: {fileID: 0}
     - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.83
       objectReference: {fileID: 0}
@@ -376,6 +383,10 @@ PrefabInstance:
       value: 14.84
       objectReference: {fileID: 0}
     - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -386,14 +397,6 @@ PrefabInstance:
     - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 437524, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -409,10 +412,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11473766, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
       propertyPath: mEntityData
-      value: '{"class":"Character", "proto":"TestCreature", "character":"MyNPC", "damage":"0",
-        "ap":"0", "bonusTurn":"false", "relationship":"100", "shotMode":"0", "inventory":[  ],
-        "mainItemIndex":"0", "conditions":{"toxic":"0", "toxicTimer":"-1", "radiation":"0",
-        "radiationTimer":"-1", "hunger":"0", "hungerDmg":"0", "rolling":"0"}, "effects":[  ]}'
+      value: '{"class":"Character", "proto":"TestCreature", "character":"MyNPC",
+        "damage":"0", "ap":"0", "bonusTurn":"false", "relationship":"100", "shotMode":"0",
+        "inventory":[  ], "mainItemIndex":"0", "conditions":{"toxic":"0", "toxicTimer":"-1",
+        "radiation":"0", "radiationTimer":"-1", "hunger":"0", "hungerDmg":"0", "rolling":"0"},
+        "effects":[  ]}'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28531d224174b2a4aa09d77f035062db, type: 3}
@@ -441,8 +445,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170076733}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -60782,9 +60787,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1443892072
 MeshRenderer:
@@ -60800,6 +60805,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -60861,6 +60867,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65bba069b8c02d44c937147bb74fa2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sunTestLight: {fileID: 0}
+  spawnScene: 
 --- !u!4 &1874787580
 Transform:
   m_ObjectHideFlags: 0
@@ -60884,6 +60892,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5371014640499605766, guid: b8573c8f1d1257a40ac60d78e5a2c887,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371014640499605766, guid: b8573c8f1d1257a40ac60d78e5a2c887,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.66
       objectReference: {fileID: 0}
@@ -60899,6 +60912,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5371014640499605766, guid: b8573c8f1d1257a40ac60d78e5a2c887,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371014640499605766, guid: b8573c8f1d1257a40ac60d78e5a2c887,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -60911,16 +60929,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5371014640499605766, guid: b8573c8f1d1257a40ac60d78e5a2c887,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5371014640499605766, guid: b8573c8f1d1257a40ac60d78e5a2c887,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5371014640499605766, guid: b8573c8f1d1257a40ac60d78e5a2c887,
         type: 3}
@@ -60946,10 +60954,11 @@ PrefabInstance:
         type: 3}
       propertyPath: mEntityData
       value: '{"class":"Chest", "proto":"MyChest", "inventory":[ {"class":"Weapon",
-        "count":"1", "proto":"EPistol", "ammo":{"count":"4", "proto":"Energy"}}, {"class":"Uniform",
-        "count":"1", "proto":"EHelmet"}, {"class":"Uniform", "count":"1", "proto":"EArmor"},
-        {"class":"Ammo", "count":"500", "proto":"Energy"} ], "open":"false", "touch":"false",
-        "lockLevel":"0", "lockType":"Mechanical", "pin":"0"}'
+        "count":"1", "proto":"EPistol", "ammo":{"count":"4", "proto":"Energy"}},
+        {"class":"Uniform", "count":"1", "proto":"EHelmet"}, {"class":"Uniform",
+        "count":"1", "proto":"EArmor"}, {"class":"Ammo", "count":"500", "proto":"Energy"}
+        ], "open":"false", "touch":"false", "lockLevel":"0", "lockType":"Mechanical",
+        "pin":"0"}'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8573c8f1d1257a40ac60d78e5a2c887, type: 3}
@@ -60960,6 +60969,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4534989680591688708, guid: 8a8ffd324a6a4b645937d4605d9f3b4d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4534989680591688708, guid: 8a8ffd324a6a4b645937d4605d9f3b4d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -60977,6 +60991,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4534989680591688708, guid: 8a8ffd324a6a4b645937d4605d9f3b4d,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534989680591688708, guid: 8a8ffd324a6a4b645937d4605d9f3b4d,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -60988,16 +61007,6 @@ PrefabInstance:
     - target: {fileID: 4534989680591688708, guid: 8a8ffd324a6a4b645937d4605d9f3b4d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4534989680591688708, guid: 8a8ffd324a6a4b645937d4605d9f3b4d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4534989680591688708, guid: 8a8ffd324a6a4b645937d4605d9f3b4d,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4534989680591688708, guid: 8a8ffd324a6a4b645937d4605d9f3b4d,
