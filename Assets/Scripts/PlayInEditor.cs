@@ -16,10 +16,14 @@ public class PlayInEditor : MonoBehaviour
 
     List<GameObject> tempSceneObj = new List<GameObject>();
 
+
     void Awake()
     {
         if (EditorApplication.isPlaying)
         {
+#if UNITY_EDITOR
+            Lightmapping.giWorkflowMode = Lightmapping.GIWorkflowMode.OnDemand;
+#endif
             ResourceManager.Reset();
             ResourceManager.SetAssetGetPathCallback(null);
             AssetBundle gameBundle = null;
