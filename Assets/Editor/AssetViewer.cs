@@ -88,19 +88,38 @@ public class AssetViewer : EditorWindow
 
         EditorGUILayout.BeginHorizontal();
 
-        EditorGUILayout.LabelField("Game Content Path", gamedir);
 
-        if (GUILayout.Button(
-             new GUIContent("...", "setup game path to StreamingAssets/Content"),
-             lastSkin.button))
+        if (gamedir.Length > 0)
         {
+            if (GUILayout.Button(
+                 new GUIContent("[X]", "Clear path"),
+                 lastSkin.button, GUILayout.Width(30)))
+            {
+                if (EditorUtility.DisplayDialog("Clear current path to the StreamingAssets", "Are you sure you want clear current path to the StreamingAssets? ", "Yes", "Cancel"))
+                {
+                    gamedir = "";
+                    PlayerPrefs.SetString("GAME_CONTENT_DIR", gamedir);
+                }
+            }
 
-            gamedir = EditorUtility.OpenFolderPanel("StreamingAssets/Conent path", "", "");
-            PlayerPrefs.SetString("GAME_CONTENT_DIR", gamedir);
+            EditorGUILayout.LabelField("Path to StreamingAssets", gamedir);
+        }
+        else
+        {
+            EditorGUILayout.LabelField("Path to StreamingAssets", gamedir);
 
-            AssetViewerDB.Load();
-            guiSkin = (GUISkin)Resources.Load("AssetViewer");
-            GUI.skin = guiSkin;
+            if (GUILayout.Button(
+                 new GUIContent("...", "Setup game path to StreamingAssets"),
+                 lastSkin.button))
+            {
+
+                gamedir = EditorUtility.OpenFolderPanel("StreamingAssets path", gamedir, "");
+                PlayerPrefs.SetString("GAME_CONTENT_DIR", gamedir);
+
+                AssetViewerDB.Load();
+                guiSkin = (GUISkin)Resources.Load("AssetViewer");
+                GUI.skin = guiSkin;
+            }
         }
 
         EditorGUILayout.EndHorizontal();

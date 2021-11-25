@@ -98,7 +98,7 @@ internal class AssetViewerDB
 
     private static void LoadBundles(string path, HashSet<string> categoriesSet)
     {
-        if(path.Length == 0)
+        if(path.Length == 0 || !Directory.Exists(path))
         {
             return;
         }
