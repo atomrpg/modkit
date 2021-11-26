@@ -17,6 +17,61 @@ public class PlayInEditor : MonoBehaviour
     List<GameObject> tempSceneObj = new List<GameObject>();
 
 
+    public class ResourcesBundle : ResourceManager.Bundle
+    {
+        public ResourcesBundle()
+        {
+        }
+
+        override public UnityEngine.Object LoadAsset(string name, System.Type type)
+        {
+            return Resources.Load(System.IO.Path.ChangeExtension(name, null), type);
+        }
+
+        public override AsyncOperation LoadAssetAsync(string name, System.Type type)
+        {
+            // @todo add support override
+            return Resources.LoadAsync(System.IO.Path.ChangeExtension(name, null), type);
+        }
+
+        override public void Unload(bool unloadAllLoadedObjects)
+        {
+            //skip
+        }
+
+        override public bool Contains(string name)
+        {
+            return System.Array.IndexOf(GetAllAssetNames(), name) >= 0;
+        }
+
+        string[] allAssets = null;
+
+        string[] FetchAssetNames()
+        {
+            string[] guids = AssetDatabase.FindAssets("", new string[] { "Assets/Resources" });
+
+            allAssets = new string[guids.Length];
+
+            for (int i = 0, end = guids.Length; i!=end; ++i)
+            {
+                allAssets[i] = AssetDatabase.GUIDToAssetPath(guids[i]).ToLower();
+            }
+
+            return allAssets;
+        }
+
+        override public string[] GetAllAssetNames()
+        {
+            if(allAssets == null)
+            {
+                allAssets = FetchAssetNames();
+            }
+
+            return allAssets;
+        }
+    }
+
+
     void Awake()
     {
         if (EditorApplication.isPlaying)
@@ -27,6 +82,8 @@ public class PlayInEditor : MonoBehaviour
             ResourceManager.Reset();
             ResourceManager.SetAssetGetPathCallback(null);
             AssetBundle gameBundle = null;
+
+            ResourceManager.AddBundle("resources", new ResourcesBundle());
 
             foreach (var f in AssetBundle.GetAllLoadedAssetBundles())
             {
@@ -60,6 +117,22 @@ public class PlayInEditor : MonoBehaviour
                 {
                     if (!IsValidEntityObject(r.gameObject))
                     {
+                        if(r.Entity == null)
+                        {
+                            Debug.LogError("PIE Error [Entity is null]" + r.name);
+                            continue;
+                        }
+                        else if (r.Entity.Prototype == null)
+                        {
+                            Debug.LogError("PIE Error [Prototype is null]" + r.name);
+                            continue;
+                        }
+                        else if (r.Entity.Prototype.Prefab == null)
+                        {
+                            Debug.LogError("PIE Error [Prefab is null]" + r.name);
+                            continue;
+                        }
+
                         var prefab = r.Entity.Prototype.Prefab;
 
                         var copy = Instantiate<GameObject>(r.Entity.Prototype.Prefab, r.gameObject.transform.position, r.gameObject.transform.rotation);
@@ -80,7 +153,6 @@ public class PlayInEditor : MonoBehaviour
         }
         else
         {
-
         }
     }
 
@@ -97,7 +169,7 @@ public class PlayInEditor : MonoBehaviour
 
     private void Update()
     {
-        if (_requestShowScene && spawnScene.Length > 0 && ResourceManager.bundles.Count > 0)
+        if (_requestShowScene && spawnScene != null && spawnScene.Length > 0 && ResourceManager.bundles.Count > 0)
         {
             _requestShowScene = false;
 
