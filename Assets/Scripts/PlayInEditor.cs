@@ -1,7 +1,10 @@
-﻿//#if UNITY_EDITOR
-
+﻿
 using UnityEngine;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
+
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +13,7 @@ using System.Collections.Generic;
 [DefaultExecutionOrder(-999)]
 public class PlayInEditor : MonoBehaviour
 {
+#if UNITY_EDITOR
     public Light _sunTestLight = null;
 
     public string spawnScene = null;
@@ -252,5 +256,5 @@ public class PlayInEditor : MonoBehaviour
             ResourceManager.SetAssetGetPathCallback(null);
         }
     }
+#endif
 }
-//#endif
