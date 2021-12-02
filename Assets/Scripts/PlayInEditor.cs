@@ -29,13 +29,13 @@ public class PlayInEditor : MonoBehaviour
 
         override public UnityEngine.Object LoadAsset(string name, System.Type type)
         {
-            return Resources.Load(System.IO.Path.ChangeExtension(name, null), type);
+            return Resources.Load(System.IO.Path.ChangeExtension(name, null).Replace("assets/resources/", ""), type);
         }
 
         public override AsyncOperation LoadAssetAsync(string name, System.Type type)
         {
             // @todo add support override
-            return Resources.LoadAsync(System.IO.Path.ChangeExtension(name, null), type);
+            return Resources.LoadAsync(System.IO.Path.ChangeExtension(name, null).Replace("assets/resources/", ""), type);
         }
 
         override public void Unload(bool unloadAllLoadedObjects)
@@ -80,9 +80,9 @@ public class PlayInEditor : MonoBehaviour
     {
         if (EditorApplication.isPlaying)
         {
-#if UNITY_EDITOR
+
             Lightmapping.giWorkflowMode = Lightmapping.GIWorkflowMode.OnDemand;
-#endif
+
             ResourceManager.Reset();
             ResourceManager.SetAssetGetPathCallback(null);
             AssetBundle gameBundle = null;
@@ -256,5 +256,6 @@ public class PlayInEditor : MonoBehaviour
             ResourceManager.SetAssetGetPathCallback(null);
         }
     }
+    
 #endif
 }
