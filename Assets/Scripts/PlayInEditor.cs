@@ -75,6 +75,23 @@ public class PlayInEditor : MonoBehaviour
         }
     }
 
+    private static void LoadBundles(string path)
+    {
+        if (path.Length == 0 || !Directory.Exists(path))
+        {
+            return;
+        }
+
+        foreach (string f in Directory.GetFiles(path))
+        {
+            if (!Path.HasExtension(f) || Path.GetExtension(f) == ".bundle")
+            {
+                AssetBundle bundle = AssetBundle.LoadFromFile(f);
+                ResourceManager.AddBundle(bundle.name, bundle);
+            }
+        }
+    }
+
 
     void Awake()
     {
@@ -83,17 +100,27 @@ public class PlayInEditor : MonoBehaviour
 
             Lightmapping.giWorkflowMode = Lightmapping.GIWorkflowMode.OnDemand;
 
+
+            AssetBundle.UnloadAllAssetBundles(true);
+
             ResourceManager.Reset();
             ResourceManager.SetAssetGetPathCallback(null);
+
+
             AssetBundle gameBundle = null;
 
             ResourceManager.AddBundle("resources", new ResourcesBundle());
+
+            LoadBundles(Application.streamingAssetsPath);
+
+            var gdir = PlayerPrefs.GetString("GAME_CONTENT_DIR", "");
+            LoadBundles(gdir);
 
             foreach (var f in AssetBundle.GetAllLoadedAssetBundles())
             {
                 if (f != null)
                 {
-                    ResourceManager.AddBundle(f.name, f);
+                    //ResourceManager.AddBundle(f.name, f);
 
                     if (f.name.IndexOf("editor") >= 0) //TODO
                     {
