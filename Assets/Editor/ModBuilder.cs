@@ -130,6 +130,7 @@ public class ModBuilder : EditorWindow
     const string PATH_BUILD_BUNDLE = "Temp/ModBuild";
 
     bool buildAssetBundle = true;
+    bool stripShaders = false;
     bool clearLogs = true;
 
     public static void ClearLogConsole()
@@ -156,11 +157,13 @@ public class ModBuilder : EditorWindow
 
         clearLogs = GUILayout.Toggle(clearLogs, "Clear Logs");
         buildAssetBundle = GUILayout.Toggle(buildAssetBundle, "Build Asset Bundle");
+        stripShaders = GUILayout.Toggle(stripShaders, "Strip Shaders");
 
         if (GUILayout.Button("BUILD"))
         {
             if (modName.Length > 0)
             {
+                ShaderBuildProcessor.SetEnabled(stripShaders);
                 if (Directory.Exists(PATH_BUILD_BUNDLE))
                 {
                     Directory.Delete(PATH_BUILD_BUNDLE, true);

@@ -31,6 +31,18 @@ internal class AssetViewerDB
     static AssetViewerDB()
     {
         EditorApplication.update += Init;
+        if (!Application.isPlaying)
+        {
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        }
+    }
+
+    private static void OnPlayModeStateChanged(PlayModeStateChange obj)
+    {
+        if(obj == PlayModeStateChange.EnteredEditMode)
+        {
+            EditorApplication.update += Init;
+        }
     }
 
     static void Init()
@@ -58,6 +70,11 @@ internal class AssetViewerDB
 
     public static void Load()
     {
+        if (Application.isPlaying)
+        {
+            return;
+        }
+
         loadedAssets.Clear();
         assetCategories.Clear();
         AssetBundle.UnloadAllAssetBundles(true);
@@ -67,30 +84,58 @@ internal class AssetViewerDB
 
         var categoriesSet = new HashSet<string>();
 
-        foreach (string f in Directory.GetFiles(Application.streamingAssetsPath))
+        LoadBundles(Application.streamingAssetsPath, categoriesSet);
+
+        var gdir = PlayerPrefs.GetString("GAME_CONTENT_DIR", "");
+        LoadBundles(gdir, categoriesSet);
+
+        assetCategories.AddRange(categoriesSet.OrderBy(x => x));
+        EditorUtility.ClearProgressBar();
+
+        IsLoaded = true;
+        OnUpdated?.Invoke();
+    }
+
+    private static void LoadBundles(string path, HashSet<string> categoriesSet)
+    {
+        if(path.Length == 0 || !Directory.Exists(path))
+        {
+            return;
+        }
+
+        foreach (string f in Directory.GetFiles(path))
         {
             try
             {
-                if (!Path.HasExtension(f))
+                if (!Path.HasExtension(f) || Path.GetExtension(f) == ".bundle")
                 {
                     AssetBundle bundle = AssetBundle.LoadFromFile(f);
-                    ResourceManager.AddBundle("", bundle);
+                    ResourceManager.AddBundle(bundle.name, bundle);
 
                     string[] allAssetNames = bundle.GetAllAssetNames();
                     int progress = 0;
                     foreach (var asset in allAssetNames)
                     {
-                        Object obj = bundle.LoadAsset(asset);
-                        if (obj is ScriptableObject || obj is TextAsset)
+                        if (asset.IndexOf(".asset") >= 0 || asset.IndexOf(".json") >= 0)
                         {
-                            var category = GetCategoryFromAssetName(asset);
-                            loadedAssets.Add(new LoadedAsset
+                            Object obj = bundle.LoadAsset(asset);
+                            if (obj is ScriptableObject || obj is TextAsset)
                             {
-                                Asset = obj,
-                                AssetName = asset,
-                                AssetCategory = category,
-                            });
-                            categoriesSet.Add(category);
+                                var category = GetCategoryFromAssetName(asset);
+
+                                if(asset.Contains("/levels")) // union one category
+                                {
+                                    category = "levels";
+                                }
+
+                                loadedAssets.Add(new LoadedAsset
+                                {
+                                    Asset = obj,
+                                    AssetName = asset,
+                                    AssetCategory = category,
+                                });
+                                categoriesSet.Add(category);
+                            }
                         }
 
                         if (EditorUtility.DisplayCancelableProgressBar("Asset bundle", "Load Asset", (float)progress / allAssetNames.Length))
@@ -107,12 +152,6 @@ internal class AssetViewerDB
                 Debug.Log("Bundle skip");
             }
         }
-
-        assetCategories.AddRange(categoriesSet.OrderBy(x => x));
-        EditorUtility.ClearProgressBar();
-
-        IsLoaded = true;
-        OnUpdated?.Invoke();
     }
 
     private static string GetCategoryFromAssetName(string assetName)
