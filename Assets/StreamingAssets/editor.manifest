@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1912052569
+CRC: 4199839972
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 61806d7aa143224f0c08153aa566f71f
+    Hash: 07c9a4b6597a930539327ce439e1517a
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 51459393d6b80818cc596d76475b4e58
+    Hash: c800aeb505f03709ab35db8eec7f18c3
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -30,10 +30,6 @@ ClassTypes:
 - Class: 72
   Script: {instanceID: 0}
 - Class: 81
-  Script: {instanceID: 0}
-- Class: 90
-  Script: {instanceID: 0}
-- Class: 95
   Script: {instanceID: 0}
 - Class: 108
   Script: {instanceID: 0}
@@ -76,17 +72,13 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Resources/Editor/Graph/btnHover.PSD
-- Assets/Resources/Editor/PathCell.mat
 - Assets/Shaders/BoxVolume.shader
 - Assets/Resources/Editor/Graph/canvasBorders.PSD
-- Assets/Resources/Editor/PureWhiteForMaskRender.mat
 - Assets/Resources/Editor/Graph/nodePortConnectedHover.psd
-- Assets/Resources/Editor/MatForShadowReceiver.mat
 - Assets/Resources/Editor/Graph/windowHighlight.psd
 - Assets/Resources/Editor/Graph/LightThemeTextures/panelLight.psd
 - Assets/Resources/Editor/Graph/btnPressed.psd
 - Assets/Resources/Editor/Graph/arrow.psd
-- Assets/Resources/Editor/ShadowReceiver.shader
 - Assets/Resources/Editor/Graph/panel.psd
 - Assets/Shaders/ConeVolumeOcclusion.shader
 - Assets/Resources/Editor/Graph/arrowTop.psd
@@ -107,8 +99,6 @@ Assets:
 - Assets/Resources/Editor/Graph/arrowLeft.psd
 - Assets/Resources/Editor/Graph/scaleArrow.psd
 - Assets/Resources/Editor/Graph/nodePortHover.psd
-- Assets/Resources/Editor/Cell.png
-- Assets/Resources/Editor/cell.FBX
 - Assets/Resources/Editor/Graph/simpleBox.psd
 - Assets/Resources/Editor/Graph/checkmark.png
 - Assets/Resources/Editor/Graph/clockMark.png
@@ -117,4 +107,4 @@ Assets:
 - Assets/Resources/Editor/Graph/arrowRight.psd
 - Assets/Resources/Editor/Graph/circle.psd
 Dependencies:
-- D:/Atom/AssetBundles/StandaloneWindowsRES2/game_res
+- D:/Atom/AssetBundles/StandaloneLinux/game_res
