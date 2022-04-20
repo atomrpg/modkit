@@ -16,9 +16,18 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         string modName = assembly.GetName().Name;
         string dir = System.IO.Path.GetDirectoryName(assembly.Location);
         Debug.Log("Mod Init: " + modName + "(" + dir + ")");
-        ResourceManager.AddBundle(modName, AssetBundle.LoadFromFile(dir + "/" + modName + "_resources"));
+        LoadModBundle(dir, modName);
         GlobalEvents.AddListener<GlobalEvents.GameStart>(GameLoaded);
         GlobalEvents.AddListener<GlobalEvents.LevelLoaded>(LevelLoaded);
+    }
+
+    void LoadModBundle(string dir, string modName)
+    {
+#if UNITY_EDITOR
+        // skip bundle loading in PIE mode
+#else
+        ResourceManager.AddBundle(modName, AssetBundle.LoadFromFile(dir + "/" + modName + "_resources"));
+#endif
     }
 
     void GameLoaded(GlobalEvents.GameStart evnt)
