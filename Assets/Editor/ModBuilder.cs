@@ -128,11 +128,14 @@ public class ModBuilder : EditorWindow
 
     const string PATH_TO_ASSETS = "/assets";
     const string PATH_BUILD_BUNDLE = "Temp/ModBuild";
+    const string PATH_BUILD_DLL = "Temp/ModBuild_dll";
 
     bool buildAssetBundle = true;
     bool buildLevelBundle = false;
     bool stripShaders = false;
     bool clearLogs = true;
+
+    BuildTarget buildTarget = BuildTarget.StandaloneWindows64;
 
     public static void ClearLogConsole()
     {
@@ -261,6 +264,11 @@ public class ModBuilder : EditorWindow
                     Directory.Delete(PATH_BUILD_BUNDLE, true);
                 }
 
+                if (Directory.Exists(PATH_BUILD_DLL))
+                {
+                    Directory.Delete(PATH_BUILD_DLL, true);
+                }
+
                 if (Directory.Exists(PATH_BUILD_BUNDLE))
                 {
                     throw new System.Exception("Temp/ModBuild exist");
@@ -298,7 +306,7 @@ public class ModBuilder : EditorWindow
 
                 if (buildAssetBundle)
                 {
-                    BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE, BuildAssetBundleOptions.ChunkBasedCompression/*BuildAssetBundleOptions.DisableWriteTypeTree*/, BuildTarget.StandaloneWindows64);
+                    BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE, BuildAssetBundleOptions.ChunkBasedCompression/*BuildAssetBundleOptions.DisableWriteTypeTree*/, buildTarget);
                 }
 
                 if(clearLogs)
@@ -314,8 +322,14 @@ public class ModBuilder : EditorWindow
                     Directory.CreateDirectory(modsFolder);
                 }
 
-                Copy("Library/ScriptAssemblies/" + modName + ".dll", modsFolder + "/" + modName + ".dll");
-                Copy("Library/ScriptAssemblies/" + modName + ".pdb", modsFolder + "/" + modName + ".pdb");
+                var scs = new UnityEditor.Build.Player.ScriptCompilationSettings();
+                scs.group = BuildTargetGroup.Standalone;
+                scs.options = UnityEditor.Build.Player.ScriptCompilationOptions.None;
+                scs.target = buildTarget;
+                UnityEditor.Build.Player.PlayerBuildInterface.CompilePlayerScripts(scs, "Temp/ModBuild_dll");
+
+                Copy("Temp/ModBuild_dll/" + modName + ".dll", modsFolder + "/" + modName + ".dll");
+                Copy("Temp/ModBuild_dll/" + modName + ".pdb", modsFolder + "/" + modName + ".pdb");
 
                 //copy res
                 string modResFolder = modsFolder;
@@ -335,9 +349,8 @@ public class ModBuilder : EditorWindow
                     }
                 }
 
-                Copy("Library/ScriptAssemblies/" + modName + ".dll", "Temp/ModBuild/" + modName + ".dll");
-                Copy("Library/ScriptAssemblies/" + modName + ".pdb", "Temp/ModBuild/" + modName + ".pdb");
-
+                Copy("Temp/ModBuild_dll/" + modName + ".dll", "Temp/ModBuild/" + modName + ".dll");
+                Copy("Temp/ModBuild_dll/" + modName + ".pdb", "Temp/ModBuild/" + modName + ".pdb");
 
                 EditorUtility.RevealInFinder(modsFolder + "/" + modName + ".dll");
 
