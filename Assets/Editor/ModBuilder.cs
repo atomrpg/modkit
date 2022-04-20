@@ -130,7 +130,7 @@ public class ModBuilder : EditorWindow
     const string PATH_BUILD_BUNDLE = "Temp/ModBuild";
 
     bool buildAssetBundle = true;
-    bool buildLevelBundle = true;
+    bool buildLevelBundle = false;
     bool stripShaders = false;
     bool clearLogs = true;
 
@@ -248,7 +248,7 @@ public class ModBuilder : EditorWindow
 
         if (buildAssetBundle)
         {
-            buildLevelBundle = GUILayout.Toggle(buildLevelBundle, "Create Asset Bundle Each Level");
+            buildLevelBundle = GUILayout.Toggle(buildLevelBundle, "Create Split Bundle Each Level");
         }
 
         if (GUILayout.Button("BUILD"))
