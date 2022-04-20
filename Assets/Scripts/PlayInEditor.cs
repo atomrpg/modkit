@@ -17,6 +17,7 @@ public class PlayInEditor : MonoBehaviour
     public Light _sunTestLight = null;
 
     public string spawnScene = null;
+    public bool useModEntryPoint = true;
 
     List<GameObject> tempSceneObj = new List<GameObject>();
 
@@ -92,11 +93,27 @@ public class PlayInEditor : MonoBehaviour
         }
     }
 
+    void CreateEntryPoint()
+    {
+        GameObject enterPoint = new GameObject("ModEntryPoint");
+        enterPoint.AddComponent<ModEntryPoint>();
+    }
 
     void Awake()
     {
         if (EditorApplication.isPlaying)
         {
+            // disable main camera 
+            var defaultCamera = GameObject.Find("Main Camera");
+            if (defaultCamera)
+            {
+                defaultCamera.SetActive(false);
+            }
+
+            if (useModEntryPoint)
+            {
+                CreateEntryPoint();
+            }
 
             Lightmapping.giWorkflowMode = Lightmapping.GIWorkflowMode.OnDemand;
 
