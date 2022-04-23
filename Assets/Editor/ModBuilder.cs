@@ -322,11 +322,26 @@ public class ModBuilder : EditorWindow
                     Directory.CreateDirectory(modsFolder);
                 }
 
+                //  SUPPORT_LEVEL_BUNDLE
+                BuildTargetGroup buildTargetGroup = BuildTargetGroup.Standalone;
+                string baseDefines = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
+
+                if (buildLevelBundle)
+                {
+                    string newDefines = AddCompilerDefines(baseDefines, new string[] { "SUPPORT_LEVEL_BUNDLE" });
+                    PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, newDefines);
+                }
+
                 var scs = new UnityEditor.Build.Player.ScriptCompilationSettings();
                 scs.group = BuildTargetGroup.Standalone;
                 scs.options = UnityEditor.Build.Player.ScriptCompilationOptions.None;
                 scs.target = buildTarget;
                 UnityEditor.Build.Player.PlayerBuildInterface.CompilePlayerScripts(scs, "Temp/ModBuild_dll");
+
+                if (buildLevelBundle)
+                {
+                    PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, baseDefines);
+                }
 
                 Copy("Temp/ModBuild_dll/" + modName + ".dll", modsFolder + "/" + modName + ".dll");
                 Copy("Temp/ModBuild_dll/" + modName + ".pdb", modsFolder + "/" + modName + ".pdb");
@@ -442,6 +457,25 @@ public class ModBuilder : EditorWindow
                 RequestInfo();
             }
         }
+    }
+
+    private static string AddCompilerDefines(string defines, params string[] toAdd)
+    {
+        List<string> splitDefines = new List<string>(defines.Split(new char[] { ';' }, System.StringSplitOptions.RemoveEmptyEntries));
+        foreach (var add in toAdd)
+            if (!splitDefines.Contains(add))
+                splitDefines.Add(add);
+
+        return string.Join(";", splitDefines.ToArray());
+    }
+
+    private static string RemoveCompilerDefines(string defines, params string[] toRemove)
+    {
+        List<string> splitDefines = new List<string>(defines.Split(new char[] { ';' }, System.StringSplitOptions.RemoveEmptyEntries));
+        foreach (var remove in toRemove)
+            splitDefines.Remove(remove);
+
+        return string.Join(";", splitDefines.ToArray());
     }
 
     void Copy(string src, string dst)
