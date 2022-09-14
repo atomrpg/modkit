@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//#define SUPPORT_LEVEL_BUNDLE // Managed via build mod tool.
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using JSon;
@@ -78,8 +79,8 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
     void Start()
     {
         var assembly = GetType().Assembly;
-        string modName = assembly.GetName().Name;
-        string dir = System.IO.Path.GetDirectoryName(assembly.Location);
+        modName = assembly.GetName().Name;
+        dir = System.IO.Path.GetDirectoryName(assembly.Location);
         Debug.Log("Mod Init: " + modName + "(" + dir + ")");
         ScriptsPatch();
     }
