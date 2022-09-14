@@ -1,4 +1,4 @@
-﻿#define SUPPORT_LEVEL_BUNDLE
+﻿//#define SUPPORT_LEVEL_BUNDLE // Managed via build mod tool.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
