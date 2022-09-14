@@ -50,7 +50,11 @@ internal class AssetViewerDB
         if (!EditorApplication.isCompiling)
         {
             EditorApplication.update -= Init;
-            Load(); 
+            Load();
+
+            string modName = typeof(ModEntryPoint).Assembly.GetName().Name;
+            LocalizationTools.stringMask = modName + "_" + LocalizationTools.stringMask;
+            LocalizationTools.textMask = modName + "_" + LocalizationTools.textMask;
         }
     }
 
