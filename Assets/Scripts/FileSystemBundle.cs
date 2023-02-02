@@ -3,6 +3,7 @@
 public class FileSystemBundle : ResourceManager.Bundle
 {
     readonly string dir;
+    bool lockBase = false;
 
     public FileSystemBundle(string path)
     {
@@ -19,13 +20,16 @@ public class FileSystemBundle : ResourceManager.Bundle
 
         if (System.IO.File.Exists(path))
         {
-            switch (System.IO.Path.GetExtension(name))
+            string ext = System.IO.Path.GetExtension(name);
+            switch (ext)
             {
                 case ".png":
                     obj = LoadSprite(path);
                     break;
                 case ".asset":
-                    obj = Resources.Load(System.IO.Path.ChangeExtension(name, null), type);
+                    lockBase = true;
+                    obj = ResourceManager.Load(System.IO.Path.ChangeExtension(name, null), type, ext);
+                    lockBase = false;
                     //Debug.Log(JsonUtility.ToJson(obj)); //dump proprties
                     JsonUtility.FromJsonOverwrite(LoadText(path), obj);
                     break;
@@ -55,7 +59,14 @@ public class FileSystemBundle : ResourceManager.Bundle
 
     override public bool Contains(string name)
     {
-        return System.IO.File.Exists(dir + "/" + name.Replace(PATH_MASK, ""));
+        if (lockBase)
+        {
+            return false;
+        }
+        else
+        {
+            return System.IO.File.Exists(dir + "/" + name.Replace(PATH_MASK, ""));
+        }
     }
 
     override public string[] GetAllAssetNames()

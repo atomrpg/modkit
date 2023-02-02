@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/localization/subtitles/theend.meta
 guid: ad53baae31bb1cb4c834acd088453076
+========
+guid: ea21977d70c37d145bdfb3aa19747a11
+>>>>>>>> master:Assets/Resources/Localization.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/localization/strings_ptbr.json.meta
 guid: 81bf2c2ce139de349a10a01216469ddc
+========
+guid: 7dcb30d759d48a04494b3463b498b04e
+>>>>>>>> master:Assets/Resources/Localization/mymod_strings_en.json.meta
 TextScriptImporter:
   externalObjects: {}
   userData: 

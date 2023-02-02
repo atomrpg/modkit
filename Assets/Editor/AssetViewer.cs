@@ -25,11 +25,15 @@ public class AssetViewer : EditorWindow
 
     private string searchText = "";
 
+    private string gamedir = "";
+
     private int selectedCategoryIdx = -1;
     private string[] categoryNames;
 
     private void OnEnable()
     {
+        gamedir = PlayerPrefs.GetString("GAME_CONTENT_DIR", "");
+
         guiSkin = (GUISkin)Resources.Load("AssetViewer");
         if (AssetViewerDB.IsLoaded)
         {
@@ -81,6 +85,47 @@ public class AssetViewer : EditorWindow
         }
 
         EditorGUILayout.Space();
+
+        EditorGUILayout.BeginHorizontal();
+
+
+        if (gamedir.Length > 0)
+        {
+            if (GUILayout.Button(
+                 new GUIContent("[X]", "Clear path"),
+                 lastSkin.button, GUILayout.Width(30)))
+            {
+                if (EditorUtility.DisplayDialog("Clear current path to the StreamingAssets", "Are you sure you want clear current path to the StreamingAssets? ", "Yes", "Cancel"))
+                {
+                    gamedir = "";
+                    PlayerPrefs.SetString("GAME_CONTENT_DIR", gamedir);
+                }
+            }
+
+            EditorGUILayout.LabelField("Path to StreamingAssets", gamedir);
+        }
+        else
+        {
+            EditorGUILayout.LabelField("Path to StreamingAssets", gamedir);
+
+            if (GUILayout.Button(
+                 new GUIContent("...", "Setup game path to StreamingAssets"),
+                 lastSkin.button))
+            {
+
+                gamedir = EditorUtility.OpenFolderPanel("StreamingAssets path", gamedir, "");
+                PlayerPrefs.SetString("GAME_CONTENT_DIR", gamedir);
+
+                AssetViewerDB.Load();
+                guiSkin = (GUISkin)Resources.Load("AssetViewer");
+                GUI.skin = guiSkin;
+            }
+        }
+
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.Space();
+
         EditorGUILayout.BeginHorizontal();
 
         if (GUI.Button(EditorGUILayout.GetControlRect(false),
@@ -93,6 +138,7 @@ public class AssetViewer : EditorWindow
         }
 
         searchText = EditorGUILayout.TextField(searchText);
+
         if (categoryNames?.Length > 0)
         {
             selectedCategoryIdx = EditorGUILayout.Popup(selectedCategoryIdx, categoryNames);
