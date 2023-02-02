@@ -5,7 +5,7 @@ using JSon;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-[assembly: AssemblyTitle("Machine Translation")] // ENTER MOD TITLE
+[assembly: AssemblyTitle("PT BR")] // ENTER MOD TITLE
 
 
 public class ModEntryPoint : MonoBehaviour, ILocalizedText // ModEntryPoint - RESERVED LOOKUP NAME
@@ -31,9 +31,7 @@ public class ModEntryPoint : MonoBehaviour, ILocalizedText // ModEntryPoint - RE
         GlobalEvents.AddListener<GlobalEvents.GameStart>(GameLoaded);
 
         {
-            SettingLanguage.AvaibleLanguage.Add("ja");
-            SettingLanguage.AvaibleLanguage.Add("ch");
-            SettingLanguage.AvaibleLanguage.Add("fr");
+            SettingLanguage.AvaibleLanguage.Add("ptbr");
         }
 
         /* out of date
@@ -49,3 +47,16 @@ public class ModEntryPoint : MonoBehaviour, ILocalizedText // ModEntryPoint - RE
         PatchLangList();
     }
 }
+
+#if UNITY_EDITOR
+[UnityEditor.InitializeOnLoad]
+public class Editor_Patch
+{
+    static Editor_Patch()
+    {
+        SettingLanguage.AvaibleLanguage.Add("ptbr");
+
+        Debug.Log("Editor: patch");
+    }
+}
+#endif
