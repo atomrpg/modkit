@@ -136,7 +136,7 @@ public class PlayInEditor : MonoBehaviour
             {
                 if (f != null)
                 {
-                    game = f.LoadAsset<GameObject>("Game");
+                    game = f.LoadAsset<GameObject>("assets/game.prefab");
 
                     if(game != null)
                     {
