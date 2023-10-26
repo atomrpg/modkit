@@ -5,7 +5,7 @@
 [2019.4.40+](https://unity3d.com/ru/get-unity/download?ref=personal)
 
 ### Example:
-[Example](https://github.com/atomrpg/modkit/tree/test_mod)
+[Example - TestMod](https://github.com/atomrpg/modkit/tree/test_mod)
 
 [Tutorial EN](https://steamcommunity.com/sharedfiles/filedetails/?id=1713752607)
 
