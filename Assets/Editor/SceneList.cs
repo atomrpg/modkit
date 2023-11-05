@@ -51,16 +51,6 @@ public class SceneList : EditorWindow
 
     string filter = "";
 
-    public static void NotEditableTransform(GameObject go)
-    {
-        for (int i = go.transform.childCount - 1; i >= 0; --i)
-        {
-            NotEditableTransform(go.transform.GetChild(i).gameObject);
-        }
-
-        go.hideFlags |= HideFlags.NotEditable;
-    }
-
 
     public void OnGUI()
     {
