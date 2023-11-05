@@ -83,10 +83,36 @@ public class SceneList : EditorWindow
                     {
                         var goPIE = new GameObject("PlayInEditor");
                         playInEditor = goPIE.AddComponent<PlayInEditor>();
+                        EditorUtility.SetDirty(goPIE);
                     }
 
                     playInEditor.spawnScene = scene.Key;
                     playInEditor.SpawnScene();
+
+                    var goPlayer = GameObject.Find("Player");
+                    if (goPlayer == null) // auto create player
+                    {
+                        goPlayer = new GameObject("Player");
+
+                        var cc = goPlayer.AddComponent<CharacterComponent>();
+                        
+                        {
+                            var c = new Character();
+                            c.CharProto = ResourceManager.Load<CharacterProto>("Entities/Character/Player", ResourceManager.EXT_ASSET);
+                            c.creatureProto = ResourceManager.Load<CreatureProto>("Entities/Creature/BaseMale11", ResourceManager.EXT_ASSET);
+                            c.Caps = Character.CharacterCaps.Player;
+                            c.fraction = "player";
+                            cc.SetEntity(c);
+                        }
+
+                        cc.InvalidateData();
+                        var enterPoint = GameObject.Find("EnterPoint");
+                        if (enterPoint != null) // auto place to EnterPoint
+                        {
+                            cc.transform.position = enterPoint.transform.position;
+                        }
+                        EditorUtility.SetDirty(goPlayer);
+                    }
                 }
             }
         }
