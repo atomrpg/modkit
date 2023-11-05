@@ -40,7 +40,7 @@
          "child" : [ 
             "b33d8e6a-1cfa-46e8-be59-ce233ff33f2f"
          ], 
-         "text" : "Тестовый уровень загружен."
+         "text" : "Test level loaded."
       }, 
       "b33d8e6a-1cfa-46e8-be59-ce233ff33f2f" : { 
          "class" : "AddKeywordNode", 

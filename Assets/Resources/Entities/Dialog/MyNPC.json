@@ -31,7 +31,7 @@
             "11455866-9e26-4078-8aa9-3309a78100c3", 
             "bf98ac3e-45ec-4f1a-8c61-624779e4868f"
          ], 
-         "text" : "Привет, я твой первый диалог."
+         "text" : "Hello, I'm your first dialog."
       }, 
       "11455866-9e26-4078-8aa9-3309a78100c3" : { 
          "class" : "InventoryHasItemNode", 
@@ -63,7 +63,7 @@
          "child" : [ 
             "18103075-9213-44ae-b3d3-1d1590e6cf19"
          ], 
-         "text" : "У меня есть такая пушка как и у тебя."
+         "text" : "I have a weapon just like yours."
       }, 
       "18103075-9213-44ae-b3d3-1d1590e6cf19" : { 
          "class" : "DialogPhraseNode", 
@@ -74,7 +74,7 @@
          "child" : [ 
             "a2b8c2a1-edac-4e0d-8554-0e6ecf692598"
          ], 
-         "text" : "Я смотрю ты молодец, уже можешь начинать делать свой первый мод."
+         "text" : "I see you're doing well; you can start working on your first mod."
       }, 
       "a2b8c2a1-edac-4e0d-8554-0e6ecf692598" : { 
          "class" : "DialogAnswerNode", 
@@ -85,7 +85,7 @@
          "child" : [ 
             "a9364be7-76ba-4f88-a6e4-a92dfc85f988"
          ], 
-         "text" : "Спасибо. До встречи."
+         "text" : "Thank you. See you later."
       }, 
       "a9364be7-76ba-4f88-a6e4-a92dfc85f988" : { 
          "class" : "DialogEndNode", 
@@ -114,7 +114,7 @@
          "child" : [ 
             "41c494fa-23aa-446a-87a6-abc481205cc1"
          ], 
-         "text" : "Отлично у меня получилось. А теперь пока."
+         "text" : "Great, I did it. Now, goodbye."
       }, 
       "41c494fa-23aa-446a-87a6-abc481205cc1" : { 
          "class" : "DialogEndNode", 
