@@ -1,5 +1,27 @@
 {
-	"debug" : {
-		"ver" : "MyMod Example"
-	}
+    "debug": {
+        "ver": "MyMod Example"
+    },
+    "ammo": {
+        "energy": {
+            "short": "Test Mod Ammo",
+            "full": "Description of Test Mod Ammo"
+        }
+    },
+    "weapon": {
+        "epistol": {
+            "short": "Test Mod Pistol",
+            "full": "Description of Test Mod Pistol"
+        }
+    },
+    "uniform": {
+        "earmor": {
+            "short": "Test Mod Armor",
+            "full": "Description of Test Mod Armor"
+        },
+        "ehelmet": {
+            "short": "Test Mod Helmet",
+            "full": "Description of Test Mod Helmet"
+        }
+    }
 }
