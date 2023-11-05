@@ -8,6 +8,7 @@ using UnityEditor;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 
 [ExecuteInEditMode]
 [DefaultExecutionOrder(-999)]
@@ -20,7 +21,6 @@ public class PlayInEditor : MonoBehaviour
     public bool useModEntryPoint = true;
 
     List<GameObject> tempSceneObj = new List<GameObject>();
-
 
     public class ResourcesBundle : ResourceManager.Bundle
     {
@@ -186,7 +186,7 @@ public class PlayInEditor : MonoBehaviour
 
                         var prefab = r.Entity.Prototype.Prefab;
 
-                        var copy = Instantiate<GameObject>(r.Entity.Prototype.Prefab, r.gameObject.transform.position, r.gameObject.transform.rotation);
+                        var copy = Instantiate(prefab, r.gameObject.transform.position, r.gameObject.transform.rotation);
                         copy.transform.localScale = r.transform.lossyScale;
                         copy.name = r.name;
 
@@ -303,6 +303,53 @@ public class PlayInEditor : MonoBehaviour
             ResourceManager.SetAssetGetPathCallback(null);
         }
     }
-    
+
+    public static string GetScenePrefabPath(Transform obj)
+    {
+        string path = "/" + obj.name;
+        while (obj.transform.parent != null)
+        {
+            obj = obj.transform.parent;
+            path = "/" + obj.name + path;
+        }
+        return path.Remove(0, "/Level/".Length);
+    }
+
+    [MenuItem("Game/Create ScenePrefab (Selection)")]
+    static void CreateScenePrefab()
+    {
+        var pie = GameObject.Find("PlayInEditor");
+        string sceneName = pie.GetComponent<PlayInEditor>().spawnScene;
+
+        HideFlags hideFlags = HideFlags.NotEditable | HideFlags.DontSaveInEditor;
+        var selections = Selection.gameObjects;
+        List<Object> newSelection = new List<Object>();
+        foreach (var go in selections)
+        {
+            if ((go.hideFlags & hideFlags) == hideFlags)
+            {
+                var obj = new GameObject();
+                var scenePrefab = obj.AddComponent<ScenePrefab>();
+                scenePrefab.path = GetScenePrefabPath(go.transform);
+                scenePrefab.sceneName = sceneName;
+                scenePrefab.Spawn();
+
+                obj.name = go.name;
+                newSelection.Add(obj);
+
+                obj.transform.position = go.transform.position;
+
+                EditorUtility.SetDirty(obj);
+            }
+            else
+            {
+                Debug.Log("Isn't gameobject, skiped :" + go.name);
+            }
+        }
+
+        Selection.objects = newSelection.ToArray();
+
+        EditorSceneManager.MarkSceneDirty(pie.scene);
+    }
 #endif
 }
