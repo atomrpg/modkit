@@ -1,17 +1,19 @@
 ManifestFileVersion: 0
-CRC: 883412326
+CRC: 1912052569
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 64dc9ddcbcb6d50bf5264fd8fb583f51
+    Hash: 61806d7aa143224f0c08153aa566f71f
   TypeTreeHash:
     serializedVersion: 2
-    Hash: dd6252b81500e6a5ff6a40fa1991fc3e
+    Hash: 51459393d6b80818cc596d76475b4e58
 HashAppended: 0
 ClassTypes:
 - Class: 1
   Script: {instanceID: 0}
 - Class: 4
+  Script: {instanceID: 0}
+- Class: 20
   Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
@@ -25,19 +27,57 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
+- Class: 72
+  Script: {instanceID: 0}
+- Class: 81
+  Script: {instanceID: 0}
 - Class: 90
   Script: {instanceID: 0}
 - Class: 95
   Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 12001, guid: 0000000000000000e000000000000000, type: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: d90d08946c513b542b8a491b539f585f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6ceb7dc61d7899947a6040600e0562c4, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f73d37772e9ea4349b1d6be691382521, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 30f4b897495c7ad40b2d47143e02aaba, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c846f86a5e967df4491c4b6469d2baa0, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d3018f9c4ceca6548a4f92702e5588ce, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8fb0385d49425c9498c1985df3d2bf20, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: bde9169d485f488449bc92cf525a1647, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1addccae78795df489ade370f40d9cf5, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 124
   Script: {instanceID: 0}
 - Class: 128
   Script: {instanceID: 0}
+- Class: 182
+  Script: {instanceID: 0}
+- Class: 215
+  Script: {instanceID: 0}
+- Class: 241
+  Script: {instanceID: 0}
+- Class: 243
+  Script: {instanceID: 0}
+- Class: 245
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Resources/Editor/Graph/btnHover.PSD
 - Assets/Resources/Editor/PathCell.mat
+- Assets/Shaders/BoxVolume.shader
 - Assets/Resources/Editor/Graph/canvasBorders.PSD
 - Assets/Resources/Editor/PureWhiteForMaskRender.mat
 - Assets/Resources/Editor/Graph/nodePortConnectedHover.psd
@@ -48,16 +88,20 @@ Assets:
 - Assets/Resources/Editor/Graph/arrow.psd
 - Assets/Resources/Editor/ShadowReceiver.shader
 - Assets/Resources/Editor/Graph/panel.psd
+- Assets/Shaders/ConeVolumeOcclusion.shader
 - Assets/Resources/Editor/Graph/arrowTop.psd
 - Assets/Resources/Editor/Graph/GraphSkinLight.guiskin
 - Assets/Resources/Editor/Graph/nodePort.psd
 - Assets/Resources/Editor/Graph/windowShadow.psd
 - Assets/Resources/Editor/Graph/canvasBG.psd
 - Assets/Resources/Editor/Graph/arrowBottom.psd
+- Assets/Game.prefab
 - Assets/Resources/Editor/Graph/scaleArrowHover.psd
 - Assets/Resources/Editor/Graph/LightThemeTextures/canvasBGLight.psd
+- Assets/Shaders/ConeVolume.shader
 - Assets/Resources/Editor/Graph/LightThemeTextures/windowLight.psd
 - Assets/Resources/Editor/Graph/btn.psd
+- Assets/Shaders/SphereVolume.shader
 - Assets/Resources/Editor/Graph/GraphSkin.guiskin
 - Assets/Resources/Editor/Graph/xMark.png
 - Assets/Resources/Editor/Graph/arrowLeft.psd
@@ -72,4 +116,5 @@ Assets:
 - Assets/Resources/Editor/Graph/simpleInnerShadow.psd
 - Assets/Resources/Editor/Graph/arrowRight.psd
 - Assets/Resources/Editor/Graph/circle.psd
-Dependencies: []
+Dependencies:
+- D:/Atom/AssetBundles/StandaloneWindowsRES2/game_res

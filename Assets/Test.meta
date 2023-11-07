@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Test.meta
 guid: d53164119f6c749f2bde6d157b609038
 folderAsset: yes
 DefaultImporter:
+========
+guid: 7dcb30d759d48a04494b3463b498b04e
+TextScriptImporter:
+>>>>>>>> master:Assets/Resources/Localization/mymod_strings_en.json.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

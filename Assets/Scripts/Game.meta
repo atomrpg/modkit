@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Game.meta
 guid: 6cafdaee60ab7fb43881520eff131c64
 folderAsset: yes
+========
+guid: 979989aecb75b434a8ae84b90d672f37
+timeCreated: 1508344242
+licenseType: Free
+>>>>>>>> master:Assets/Plugins/GFSDK_SSAO.win64.lib.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
