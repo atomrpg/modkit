@@ -9,11 +9,15 @@ using Object = UnityEngine.Object;
 [InitializeOnLoad]
 internal class AssetViewerDB
 {
-    public struct LoadedAsset
+    public class LoadedAsset
     {
-        public Object Asset { get; set; }
+        private Object _asset;
+        public Object Asset { get { return (_asset == null) ? _asset = Bundle.LoadAsset(AssetPath) : _asset; } }
+        
+        public AssetBundle Bundle { get; set; }
 
         public string AssetName { get; set; }
+        public string AssetPath { get; set; }
 
         public string AssetCategory { get; set; }
     }
@@ -64,7 +68,7 @@ internal class AssetViewerDB
         {
             if(la.Asset == obj)
             {
-                return la.AssetName;
+                return la.AssetPath;
             }
         }
 
@@ -107,47 +111,51 @@ internal class AssetViewerDB
             return;
         }
 
+        int progress = 0;
+
+        var files = Directory.GetFiles(path);
         foreach (string f in Directory.GetFiles(path))
         {
             try
             {
+                if (EditorUtility.DisplayCancelableProgressBar("Asset bundle", "Load Bundle: " + f, (float)progress / files.Length))
+                {
+                    break;
+                }
+
+                ++progress;
+
                 if (!Path.HasExtension(f) || Path.GetExtension(f) == ".bundle")
                 {
                     AssetBundle bundle = AssetBundle.LoadFromFile(f);
                     ResourceManager.AddBundle(bundle.name, bundle);
 
                     string[] allAssetNames = bundle.GetAllAssetNames();
-                    int progress = 0;
-                    foreach (var asset in allAssetNames)
+                    foreach (var assetPath in allAssetNames)
                     {
-                        if (asset.IndexOf(".asset") >= 0 || asset.IndexOf(".json") >= 0)
+                        if (IsAsset(assetPath))
                         {
-                            Object obj = bundle.LoadAsset(asset);
-                            if (obj is ScriptableObject || obj is TextAsset)
+                            //Object obj = bundle.LoadAsset(asset);
+                            //if (obj is ScriptableObject || obj is TextAsset)
+                            //if(IsAsset(asset))
                             {
-                                var category = GetCategoryFromAssetName(asset);
+                                var category = GetCategoryFromAssetName(assetPath);
 
-                                if(asset.Contains("/levels")) // union one category
+                                if(assetPath.Contains("/levels")) // union one category
                                 {
                                     category = "levels";
                                 }
 
                                 loadedAssets.Add(new LoadedAsset
                                 {
-                                    Asset = obj,
-                                    AssetName = asset,
+                                    Bundle = bundle,
+                                    AssetName = Path.GetFileName(assetPath),
+                                    AssetPath = assetPath,
                                     AssetCategory = category,
                                 });
                                 categoriesSet.Add(category);
                             }
                         }
-
-                        if (EditorUtility.DisplayCancelableProgressBar("Asset bundle", "Load Asset", (float)progress / allAssetNames.Length))
-                        {
-                            break;
-                        }
-
-                        ++progress;
                     }
                 }
             }
@@ -156,6 +164,11 @@ internal class AssetViewerDB
                 Debug.Log("Bundle skip");
             }
         }
+    }
+
+    private static bool IsAsset(string asset)
+    {
+        return asset.IndexOf(".asset") >= 0 || asset.IndexOf(".json") >= 0;
     }
 
     private static string GetCategoryFromAssetName(string assetName)
