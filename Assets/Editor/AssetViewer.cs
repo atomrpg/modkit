@@ -159,18 +159,14 @@ public class AssetViewer : EditorWindow
         int hCount = -1;
         int hCountMax = Mathf.FloorToInt(scrollRect.width / ITEM_WIDTH);
 
+        bool handleAssetEvents = Event.current.type == EventType.MouseUp || Event.current.type == EventType.MouseDrag;
+
         foreach (var loadedAsset in AssetViewerDB.LoadedAssets)
         {
-            var asset = loadedAsset.Asset;
-
-            if(asset == null)
-            {
-                continue;
-            }
             var assetName = loadedAsset.AssetName;
-
+            
             // Name filter
-            if (!string.IsNullOrWhiteSpace(searchText) && !asset.name.ToLower().Contains(searchText.ToLower()))
+            if (!string.IsNullOrWhiteSpace(searchText) && !assetName.ToLower().Contains(searchText.ToLower()))
             {
                 continue;
             }
@@ -211,11 +207,16 @@ public class AssetViewer : EditorWindow
                 continue;
             }
 
+            var assetPath = loadedAsset.AssetPath;
+            var asset = loadedAsset.Asset;
             Texture2D t = GetThumbnail(asset);
 
-            GUILayout.Box(new GUIContent(asset.name, t, assetName), GUILayout.Height(80), GUILayout.Width(100));
+            GUILayout.Box(new GUIContent(asset.name, t, assetPath), GUILayout.Height(80), GUILayout.Width(100));
 
-            HandleAssetEvents(asset, assetName);
+            if (handleAssetEvents)
+            {
+                HandleAssetEvents(asset, assetPath);
+            }
         }
 
         if (hCount != hCountMax)
@@ -229,33 +230,30 @@ public class AssetViewer : EditorWindow
 
     private void HandleAssetEvents(Object asset, string assetName)
     {
-        if (Event.current.type == EventType.MouseUp || Event.current.type == EventType.MouseDrag)
+        Rect r = GUILayoutUtility.GetLastRect();
+        Vector2 v = Event.current.mousePosition;
+        if (r.Contains(v))
         {
-            Rect r = GUILayoutUtility.GetLastRect();
-            Vector2 v = Event.current.mousePosition;
-            if (r.Contains(v))
+            if (Event.current.type == EventType.MouseDrag)
             {
-                if (Event.current.type == EventType.MouseDrag)
+                DragAndDrop.PrepareStartDrag();
+                Object[] objectReferences = new Object[1] { asset };
+                DragAndDrop.objectReferences = objectReferences;
+                DragAndDrop.StartDrag("Dragging Asset");
+            }
+            else
+            {
+                if (Event.current.button == 1)
                 {
-                    DragAndDrop.PrepareStartDrag();
-                    Object[] objectReferences = new Object[1] { asset };
-                    DragAndDrop.objectReferences = objectReferences;
-                    DragAndDrop.StartDrag("Dragging Asset");
+                    var menu = new GenericMenu();
+
+                    menu.AddItem(new GUIContent("Download"), false, () => DownloadAsset(asset, assetName));
+                    menu.ShowAsContext();
                 }
                 else
                 {
-                    if (Event.current.button == 1)
-                    {
-                        var menu = new GenericMenu();
 
-                        menu.AddItem(new GUIContent("Download"), false, () => DownloadAsset(asset, assetName));
-                        menu.ShowAsContext();
-                    }
-                    else
-                    {
-
-                        Selection.activeObject = asset;
-                    }
+                    Selection.activeObject = asset;
                 }
             }
         }
