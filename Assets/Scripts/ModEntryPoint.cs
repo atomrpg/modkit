@@ -6,105 +6,135 @@ using JSon;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-//[assembly: AssemblyTitle("My Mod")] // ENTER MOD TITLE
+[assembly: AssemblyTitle("First person camera (Caps Lock)")] // ENTER MOD TITLE
 
 
 public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NAME
 {
-    string modName;
-    string dir;
+    static bool fpsView = false;
+
+    void ScriptsPatch()
+    {
+        //Debug.Log("!!!Patch begin");
+        var assembly = GetType().Assembly;
+        string modName = assembly.GetName().Name;
+
+        var harmony = HarmonyInstance.Create("com.atomrpg.mod." + modName);
+        harmony.PatchAll();
+        //Debug.Log("!!!Patch end");
+    }
+
+    [HarmonyPatch(typeof(CameraControl))]
+    [HarmonyPatch("PositionUpdate")]
+    class Patch_CameraControl_PositionUpdate
+    {
+        static bool Prefix(CameraControl __instance)
+        {
+            return !fpsView;
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerControl))]
+    [HarmonyPatch("OnGUI")]
+    class Patch_PlayerControl_OnGUI
+    {
+        static bool Prefix(CameraControl __instance)
+        {
+            return !fpsView;
+        }
+    }
+
+    [HarmonyPatch(typeof(CameraControl))]
+    [HarmonyPatch("GetInput")]
+    class Patch_CameraControl_GetInput
+    {
+        private static float _freecamYaw = 0.0f;
+        private static float _freecamPitch = 0.0f;
+
+        static bool Prefix(CameraControl __instance)
+        {
+            if(!fpsView)
+            {
+                return true;
+            }
+
+            float dt = Time.smoothDeltaTime;
+
+            var mX = Input.GetAxis("Mouse X");
+            var mY = -Input.GetAxis("Mouse Y");
+
+            _freecamYaw += mX * dt * 100;
+            _freecamPitch += mY * dt * 100;
+
+            _freecamPitch = Mathf.Clamp(_freecamPitch, -90, 90);
+
+            Quaternion freecamDesiredRot = Quaternion.Euler(_freecamPitch, _freecamYaw, 0);
+
+            var transform = Game.World.cameraControl.transform;
+            transform.rotation = Quaternion.Slerp(transform.rotation, freecamDesiredRot, dt * 10);
+            transform.position = Game.World.Player.CharacterComponent.CameraTarget.transform.position;
+
+
+            float dx = 0;
+            float dy = 0;
+
+            if (InputManager.GetKey(InputManager.Action.Camera_W))
+            {
+                dy += 1;
+            }
+
+            if (InputManager.GetKey(InputManager.Action.Camera_S))
+            {
+                dy -= 1;
+            }
+
+            if (InputManager.GetKey(InputManager.Action.Camera_A))
+            {
+                dx -= 1;
+            }
+
+            if (InputManager.GetKey(InputManager.Action.Camera_D))
+            {
+                dx += 1;
+            }
+
+  
+            Game.World.Player.CharacterComponent.ForceRun = Input.GetKey(KeyCode.LeftShift);
+
+            Game.World.Player.CharacterComponent.SetDirectionalMove(dx, dy);
+
+            return false;
+        } 
+    }
+
+    static void SetShadowOnly(GameObject go, bool value)
+    {
+        Renderer[] renderers = go.GetComponentsInChildren<Renderer>(true);
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.shadowCastingMode = value ? UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly : UnityEngine.Rendering.ShadowCastingMode.On;
+        }
+    }
 
     void Start()
     {
         var assembly = GetType().Assembly;
-        modName = assembly.GetName().Name;
-        dir = System.IO.Path.GetDirectoryName(assembly.Location);
-        Debug.Log("Mod Init: " + modName + "(" + dir + ")");
-
-        GlobalEvents.AddListener<GlobalEvents.GameStart>(GameLoaded);
-        GlobalEvents.AddListener<GlobalEvents.LevelLoaded>(LevelLoaded);
-		
-		LoadModBundle();
+        Debug.Log("Mod Init: " + assembly.GetName().Name + "(" + System.IO.Path.GetDirectoryName(assembly.Location) + ")");
+        ScriptsPatch();
     }
 
-    void LoadModBundle()
+    private void Update()
     {
-#if UNITY_EDITOR
-        // skip bundle loading in PIE mode
-#else
-        ResourceManager.AddBundle(modName, AssetBundle.LoadFromFile(dir + "/" + modName + "_resources"));
-#if SUPPORT_LEVEL_BUNDLE
-        AssetBundle assetBundle = AssetBundle.LoadFromFile(dir + "/" + modName);
-        if (assetBundle != null)
+        if(Input.GetKeyUp(KeyCode.CapsLock))
         {
-            manifest = assetBundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
-        }
-        GlobalEvents.AddListener<GlobalEvents.PrepareNextLevel>(PrepareNextLevel);
-#endif
-#endif
-    }
-
-#if SUPPORT_LEVEL_BUNDLE
-    AssetBundleManifest manifest;
-    List<AssetBundle> lastLevelBundle = new List<AssetBundle>();
-    void PrepareNextLevel(GlobalEvents.PrepareNextLevel evnt)
-    {
-        if (manifest != null)
-        {
-            if (lastLevelBundle.Count > 0)
-            {
-                Debug.Log("Unload last level bundle: " + evnt.levelName);
-
-                foreach (var bundle in lastLevelBundle)
-                {
-                    ResourceManager.RemoveBundle(bundle, true);
-                }
-            }
-
-
-            AssetBundle b;
-
-            foreach (var bundle in manifest.GetAllDependencies(modName + "_" + evnt.levelName))
-            {
-                if(bundle.Contains("_resources"))
-                {
-                    continue; // skip default resources pack
-                }
-
-                Debug.Log("Load shared level bundle: " + bundle);
-
-                b = AssetBundle.LoadFromFile(dir + "/" + bundle);
-                if (b != null)
-                {
-                    ResourceManager.AddBundle(bundle, b);
-                    lastLevelBundle.Add(b);
-                }
-            }
-
-            Debug.Log("Load level bundle: " + evnt.levelName);
-            b = AssetBundle.LoadFromFile(dir + "/" + modName + "_" + evnt.levelName);
-            if (b != null)
-            {
-                ResourceManager.AddBundle(modName, b);
-                lastLevelBundle.Add(b);
-            }
+            fpsView = !fpsView;
+            UpdateView();
         }
     }
-#endif
 
-    void GameLoaded(GlobalEvents.GameStart evnt)
+    private void UpdateView()
     {
-        Localization.LoadStrings("mymod_strings_");
-        Game.World.console.DeveloperMode();
-    }
-
-    void LevelLoaded(GlobalEvents.LevelLoaded evnt)
-    {
-        Debug.Log(evnt.levelName);
-    }
-
-    void Update()
-    {
-        
+        Cursor.lockState = fpsView ? CursorLockMode.Locked : CursorLockMode.Confined;
+        SetShadowOnly(Game.World.Player.CharacterComponent.gameObject, fpsView);
     }
 }
