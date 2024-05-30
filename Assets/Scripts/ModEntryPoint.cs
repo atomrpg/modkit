@@ -79,9 +79,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
     void Start()
     {
         var assembly = GetType().Assembly;
-        modName = assembly.GetName().Name;
-        dir = System.IO.Path.GetDirectoryName(assembly.Location);
-        Debug.Log("Mod Init: " + modName + "(" + dir + ")");
+        Debug.Log("Mod Init: " + assembly.GetName().Name + "(" + System.IO.Path.GetDirectoryName(assembly.Location) + ")");
         ScriptsPatch();
     }
 }
