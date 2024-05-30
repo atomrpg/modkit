@@ -346,6 +346,9 @@ public class ModBuilder : EditorWindow
                 Copy("Temp/ModBuild_dll/" + modName + ".dll", modsFolder + "/" + modName + ".dll");
                 Copy("Temp/ModBuild_dll/" + modName + ".pdb", modsFolder + "/" + modName + ".pdb");
 
+                Copy("Assets/0Harmony.dll", modsFolder + "/0Harmony.dll");
+                Copy("Assets/0Harmony.dll", "Temp/ModBuild_dll/0Harmony.dll");
+
                 //copy res
                 string modResFolder = modsFolder;
 
@@ -366,6 +369,8 @@ public class ModBuilder : EditorWindow
 
                 Copy("Temp/ModBuild_dll/" + modName + ".dll", "Temp/ModBuild/" + modName + ".dll");
                 Copy("Temp/ModBuild_dll/" + modName + ".pdb", "Temp/ModBuild/" + modName + ".pdb");
+
+                Copy("Temp/ModBuild_dll/" + "0Harmony.dll" + ".dll", "Temp/ModBuild/" + modName + ".dll");
 
                 EditorUtility.RevealInFinder(modsFolder + "/" + modName + ".dll");
 
