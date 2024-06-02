@@ -370,7 +370,7 @@ public class ModBuilder : EditorWindow
                 Copy("Temp/ModBuild_dll/" + modName + ".dll", "Temp/ModBuild/" + modName + ".dll");
                 Copy("Temp/ModBuild_dll/" + modName + ".pdb", "Temp/ModBuild/" + modName + ".pdb");
 
-                Copy("Temp/ModBuild_dll/" + "0Harmony.dll" + ".dll", "Temp/ModBuild/" + modName + ".dll");
+                Copy("Temp/ModBuild_dll/" + "0Harmony" + ".dll", "Temp/ModBuild/" + modName + ".dll");
 
                 EditorUtility.RevealInFinder(modsFolder + "/" + modName + ".dll");
 
