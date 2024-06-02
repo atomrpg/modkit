@@ -39,8 +39,50 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
     [HarmonyPatch("OnGUI")]
     class Patch_PlayerControl_OnGUI
     {
-        static bool Prefix(CameraControl __instance)
+        static bool Prefix(PlayerControl __instance)
         {
+            if (fpsView)
+            {
+                Event e = Event.current;
+
+                if(e.type == EventType.MouseDown)
+                {
+                    AccessTools.Method(typeof(PlayerControl), "ProcessInput").Invoke(__instance, new object[] { true });
+                }
+                else if (e.type == EventType.MouseUp)
+                {
+                    AccessTools.Method(typeof(PlayerControl), "ProcessInput").Invoke(__instance, new object[] { false });
+                }
+                else
+                {
+
+                    if (__instance.HasManualTarget || (Game.World.battle.IsOwnTurn(__instance.CharacterComponent) && Game.World.battle.InBattle))
+                    {
+                        if (!Game.World.HUD.HasModal())
+                            AccessTools.Method(typeof(PlayerControl), "ProcessConsoleMalualTarget").Invoke(__instance, null);
+
+                        AccessTools.Method(typeof(PlayerControl), "ProcessSelection").Invoke(__instance, null);
+                        AccessTools.Method(typeof(PlayerControl), "UpdateConsoleCursor").Invoke(__instance, null);
+                    }
+                    else
+                    {
+                        AccessTools.Method(typeof(PlayerControl), "ProcessSelection").Invoke(__instance, null);
+
+                        __instance.ResetManualTarget();
+
+                        if (!Game.World.battle.InBattle)
+                        {
+                            //_battleTarget = null;
+                        }
+
+                        if (Game.World.HUD.m_consoleCursor != null)
+                        {
+                            Game.World.HUD.m_consoleCursor.Hide();
+                        }
+                    }
+                }
+            }
+
             return !fpsView;
         }
     }
@@ -59,44 +101,51 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
                 return true;
             }
 
-            float dt = Time.smoothDeltaTime;
-
-            var mX = Input.GetAxis("Mouse X");
-            var mY = -Input.GetAxis("Mouse Y");
-
-            _freecamYaw += mX * dt * 100;
-            _freecamPitch += mY * dt * 100;
-
-            _freecamPitch = Mathf.Clamp(_freecamPitch, -90, 90);
-
-            Quaternion freecamDesiredRot = Quaternion.Euler(_freecamPitch, _freecamYaw, 0);
-
-            var transform = Game.World.cameraControl.transform;
-            transform.rotation = Quaternion.Slerp(transform.rotation, freecamDesiredRot, dt * 10);
-            transform.position = Game.World.Player.CharacterComponent.CameraTarget.transform.position;
-
-
             float dx = 0;
             float dy = 0;
 
-            if (InputManager.GetKey(InputManager.Action.Camera_W))
+            if (Game.World.HUD.HasModal())
             {
-                dy += 1;
+                Cursor.lockState = CursorLockMode.Confined;
             }
-
-            if (InputManager.GetKey(InputManager.Action.Camera_S))
+            else
             {
-                dy -= 1;
-            }
+                Cursor.lockState = CursorLockMode.Locked;
 
-            if (InputManager.GetKey(InputManager.Action.Camera_A))
-            {
-                dx -= 1;
-            }
+                float dt = Time.smoothDeltaTime;
+                var mX = Input.GetAxis("Mouse X");
+                var mY = -Input.GetAxis("Mouse Y");
 
-            if (InputManager.GetKey(InputManager.Action.Camera_D))
-            {
-                dx += 1;
+                _freecamYaw += mX * dt * 100;
+                _freecamPitch += mY * dt * 100;
+
+                _freecamPitch = Mathf.Clamp(_freecamPitch, -90, 90);
+
+                Quaternion freecamDesiredRot = Quaternion.Euler(_freecamPitch, _freecamYaw, 0);
+
+                var transform = Game.World.cameraControl.transform;
+                transform.rotation = Quaternion.Slerp(transform.rotation, freecamDesiredRot, dt * 10);
+                transform.position = Game.World.Player.CharacterComponent.CameraTarget.transform.position;
+
+                if (InputManager.GetKey(InputManager.Action.Camera_W))
+                {
+                    dy += 1;
+                }
+
+                if (InputManager.GetKey(InputManager.Action.Camera_S))
+                {
+                    dy -= 1;
+                }
+
+                if (InputManager.GetKey(InputManager.Action.Camera_A))
+                {
+                    dx -= 1;
+                }
+
+                if (InputManager.GetKey(InputManager.Action.Camera_D))
+                {
+                    dx += 1;
+                }
             }
 
   
