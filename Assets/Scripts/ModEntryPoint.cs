@@ -49,18 +49,15 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
 
     public static string server = "http://online.theatomgame.com/";
 
-    public void SetMessagesFetch(bool fetch)
-    {
-        _fetch = fetch;
-    }
-
     void Start()
     {
         var assembly = GetType().Assembly;
         string modName = assembly.GetName().Name;
         string dir = System.IO.Path.GetDirectoryName(assembly.Location);
         Debug.Log("Mod Init: " + modName + "(" + dir + ")");
+#if !UNITY_EDITOR
         ResourceManager.AddBundle(modName, AssetBundle.LoadFromFile(dir + "/" + modName + "_resources"));
+#endif
         GlobalEvents.AddListener<GlobalEvents.GameStart>(GameLoaded);
         GlobalEvents.AddListener<GlobalEvents.LevelLoaded>(LevelLoaded);
 
@@ -142,8 +139,9 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         _uid = evnt.uid;
         _room = evnt.room;
         _lastActionId = evnt.lastActionId;
+        _fetch = true;
 
-        //Game.World.NextLevel("Z_1", "EnterPoint", false, false);
+        Game.World.NextLevel("Z_1", "EnterPoint", false, false);
     }
 
     private void Whoop(CharacterComponent cc, string whoop, bool fromPlayer)

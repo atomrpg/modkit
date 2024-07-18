@@ -17,6 +17,5 @@ public class WorldMapTest : MonoBehaviour
     {
         Debug.Log("OnLogin");
         Instantiate(WorldMap, transform);
-        EntryPoint.SetMessagesFetch(true);
     }
 }
