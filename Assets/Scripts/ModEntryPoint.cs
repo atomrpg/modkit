@@ -103,8 +103,50 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         Debug.Log(evnt.levelName);
     }
 
+    public static bool GetKeyUp(InputManager.InputBind bind)
+    {
+        if (Input.GetKeyUp(bind.keyCode1))
+        {
+            return true;
+        }
+
+        if (bind.keyCode2 != 0 && Input.GetKeyUp(bind.keyCode2))
+        {
+            return true;
+        }
+
+        if (bind.virtualCode != null && Input.GetKeyUp(bind.virtualCode))
+        {
+            return true;
+        }
+        /*
+        if (!_disabledGamepadInput && bind.ga != 0)
+        {
+            return InputManager.GetKeyUp(bind.ga);
+        }
+        */
+        return false;
+    }
+
+
+    static Builder _current = null;
+
+    static public Builder Current => _current;
+
     void Update()
     {
-        
+        if (GetKeyUp(new InputManager.InputBind() { keyCode1 = KeyCode.G }))
+        {
+            if (_current == null)
+            {
+                _current = new Builder();
+            }
+            else
+            {
+                _current = null;
+            }
+
+            Game.World.HUD.SetWaitState(_current);
+        }
     }
 }
