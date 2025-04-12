@@ -141,7 +141,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         _lastActionId = evnt.lastActionId;
         _fetch = true;
 
-        Game.World.NextLevel("Z_1", "EnterPoint", false, false);
+        Game.World.NextLevel("WorldMap", "EnterPoint", false, false);
     }
 
     private void Whoop(CharacterComponent cc, string whoop, bool fromPlayer)
