@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class WebLoginState : MonoBehaviour
 {
     public UnityEngine.UI.Text loginName;
+    public GameObject loginForm;
 
     public void Login()
     {
@@ -79,13 +80,14 @@ public class WebLoginState : MonoBehaviour
         UnityWebRequest www = UnityWebRequest.Post(ModEntryPoint.server + "login.php", form);
         yield return www.SendWebRequest();
 
-        if (!www.isNetworkError)
+        if (!www.isNetworkError && !www.isHttpError)
         {
             var response = www.downloadHandler.text;
-            
+
+            Debug.Log(response);
             {
                 Debug.Log("Logged in with session key.");
-                OnLogged();
+                yield return OnLogged(steamID, sessionKey);
                 yield break;
             }
         }
@@ -114,16 +116,16 @@ public class WebLoginState : MonoBehaviour
         UnityWebRequest www = UnityWebRequest.Post(ModEntryPoint.server + "login.php", form);
         yield return www.SendWebRequest();
 
-        string jsonResponse = jsonResponse = www.downloadHandler.text;
+        string jsonResponse = www.downloadHandler.text;
 
-        if (!www.isNetworkError)
+        if (!www.isNetworkError && !www.isHttpError)
         {
             string newSessionKey = ExtractSessionKeyFromJson(jsonResponse);
             if (!string.IsNullOrEmpty(newSessionKey))
             {
                 SaveSessionKey(newSessionKey);
                 Debug.Log("Logged in with Steam. Session key saved.");
-                OnLogged();
+                yield return OnLogged(steamID, newSessionKey);
                 yield break;
             }
         }
@@ -131,32 +133,54 @@ public class WebLoginState : MonoBehaviour
         Debug.LogError("Steam login failed: " + www.error + " = " + jsonResponse);
     }
 
-    void OnLogged()
-    {
-        GlobalEvents.PerformEvent<OnlineEvents.Login>(new OnlineEvents.Login
-        {
-        });
-    }
-
-    IEnumerator TryLogin()
+    IEnumerator OnLogged(string userId, string sessionKey)
     {
         WebRequest request = new WebRequest();
-        yield return request.Do(ModEntryPoint.server + "login.php",
-            new MultipartFormDataSection("login", loginName.text)
+        yield return request.Do(ModEntryPoint.server + "get_characters.php",
+            new MultipartFormDataSection("user_id", userId),
+            new MultipartFormDataSection("session_key", sessionKey)
             );
 
-       if(request.Success)
-       {
-           var json = request.GetData();
-           GlobalEvents.PerformEvent<OnlineEvents.Login>(new OnlineEvents.Login { 
-               uid = json["id"].AsInt, room=json["room"].AsInt,
-            x=json["x"].AsInt, y=json["y"].AsInt,
-            data=json["data"],
-            lastActionId = json["lastActionId"].AsInt});
-       }
-       else
-       {
-           //error handle
-       }
+        if (request.Success)
+        {
+            var characters = request.GetData()["characters"].AsArray;
+            if (characters.Count == 0)
+            {
+                yield return CreateCharacter(userId, sessionKey, Steamworks.SteamFriends.GetPersonaName(), characters);
+            }
+
+            if (characters.Count == 0)
+            {
+                Debug.LogError("Can't create character");
+                yield break;
+            }
+
+            var character = characters[0];
+
+            GlobalEvents.PerformEvent<OnlineEvents.Login>(new OnlineEvents.Login
+            {
+                sessionKey = sessionKey,
+                uid = character["id"].AsInt,
+                world_tile = character["world_tile"].AsInt,
+                cell = character["cell"].AsInt,
+            });
+
+            loginForm.SetActive(false);
+        }
+    }
+
+    IEnumerator CreateCharacter(string userId, string sessionKey, string nickname, JSon.JArray characters)
+    {
+        WebRequest request = new WebRequest();
+        yield return request.Do(ModEntryPoint.server + "create_character.php",
+            new MultipartFormDataSection("user_id", userId),
+            new MultipartFormDataSection("session_key", sessionKey),
+            new MultipartFormDataSection("char_name", nickname)
+            );
+
+        if (request.Success)
+        {
+            characters.Add(request.GetData()["character"]);
+        }
     }
 }

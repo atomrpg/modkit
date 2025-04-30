@@ -24,7 +24,7 @@ public class WebRequest
 
     public JSon.JNode GetData()
     {
-        return JSon.JParser.Parse(result)["data"];
+        return JSon.JParser.Parse(result);
     }
 
     public IEnumerator Do(string url, params IMultipartFormSection[] data)
@@ -43,7 +43,7 @@ public class WebRequest
         {
             errorType = isNetworkError ? ErrorType.NetworkError : ErrorType.HttpError;
             errorCode = www.error;
-            Debug.Log(errorType.ToString() + ":" + errorCode);
+            Debug.LogError(url + " error:" + errorType.ToString() + "=" + errorCode);
         }
 
         result = www.downloadHandler.text;

@@ -12,16 +12,24 @@ namespace OnlineEvents
 {
     public struct Login
     {
+        public string sessionKey;
         public int uid;
-        public int room;
-        public int x, y;
-        public int lastActionId;
+        public int world_tile;
+        public int cell;
         public JSon.JNode data;
     }
 
     public struct Travel
     {
         public int dir;
+    }
+
+    public struct EncounterBegin
+    {
+    }
+
+    public struct EncounterEnd
+    {
     }
 
     public struct ChatSend
@@ -42,9 +50,11 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
     private bool _signed = false;
     private bool _fetch = false;
     private int _uid = 0;
-    private int _room = 0;
+    private string _sessionKey = string.Empty;
+    private int _world_tile = 0;
     private int _lastActionId = 0;
     public GameObject _loginForm;
+    private GameObject _inGameForm;
     Dictionary<int, CharacterComponent> _characters = new Dictionary<int, CharacterComponent>();
 
     public static string server = "http://online.theatomgame.com/";
@@ -68,8 +78,12 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         GlobalEvents.AddListener<GlobalEvents.CharacterOnAttack>(OnCharacterOnAttack);
         GlobalEvents.AddListener<OnlineEvents.ChatSend>(OnChat);
         GlobalEvents.AddListener<OnlineEvents.Travel>(OnTravel);
+        GlobalEvents.AddListener<OnlineEvents.EncounterBegin>(ToEncounterBegin);
+        GlobalEvents.AddListener<OnlineEvents.EncounterEnd>(ToEncounterEnd);
 
         _loginForm = ResourceManager.Load<GameObject>("LoginForm", ResourceManager.EXT_PREFAB);
+
+        StartCoroutine(ActionPollLoop());
     }
 
     void GameLoaded(GlobalEvents.GameStart evnt)
@@ -89,7 +103,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         yield return request.Do(server + "worldmap_travel.php",
             new MultipartFormDataSection("uid", _uid.ToString()),
             new MultipartFormDataSection("dir", dir.ToString()),
-            new MultipartFormDataSection("room", _room.ToString()));
+            new MultipartFormDataSection("world_tile", _world_tile.ToString()));
     }
 
     void LevelLoaded(GlobalEvents.LevelLoaded evnt)
@@ -115,21 +129,29 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         WebRequest request = new WebRequest();
         yield return request.Do(server + "character_turnend.php",
             new MultipartFormDataSection("uid", _uid.ToString()),
-            new MultipartFormDataSection("room", _room.ToString()));
+            new MultipartFormDataSection("world_tile", _world_tile.ToString()));
+    }
+
+
+    string Payload(string key, string value)
+    {
+        string payload = "{\"" + key + "\":\"" + value + "\"}";
+        return payload;
     }
 
     void OnChat(OnlineEvents.ChatSend chat)
     {
-        StartCoroutine(TryChatSend(chat.msg));
+        StartCoroutine(SendAction(ActionType.Chat, Payload("message", chat.msg)));
     }
 
-    IEnumerator TryChatSend(string msg)
+    IEnumerator SendAction(ActionType action, string payload)
     {
         WebRequest request = new WebRequest();
-        yield return request.Do(server + "chat_send.php",
-            new MultipartFormDataSection("uid", _uid.ToString()),
-            new MultipartFormDataSection("room", _room.ToString()),
-            new MultipartFormDataSection("msg", msg)
+        yield return request.Do(server + "add_action.php",
+            new MultipartFormDataSection("session_key", _sessionKey),
+            new MultipartFormDataSection("type", ((int)action).ToString()),
+            new MultipartFormDataSection("world_tile", _world_tile.ToString()),
+            new MultipartFormDataSection("payload", payload)
             );
     }
 
@@ -137,11 +159,12 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
     {
         _signed = true;
         _uid = evnt.uid;
-        _room = evnt.room;
-        _lastActionId = evnt.lastActionId;
+        _sessionKey = evnt.sessionKey;
+        _world_tile = evnt.world_tile;
+        _lastActionId = 0; // evnt.lastActionId;
         _fetch = true;
 
-        Game.World.NextLevel("WorldMap", "EnterPoint", false, false);
+        Game.World.NextLevel("WorldMap_Online", "", false, false);
     }
 
     private void Whoop(CharacterComponent cc, string whoop, bool fromPlayer)
@@ -149,25 +172,44 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
         Game.World.HUD.Whoop(whoop, new Vector3(0, 5, 0), cc.transform, fromPlayer ? PlayerHUD.DefaultWhoopColor : PlayerHUD.FrendlyFireWhoopColor);
     }
 
+    void ToEncounterBegin(OnlineEvents.EncounterBegin evnt)
+    {
+        Game.World.NextLevel("Z_1", "EnterPoint", false, false);
+    }
+
+    void ToEncounterEnd(OnlineEvents.EncounterEnd evnt)
+    {
+       Game.World.NextLevel("WorldMap_Online", "", false, false);
+    }
+
+    enum ActionType
+    {
+        CharacterMove,
+        Chat,
+        TurnEnd,
+    }
     IEnumerator TryGetActions()
     {
         WebRequest request = new WebRequest();
-        yield return request.Do(server + "actions_get.php",
-            new MultipartFormDataSection("room", _room.ToString()),
-            new MultipartFormDataSection("aid", _lastActionId.ToString())
+
+        yield return request.Do(server + "get_actions.php",
+            new MultipartFormDataSection("world_tile", _world_tile.ToString()),
+            new MultipartFormDataSection("after_id", _lastActionId.ToString())
             );
 
         _actionTimer = 2.0f;
+
         if (request.Success)
         {
-            foreach (JSon.JNode jAction in request.GetData().AsArray)
+            foreach (JSon.JNode jAction in request.GetData()["actions"].AsArray)
             {
                 _lastActionId = jAction["id"].AsInt;
-                int type = jAction["type"].AsInt;
-                int initiator = jAction["initiator"].AsInt;
-                JSon.JNode data = JSon.JParser.Parse(jAction["data"]);
+                ActionType type = (ActionType) jAction["type"].AsInt;
+                int initiator = jAction["initiator_id"].AsInt;
+                int world_tile = jAction["world_tile"].AsInt;
+                JSon.JNode data = jAction["payload"];
 
-                if (type == 0) // move
+                if (type == ActionType.CharacterMove) // move
                 {
                     if (initiator == _uid)
                     {
@@ -180,16 +222,16 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
                     }
                 }
 
-                if (type == 1) // chat
+                if (type == ActionType.Chat) // chat
                 {
-                    GlobalEvents.PerformEvent(new OnlineEvents.ChatGet(){ msg = data["msg"], initiator = initiator});
+                    GlobalEvents.PerformEvent(new OnlineEvents.ChatGet(){ msg = data["message"], initiator = initiator});
                     if(_inBattle)
                     {
                         Whoop(GetCC(initiator), data["msg"], initiator == _uid);
                     }
                 }
 
-                if (type == 2) //turn end
+                if (type == ActionType.TurnEnd) //turn end
                 {
                     GetCC(initiator).Character.AP = 0;
                 }
@@ -290,7 +332,7 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
 
     void OnLevelLoaded(GlobalEvents.LevelLoaded evnt)
     {
-        StartCoroutine(TryGetCharacters(0));
+      //  StartCoroutine(TryGetCharacters(0));
     }
 
     float _actionTimer = 2;
@@ -311,13 +353,38 @@ public class ModEntryPoint : MonoBehaviour // ModEntryPoint - RESERVED LOOKUP NA
             Instantiate(ResourceManager.Load<GameObject>("ChatPanel", ResourceManager.EXT_PREFAB), Game.World.HUD.Log.transform);
         }
 
+        if (_inGameForm == null && GameObject.Find("Game_HUD(Clone)/UI"))
+        {
+            var prefab = ResourceManager.Load<GameObject>("InGameForm", ResourceManager.EXT_PREFAB);
+            var hud = GameObject.Find("Game_HUD(Clone)/UI");
+            _inGameForm = Instantiate(prefab, hud.transform);
+        }
+
+        /*
         if (_signed && _fetch)
         {
             _actionTimer -= Time.deltaTime;
             if (_actionTimer <= 0)
             {
-                StartCoroutine(TryGetActions());
+               StartCoroutine(TryGetActions());
             }
+        }*/
+    }
+
+    IEnumerator ActionPollLoop()
+    {
+        while (true)
+        {
+            if (_signed && _fetch)
+            {
+                _actionTimer -= Time.deltaTime;
+                if (_actionTimer <= 0)
+                {
+                    yield return TryGetActions();
+                }
+            }
+
+            yield return new WaitForEndOfFrame();
         }
     }
 }
