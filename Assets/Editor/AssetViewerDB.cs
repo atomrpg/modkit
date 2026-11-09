@@ -92,10 +92,10 @@ internal class AssetViewerDB
 
         var categoriesSet = new HashSet<string>();
 
-        LoadBundles(Application.streamingAssetsPath, categoriesSet);
-
-        var gdir = PlayerPrefs.GetString("GAME_CONTENT_DIR", "");
-        LoadBundles(gdir, categoriesSet);
+        var loadedBundles = new HashSet<string>(System.StringComparer.OrdinalIgnoreCase);
+        LoadBundles(Application.streamingAssetsPath, categoriesSet, loadedBundles);
+        foreach (var gameDirectory in PlayInEditor.GetGameBundleDirectories())
+            LoadBundles(gameDirectory, categoriesSet, loadedBundles);
 
         assetCategories.AddRange(categoriesSet.OrderBy(x => x));
         EditorUtility.ClearProgressBar();
@@ -104,7 +104,7 @@ internal class AssetViewerDB
         OnUpdated?.Invoke();
     }
 
-    private static void LoadBundles(string path, HashSet<string> categoriesSet)
+    private static void LoadBundles(string path, HashSet<string> categoriesSet, HashSet<string> loadedBundles)
     {
         if(path.Length == 0 || !Directory.Exists(path))
         {
@@ -114,7 +114,7 @@ internal class AssetViewerDB
         int progress = 0;
 
         var files = Directory.GetFiles(path);
-        foreach (string f in Directory.GetFiles(path))
+        foreach (string f in files)
         {
             try
             {
@@ -125,9 +125,9 @@ internal class AssetViewerDB
 
                 ++progress;
 
-                if (!Path.HasExtension(f) || Path.GetExtension(f) == ".bundle")
+                AssetBundle bundle = PlayInEditor.LoadPreviewBundle(f, loadedBundles);
+                if (bundle != null)
                 {
-                    AssetBundle bundle = AssetBundle.LoadFromFile(f);
                     ResourceManager.AddBundle(bundle.name, bundle);
 
                     string[] allAssetNames = bundle.GetAllAssetNames();

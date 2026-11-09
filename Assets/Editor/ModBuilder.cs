@@ -1,10 +1,43 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using UnityEditor.Build;
+using UnityEditor.Rendering;
+using UnityEngine.Rendering;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Steamworks;
+
+internal sealed class ModShaderStripper : IPreprocessShaders
+{
+    private static readonly string[] ShaderNames = { "Nature/Terrain", "Hidden/TerrainEngine", "Autodesk" };
+    private static readonly string[] Keywords = { "DEBUG", "UNITY_HDR_ON" };
+    private const string RetainedTerrainShader = "Hidden/TerrainEngine/Details/WavingDoublePass";
+
+    internal static bool Enabled { get; set; }
+
+    public int callbackOrder => 0;
+
+    public void OnProcessShader(Shader shader, ShaderSnippetData snippet, IList<ShaderCompilerData> variants)
+    {
+        if (!Enabled)
+            return;
+
+        if (!shader.name.Contains(RetainedTerrainShader) && ShaderNames.Any(name => shader.name.Contains(name)))
+        {
+            variants.Clear();
+            return;
+        }
+
+        for (int i = variants.Count - 1; i >= 0; --i)
+        {
+            var shaderKeywords = variants[i].shaderKeywordSet.GetShaderKeywords();
+            if (shaderKeywords.Any(keyword => Keywords.Any(name => keyword.name.Contains(name))))
+                variants.RemoveAt(i);
+        }
+    }
+}
 
 class SteamService
 {
@@ -258,7 +291,6 @@ public class ModBuilder : EditorWindow
         {
             if (modName.Length > 0)
             {
-                ShaderBuildProcessor.SetEnabled(stripShaders);
                 if (Directory.Exists(PATH_BUILD_BUNDLE))
                 {
                     Directory.Delete(PATH_BUILD_BUNDLE, true);
@@ -306,7 +338,15 @@ public class ModBuilder : EditorWindow
 
                 if (buildAssetBundle)
                 {
-                    BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE, BuildAssetBundleOptions.ChunkBasedCompression/*BuildAssetBundleOptions.DisableWriteTypeTree*/, buildTarget);
+                    ModShaderStripper.Enabled = stripShaders;
+                    try
+                    {
+                        BuildPipeline.BuildAssetBundles(PATH_BUILD_BUNDLE, BuildAssetBundleOptions.ChunkBasedCompression, buildTarget);
+                    }
+                    finally
+                    {
+                        ModShaderStripper.Enabled = false;
+                    }
                 }
 
                 if(clearLogs)
