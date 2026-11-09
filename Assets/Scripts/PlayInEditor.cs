@@ -1,4 +1,4 @@
-﻿
+
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -76,7 +76,39 @@ public class PlayInEditor : MonoBehaviour
         }
     }
 
-    private static void LoadBundles(string path)
+    public static IEnumerable<string> GetGameBundleDirectories()
+    {
+        var gamePath = PlayerPrefs.GetString("GAME_CONTENT_DIR", "");
+        if (!Directory.Exists(gamePath))
+            yield break;
+
+        var contentPath = Path.Combine(gamePath, ResourceManager.CONTENT_FOLDER);
+        if (Directory.Exists(contentPath))
+            yield return contentPath;
+
+        yield return gamePath;
+    }
+
+    public static AssetBundle LoadPreviewBundle(string path, HashSet<string> loadedBundles)
+    {
+        string extension = Path.GetExtension(path);
+        if (extension.Length != 0 && !string.Equals(extension, ".bundle", System.StringComparison.OrdinalIgnoreCase))
+            return null;
+
+        string name = Path.GetFileName(path);
+        if (string.Equals(name, "editor_localization", System.StringComparison.OrdinalIgnoreCase))
+            name = ResourceManager.CONTENT_LOCALIZATION;
+
+        if (loadedBundles.Contains(name))
+            return null;
+
+        var bundle = AssetBundle.LoadFromFile(path);
+        if (bundle != null)
+            loadedBundles.Add(name);
+        return bundle;
+    }
+
+    private static void LoadBundles(string path, HashSet<string> loadedBundles)
     {
         if (path.Length == 0 || !Directory.Exists(path))
         {
@@ -85,11 +117,9 @@ public class PlayInEditor : MonoBehaviour
 
         foreach (string f in Directory.GetFiles(path))
         {
-            if (!Path.HasExtension(f) || Path.GetExtension(f) == ".bundle")
-            {
-                AssetBundle bundle = AssetBundle.LoadFromFile(f);
+            var bundle = LoadPreviewBundle(f, loadedBundles);
+            if (bundle != null)
                 ResourceManager.AddBundle(bundle.name, bundle);
-            }
         }
     }
 
@@ -125,10 +155,10 @@ public class PlayInEditor : MonoBehaviour
 
             ResourceManager.AddBundle("resources", new ResourcesBundle());
 
-            LoadBundles(Application.streamingAssetsPath);
-
-            var gdir = PlayerPrefs.GetString("GAME_CONTENT_DIR", "");
-            LoadBundles(gdir);
+            var loadedBundles = new HashSet<string>(System.StringComparer.OrdinalIgnoreCase);
+            LoadBundles(Application.streamingAssetsPath, loadedBundles);
+            foreach (var gameDirectory in GetGameBundleDirectories())
+                LoadBundles(gameDirectory, loadedBundles);
 
             GameObject game = null;
 
@@ -153,8 +183,6 @@ public class PlayInEditor : MonoBehaviour
             Instantiate(game);
 
             GameStorage.SetInt("PostImageEffects", 0);
-
-            HBAOPlus.useHBOAPlus = false;
 
             if (spawnScene.Length > 0)
             {
